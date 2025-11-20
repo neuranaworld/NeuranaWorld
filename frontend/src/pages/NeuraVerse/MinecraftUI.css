@@ -1,0 +1,510 @@
+/* Minecraft-style UI for NeuranaGame */
+
+.neuraverse-container {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(to bottom, #87CEEB, #E0F6FF);
+}
+
+.neuraverse-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.neuraverse-loading {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #000;
+  color: white;
+  font-family: 'Courier New', monospace;
+}
+
+.loading-spinner {
+  border: 8px solid rgba(255, 255, 255, 0.3);
+  border-top: 8px solid white;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Minecraft-style Overlay */
+.neuraverse-ui {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  font-family: 'Courier New', 'Minecraft', monospace;
+}
+
+.neuraverse-ui > * {
+  pointer-events: all;
+}
+
+/* Crosshair (Center) */
+.crosshair {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+}
+
+.crosshair::before,
+.crosshair::after {
+  content: '';
+  position: absolute;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.crosshair::before {
+  width: 16px;
+  height: 2px;
+  top: 9px;
+  left: 2px;
+}
+
+.crosshair::after {
+  width: 2px;
+  height: 16px;
+  top: 2px;
+  left: 9px;
+}
+
+/* Health & Hunger Bar */
+.status-bars {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 100px;
+  pointer-events: none;
+}
+
+.health-bar,
+.hunger-bar {
+  display: flex;
+  gap: 2px;
+}
+
+.heart,
+.food {
+  width: 18px;
+  height: 18px;
+  font-size: 18px;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+}
+
+/* Hotbar (Bottom Center) */
+.hotbar {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 3px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  image-rendering: pixelated;
+}
+
+.hotbar-slot {
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(0, 0, 0, 0.8);
+  background: rgba(139, 139, 139, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.1s;
+}
+
+.hotbar-slot.active {
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.hotbar-slot:hover:not(.active) {
+  background: rgba(160, 160, 160, 0.8);
+}
+
+.hotbar-slot .block-icon {
+  width: 32px;
+  height: 32px;
+  image-rendering: pixelated;
+}
+
+.hotbar-slot .item-count {
+  position: absolute;
+  bottom: 2px;
+  right: 4px;
+  font-size: 10px;
+  color: white;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8);
+  font-weight: bold;
+}
+
+.hotbar-number {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 12px;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.8);
+  font-weight: bold;
+}
+
+/* Inventory (E to toggle) */
+.minecraft-inventory {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(198, 198, 198, 0.95);
+  border: 4px solid #373737;
+  padding: 20px;
+  display: none;
+  box-shadow: 0 0 0 2px #555, 0 0 0 4px #888;
+  image-rendering: pixelated;
+}
+
+.minecraft-inventory.open {
+  display: block;
+}
+
+.inventory-title {
+  font-size: 16px;
+  color: #404040;
+  margin-bottom: 15px;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 1px 1px 0 #fff;
+}
+
+.inventory-grid {
+  display: grid;
+  grid-template-columns: repeat(9, 40px);
+  gap: 4px;
+  margin-bottom: 15px;
+}
+
+.inventory-slot {
+  width: 40px;
+  height: 40px;
+  background: rgba(139, 139, 139, 0.9);
+  border: 2px solid rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.1s;
+}
+
+.inventory-slot:hover {
+  background: rgba(180, 180, 180, 0.9);
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+.inventory-slot .block-icon {
+  width: 32px;
+  height: 32px;
+  image-rendering: pixelated;
+}
+
+.inventory-slot .item-count {
+  position: absolute;
+
+
+/* Block Icons as CSS Blocks */
+.block-icon {
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+}
+
+.block-icon.grass {
+  background: linear-gradient(to bottom, #4CAF50 0%, #4CAF50 80%, #8B4513 80%, #8B4513 100%);
+}
+
+.block-icon.dirt {
+  background: #8B4513;
+}
+
+.block-icon.stone {
+  background: #808080;
+}
+
+.block-icon.wood {
+  background: #A0522D;
+}
+
+.block-icon.sand {
+  background: #E8D8B0;
+}
+
+.block-icon.gravel {
+  background: #808080;
+}
+
+.block-icon.cobblestone {
+  background: #666666;
+}
+
+.block-icon.clay {
+  background: #A9A9B0;
+}
+
+.block-icon.brick {
+  background: #B8543D;
+}
+
+.block-icon.granite {
+  background: #9A7269;
+}
+
+.block-icon.andesite {
+  background: #838388;
+}
+
+.block-icon.glass {
+  background: linear-gradient(135deg, #D0E8FF 0%, #FFFFFF 100%);
+  opacity: 0.9;
+}
+
+.block-icon.amethyst {
+  background: linear-gradient(135deg, #9966CC 0%, #CC99FF 100%);
+}
+
+.block-icon.chest {
+  background: linear-gradient(to bottom, #8B4513 0%, #654321 100%);
+}
+
+.block-icon.water {
+  background: linear-gradient(135deg, #3399FF 0%, #66B2FF 100%);
+}
+
+.block-icon.lava {
+  background: linear-gradient(135deg, #FF4500 0%, #FFD700 50%, #FF6347 100%);
+}
+
+.block-icon.coal_ore {
+  background: linear-gradient(135deg, #4D4D4D 0%, #1A1A1A 50%, #4D4D4D 100%);
+}
+
+.block-icon.iron_ore {
+  background: linear-gradient(135deg, #B0B0B0 0%, #D3D3D3 50%, #B0B0B0 100%);
+}
+
+.block-icon.copper_ore {
+  background: linear-gradient(135deg, #CC7744 0%, #FF9955 50%, #CC7744 100%);
+}
+
+.block-icon.gold_ore {
+  background: linear-gradient(135deg, #FFD700 0%, #FFF8DC 50%, #FFD700 100%);
+}
+
+.block-icon.diamond_ore {
+  background: linear-gradient(135deg, #00CED1 0%, #87CEEB 50%, #00CED1 100%);
+}
+
+.block-icon.lapis_ore {
+  background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 50%, #1E3A8A 100%);
+}
+
+.block-icon.emerald_ore {
+  background: linear-gradient(135deg, #10B981 0%, #34D399 50%, #10B981 100%);
+}
+
+.block-icon.ruby_ore {
+  background: linear-gradient(135deg, #DC143C 0%, #FF69B4 50%, #DC143C 100%);
+}
+
+.block-icon.platinum_ore {
+  background: linear-gradient(135deg, #E5E7EB 0%, #FFFFFF 50%, #E5E7EB 100%);
+}
+
+.block-icon.quartz_ore {
+  background: linear-gradient(135deg, #FFFFFF 0%, #F3F4F6 50%, #FFFFFF 100%);
+}
+
+  bottom: 2px;
+  right: 4px;
+  font-size: 10px;
+  color: white;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8);
+  font-weight: bold;
+}
+
+.inventory-section-label {
+  font-size: 12px;
+  color: #404040;
+  margin: 10px 0 5px 0;
+  font-weight: bold;
+  text-shadow: 1px 1px 0 #fff;
+}
+
+/* Block Categories (Creative Inventory Style) */
+.creative-tabs {
+  position: absolute;
+  left: -50px;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.creative-tab {
+  width: 45px;
+  height: 45px;
+  background: rgba(139, 139, 139, 0.9);
+  border: 2px solid rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 24px;
+  transition: all 0.1s;
+}
+
+.creative-tab:hover {
+  background: rgba(160, 160, 160, 0.9);
+}
+
+.creative-tab.active {
+  background: rgba(198, 198, 198, 0.95);
+  border-color: rgba(255, 255, 255, 0.8);
+  transform: translateX(5px);
+}
+
+/* Tooltip */
+.minecraft-tooltip {
+  position: absolute;
+  background: rgba(16, 0, 16, 0.94);
+  color: white;
+  padding: 8px 12px;
+  border: 2px solid rgba(80, 0, 160, 0.8);
+  font-size: 14px;
+  font-weight: bold;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 1000;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.8);
+}
+
+/* Coordinates Display (F3) */
+.coordinates {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: white;
+  font-size: 12px;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.8);
+  line-height: 1.6;
+  font-family: 'Courier New', monospace;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.coordinates.hidden {
+  display: none;
+}
+
+/* Chat/Message Area */
+.message-area {
+  position: absolute;
+  bottom: 80px;
+  left: 10px;
+  max-width: 400px;
+  pointer-events: none;
+}
+
+.message {
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 6px 10px;
+  margin-bottom: 4px;
+  font-size: 14px;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8);
+  animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Block Preview Icons */
+.block-icon {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+/* Minecraft-style button */
+.minecraft-button {
+  background: linear-gradient(to bottom, #c6c6c6 0%, #8b8b8b 100%);
+  border: 2px solid #000;
+  color: #fff;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.8);
+  padding: 10px 20px;
+  cursor: pointer;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  transition: all 0.1s;
+}
+
+.minecraft-button:hover {
+  background: linear-gradient(to bottom, #d0d0d0 0%, #a0a0a0 100%);
+}
+
+.minecraft-button:active {
+  background: linear-gradient(to bottom, #8b8b8b 0%, #c6c6c6 100%);
+  transform: translateY(2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hotbar {
+    bottom: 5px;
+    padding: 2px;
+  }
+  
+  .hotbar-slot {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .inventory-grid {
+    grid-template-columns: repeat(9, 32px);
+  }
+  
+  .inventory-slot {
+    width: 32px;
+    height: 32px;
+  }
+}

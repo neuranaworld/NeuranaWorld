@@ -1,0 +1,2 @@
+isim: tas_dortlusu
+durum: pasif

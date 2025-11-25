@@ -1,0 +1,2 @@
+isim: kelime_turetmece
+durum: aktif

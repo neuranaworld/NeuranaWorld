@@ -1,0 +1,2 @@
+isim: 2d_grafik_cizimi
+durum: aktif

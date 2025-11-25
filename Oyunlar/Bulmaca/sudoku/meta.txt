@@ -1,0 +1,2 @@
+isim: sudoku
+durum: aktif

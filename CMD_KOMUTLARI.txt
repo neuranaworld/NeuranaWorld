@@ -1,0 +1,153 @@
+=================================================================
+  🧠 NEURANAWORLD - KURULUM CMD KOMUTLARI
+=================================================================
+
+ADIM 1: Klasör Yapısını Oluşturma
+-----------------------------------------------------------------
+@echo off
+chcp 65001
+mkdir NeuranaWorld123
+cd NeuranaWorld123
+
+mkdir Arayuz\AnaSayfa Arayuz\Hakkimizda Arayuz\Iletisim
+mkdir Oyunlar\Aksiyon Oyunlar\Strateji Oyunlar\Bulmaca Oyunlar\Macera Oyunlar\Spor
+mkdir Uygulamalar\Uretkenlik Uygulamalar\Egitim Uygulamalar\Araclar Uygulamalar\Sosyal
+
+echo Klasör yapısı oluşturuldu!
+-----------------------------------------------------------------
+
+
+ADIM 2: Klasör Yapısını Görüntüleme
+-----------------------------------------------------------------
+tree /F
+-----------------------------------------------------------------
+
+
+ADIM 3: GitHub'a Yükleme (Git yüklü olmalı)
+-----------------------------------------------------------------
+cd NeuranaWorld123
+git init
+git add .
+git commit -m "NeuranaWorld ilk commit - Oyunlar ve Uygulamalar platformu"
+git branch -M main
+git remote add origin https://github.com/KULLANICIADI/REPO-ADI.git
+git push -u origin main
+-----------------------------------------------------------------
+
+
+ADIM 4: GitHub Pages Aktif Etme
+-----------------------------------------------------------------
+1. GitHub'da repository'ye gidin
+2. Settings → Pages bölümüne gidin
+3. Source: "main" branch seçin
+4. Folder: "/ (root)" seçin
+5. Save'e tıklayın
+6. 2-3 dakika sonra siteniz hazır!
+
+Site URL'niz: https://KULLANICIADI.github.io/REPO-ADI/
+-----------------------------------------------------------------
+
+
+ADIM 5: Lokal Test (Python ile)
+-----------------------------------------------------------------
+# Python 3 yüklü ise:
+cd NeuranaWorld123
+python -m http.server 8000
+
+# Tarayıcıda açın: http://localhost:8000
+-----------------------------------------------------------------
+
+
+ADIM 6: Lokal Test (Node.js ile)
+-----------------------------------------------------------------
+# Node.js yüklü ise:
+npm install -g http-server
+cd NeuranaWorld123
+http-server -p 8080
+
+# Tarayıcıda açın: http://localhost:8080
+-----------------------------------------------------------------
+
+
+HIZLI KURULUM (Tek Komut)
+-----------------------------------------------------------------
+Aşağıdaki kodu CMD'ye yapıştırın:
+
+mkdir NeuranaWorld123 && cd NeuranaWorld123 && mkdir Arayuz\AnaSayfa Arayuz\Hakkimizda Arayuz\Iletisim Oyunlar\Aksiyon Oyunlar\Strateji Oyunlar\Bulmaca Oyunlar\Macera Oyunlar\Spor Uygulamalar\Uretkenlik Uygulamalar\Egitim Uygulamalar\Araclar Uygulamalar\Sosyal && echo Hazır!
+-----------------------------------------------------------------
+
+
+TXT DOSYALARI EKLEME
+-----------------------------------------------------------------
+# Oyunlar
+copy kartoyunlari.txt Oyunlar\Aksiyon\
+copy zihingelistirme.txt Oyunlar\Bulmaca\
+copy neuranamatch.txt Oyunlar\Strateji\
+copy farming.txt Oyunlar\Strateji\
+copy mineworld.txt Oyunlar\Macera\
+
+# Uygulamalar
+copy turkce.txt Uygulamalar\Egitim\
+copy neuranaverse.txt Uygulamalar\Sosyal\
+-----------------------------------------------------------------
+
+
+DOSYA YAPISI KONTROLÜ
+-----------------------------------------------------------------
+dir /s /b *.txt
+# Tüm txt dosyalarını listeler
+
+dir /s /b *.html
+# HTML dosyalarını listeler
+
+tree /F
+# Tam yapıyı gösterir
+-----------------------------------------------------------------
+
+
+GİT REPO GÜNCELLENDİGİNDE
+-----------------------------------------------------------------
+git add .
+git commit -m "İçerik güncellendi"
+git push
+-----------------------------------------------------------------
+
+
+SORUN GİDERME
+-----------------------------------------------------------------
+# GitHub Pages çalışmıyor:
+1. Repository public olmalı
+2. index.html dosyası root'ta olmalı
+3. 2-3 dakika bekleyin
+
+# Dosyalar görünmüyor:
+1. Dosya yollarını kontrol edin (büyük/küçük harf)
+2. TXT dosyaları UTF-8 formatında olmalı
+3. Browser console'da hata var mı kontrol edin (F12)
+
+# Türkçe karakterler bozuk:
+1. Dosyaları UTF-8 olarak kaydedin
+2. HTML'de charset="UTF-8" olmalı
+-----------------------------------------------------------------
+
+
+FAYDALIL İNKLER
+-----------------------------------------------------------------
+GitHub Pages Dokümantasyonu:
+https://docs.github.com/pages
+
+GitHub Desktop (GUI):
+https://desktop.github.com/
+
+Git Kurulum:
+https://git-scm.com/download/win
+-----------------------------------------------------------------
+
+
+NOT: Bu komutları Windows Command Prompt (CMD) veya 
+PowerShell'de çalıştırabilirsiniz.
+
+setup.bat dosyasını çift tıklayarak da otomatik kurulum 
+yapabilirsiniz!
+
+=================================================================

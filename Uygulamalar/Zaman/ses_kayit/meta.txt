@@ -1,0 +1,2 @@
+isim: ses_kayit
+durum: aktif

@@ -1,0 +1,2 @@
+isim: hafiza_oyunu
+durum: pasif

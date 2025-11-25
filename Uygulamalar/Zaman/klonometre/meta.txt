@@ -1,0 +1,2 @@
+isim: klonometre
+durum: aktif

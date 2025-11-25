@@ -1,0 +1,2 @@
+isim: muzik_klavyesi
+durum: pasif

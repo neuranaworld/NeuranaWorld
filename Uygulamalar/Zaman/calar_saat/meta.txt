@@ -1,0 +1,2 @@
+isim: calar_saat
+durum: aktif

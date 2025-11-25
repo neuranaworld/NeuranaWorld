@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NeuranaWorld - Oyunlar ve Uygulamalar</title>
+    <meta name="description" content="NeuranaWorld - Eğlenceli oyunlar ve kullanışlı uygulamalar sunan bir platform">
+    <meta name="keywords" content="oyun, uygulama, eğitim, eğlence, online oyunlar">
+    <title>NeuranaWorld - Oyunlar ve Uygulamalar Platformu</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -22,12 +24,58 @@
         </div>
     </nav>
 
+    <!-- Search and Filter Section -->
+    <div class="search-section">
+        <div class="container">
+            <div class="search-container">
+                <input
+                    type="text"
+                    id="search-input"
+                    placeholder="🔍 Oyun veya uygulama ara..."
+                    aria-label="Arama"
+                />
+            </div>
+            <div class="filter-container">
+                <button class="filter-btn active" data-filter="all">Tümü</button>
+                <button class="filter-btn" data-filter="aksiyon">Aksiyon</button>
+                <button class="filter-btn" data-filter="bulmaca">Bulmaca</button>
+                <button class="filter-btn" data-filter="strateji">Strateji</button>
+                <button class="filter-btn" data-filter="macera">Macera</button>
+            </div>
+        </div>
+    </div>
+
     <main class="container">
+        <!-- Statistics -->
+        <div class="stats-section">
+            <div class="stat-card">
+                <span class="stat-icon">🎮</span>
+                <div class="stat-info">
+                    <h3 id="oyunlar-count">0</h3>
+                    <p>Oyun</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-icon">💻</span>
+                <div class="stat-info">
+                    <h3 id="uygulamalar-count">0</h3>
+                    <p>Uygulama</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-icon">🌟</span>
+                <div class="stat-info">
+                    <h3>Ücretsiz</h3>
+                    <p>Tamamen Bedava</p>
+                </div>
+            </div>
+        </div>
+
         <!-- Oyunlar Bölümü -->
         <section id="oyunlar" class="section">
             <h2>🎮 Oyunlar</h2>
             <div class="grid" id="oyunlar-grid">
-                <!-- JavaScript ile doldurulacak -->
+                <div class="loading">Yükleniyor...</div>
             </div>
         </section>
 
@@ -35,7 +83,7 @@
         <section id="uygulamalar" class="section">
             <h2>💻 Uygulamalar</h2>
             <div class="grid" id="uygulamalar-grid">
-                <!-- JavaScript ile doldurulacak -->
+                <div class="loading">Yükleniyor...</div>
             </div>
         </section>
 
@@ -43,8 +91,30 @@
         <section id="hakkimizda" class="section">
             <h2>ℹ️ Hakkımızda</h2>
             <div class="about-content">
-                <p>NeuranaWorld, eğlenceli oyunlar ve kullanışlı uygulamalar sunan bir platformdur.</p>
+                <p><strong>NeuranaWorld</strong>, eğlenceli oyunlar ve kullanışlı uygulamalar sunan tamamen ücretsiz bir platformdur.</p>
                 <p>Zihin geliştirici oyunlardan macera oyunlarına, eğitim uygulamalarından sosyal platformlara kadar geniş bir yelpazede içerik sunuyoruz.</p>
+                <div class="features">
+                    <div class="feature-item">
+                        <span class="feature-icon">✨</span>
+                        <h4>Tamamen Ücretsiz</h4>
+                        <p>Tüm içerikler ücretsiz</p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🎯</span>
+                        <h4>Çeşitli Kategoriler</h4>
+                        <p>Her zevke uygun oyunlar</p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">📱</span>
+                        <h4>Responsive Tasarım</h4>
+                        <p>Her cihazda sorunsuz çalışır</p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🚀</span>
+                        <h4>Sürekli Güncelleme</h4>
+                        <p>Yeni içerikler ekleniyor</p>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -52,8 +122,18 @@
     <footer>
         <div class="container">
             <p>&copy; 2024 NeuranaWorld. Tüm hakları saklıdır.</p>
+            <p class="footer-links">
+                <a href="#oyunlar">Oyunlar</a> |
+                <a href="#uygulamalar">Uygulamalar</a> |
+                <a href="#hakkimizda">Hakkımızda</a>
+            </p>
         </div>
     </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scroll-to-top" class="scroll-to-top" aria-label="Yukarı çık">
+        ⬆️
+    </button>
 
     <script src="app.js"></script>
 </body>

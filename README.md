@@ -1,6 +1,6 @@
-# 🧠 NeuranaWorld - Oyunlar ve Uygulamalar Platformu
+# 🧠 NeuranaWorld
 
-Modern, responsive ve kullanıcı dostu oyun/uygulama platformu. 100+ animasyon ve özellik ile tamamen ücretsiz!
+Modern, kapsamlı oyun ve eğitim platformu. 25+ oyun, eğitim modülleri, araçlar ve AI entegrasyonu ile tamamen ücretsiz!
 
 [![Live Demo](https://img.shields.io/badge/demo-live-success)](https://neuranaworld.github.io/NeuranaWorld/)
 [![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-blue)](https://pages.github.com/)
@@ -10,396 +10,463 @@ Modern, responsive ve kullanıcı dostu oyun/uygulama platformu. 100+ animasyon 
 
 **🚀 [NeuranaWorld'ü Ziyaret Edin!](https://neuranaworld.github.io/NeuranaWorld/)**
 
-## ✨ Öne Çıkan Özellikler
+---
 
-### 🎨 Modern UI/UX
-- **Hero Section**: Çarpıcı karşılama ekranı, floating shapes animasyonları
-- **Category Showcase**: İnteraktif kategori kartları
-- **Smooth Animations**: 100+ CSS ve JavaScript animasyonu
-- **Glassmorphism**: Modern blur efektleri
+## 🎯 Proje Yapısı
 
-### 🎮 İçerik
-- **28 Oyun**: Aksiyon, Bulmaca, Strateji, Macera kategorilerinde
-- **9 Uygulama**: Eğitim, Araçlar, Müzik, Çizim ve daha fazlası
-- **Dinamik Yükleme**: Hızlı ve optimize edilmiş içerik gösterimi
+NeuranaWorld üç ana bileşenden oluşur:
 
-### 🔍 Özellikler
-- **Akıllı Arama**: Gerçek zamanlı arama ve filtreleme
-- **Kategori Filtreleme**: Tek tıkla kategori bazlı filtreleme
-- **Responsive Design**: Mobile-first yaklaşım
-- **Dark Gradient**: Modern renk paleti
-- **SEO Optimized**: Arama motorları için optimize
+1. **🎮 Ana Site** - GitHub Pages için React + Vite oyun vitrini
+2. **🎓 Frontend** - Kapsamlı eğitim ve araçlar platformu
+3. **🐍 Backend** - Python tabanlı AI entegrasyonu ve oyun sunucusu
 
-### 📱 Mobile-First
-- **Hamburger Menu**: Yan açılır mobil menü
-- **Touch Optimized**: Dokunmatik ekranlar için optimize
-- **Responsive Grid**: Tüm cihazlarda mükemmel görünüm
-- **Fast Loading**: Hızlı yükleme süreleri
+📖 **Detaylı yapı için:** [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md)
 
-## 📁 Proje Yapısı
+---
 
-```
-NeuranaWorld/
-├── index.html              # Ana sayfa (Hero + Showcase)
-├── app.js                  # JavaScript (444 satır)
-├── style.css               # Modern CSS (1217 satır)
-├── README.md               # Bu dosya
-│
-├── Oyunlar/
-│   ├── Aksiyon/           # 7 oyun (Snake, Flappy Bird, Pong...)
-│   ├── Bulmaca/           # 12 oyun (2048, Tetris, Sudoku...)
-│   ├── Strateji/          # 7 oyun (Okey, Batak, Poker...)
-│   ├── Kelime/            # 3 oyun (Adam Asmaca...)
-│   ├── Macera/            # 1 oyun (Labirent)
-│   └── Spor/              # 1 oyun (Mini Golf)
-│
-├── Uygulamalar/
-│   ├── Araçlar/           # Hesap Makinesi, Birim Dönüştürücü
-│   ├── Eğitim/            # Dört İşlem
-│   ├── Müzik/             # Müzik Klavyesi
-│   ├── Zaman/             # Çalar Saat, Kronometre, Ses Kayıt
-│   ├── Çizim/             # 2D Grafik Çizimi
-│   └── Sosyal/            # Neuranaverse
-│
-├── backend/               # Python Backend
-└── frontend/              # React Frontend (opsiyonel)
-```
+## ✨ Özellikler
+
+### 🎮 Oyunlar (25+)
+
+#### ⚡ Aksiyon (7)
+Snake, Flappy Bird, Pong, Breakout, City Runner, Sky Jumper, Dart
+
+#### 🧩 Bulmaca (10)
+2048, Tetris, Mayın Tarlası, Hafıza, Sudoku, Nonogram, Yapboz, Şeker Eşleştirme, Kelime Arama, Çizim Oyunu
+
+#### ♟️ Strateji (7)
+Okey, Okey Pro, Batak, Poker, Connect Four, XOX, Kart Oyunları
+
+#### 🌀 Macera
+Labirent
+
+### 🎓 Eğitim Platformu
+
+- **Matematik:** DeepThink modu, hızlı pratik, oyunlar (Sudoku, Polinom Arena)
+- **Türkçe:** Dilbilgisi testleri, yazım kuralları, oyunlar (Adam Asmaca, Kelime Zinciri)
+- **AI Özellikleri:** Multi-AI karşılaştırma, çeviri sistemi
+
+### 🛠️ Araçlar
+
+- Pomodoro Timer
+- Hesap Makinesi
+- Birim Dönüştürücü
+- 2D Grafik Çizimi
+- Çalar Saat & Kronometre
+- Ses Kaydedici
+- Hava Durumu
+- Mind Map
+- Spaced Repetition
+
+### 🌐 NeuraVerse
+
+Metaverse platformu - 3D dünya keşfi ve sosyal etkileşim
+
+---
 
 ## 🚀 Hızlı Başlangıç
 
-### Yerel Geliştirme
+### Ana Site (GitHub Pages Vitrini)
 
 ```bash
 # Repository'yi klonlayın
 git clone https://github.com/neuranaworld/NeuranaWorld.git
-
-# Klasöre girin
 cd NeuranaWorld
 
-# index.html'i tarayıcıda açın
-# veya
-python -m http.server 8000
-# Tarayıcıda: http://localhost:8000
+# Dependencies yükleyin
+npm install
+
+# Development server
+npm run dev
+
+# Production build
+npm run build
 ```
 
-### Live Server ile (VS Code)
-
-1. VS Code'da projeyi açın
-2. Live Server extension'ı yükleyin
-3. `index.html`'e sağ tıklayın → "Open with Live Server"
-
-## 🌐 GitHub Pages ile Yayınlama
-
-### Seçenek 1: Mevcut Branch'ten Yayınlama
-
-1. **GitHub Repository'ye gidin**:
-   ```
-   https://github.com/neuranaworld/NeuranaWorld
-   ```
-
-2. **Settings → Pages**:
-   - Source: `Deploy from a branch`
-   - Branch: `claude/github-integration-setup-01BLMxTmwKLkHhyxtiDGxGty`
-   - Folder: `/ (root)`
-   - **Save**
-
-3. **5-10 dakika bekleyin**, siteniz hazır:
-   ```
-   https://neuranaworld.github.io/NeuranaWorld/
-   ```
-
-### Seçenek 2: Main Branch'e Merge Ederek
+### Frontend Platform (Tam Özellikli)
 
 ```bash
-# Main branch'e geçin
-git checkout main
+cd frontend
 
-# Mevcut branch'i merge edin
-git merge claude/github-integration-setup-01BLMxTmwKLkHhyxtiDGxGty
+# Dependencies yükleyin
+npm install
 
-# GitHub'a push edin
-git push origin main
+# Development server
+npm start
+
+# Production build
+npm run build
 ```
 
-Sonra Settings → Pages → Branch: `main` seçin.
+### Backend (Python Server)
 
-### Custom Domain (Opsiyonel)
+```bash
+cd backend
 
-1. Repository Settings → Pages → Custom domain
-2. Domain adınızı girin: `www.neuranaworld.com`
-3. DNS ayarlarınızı yapın:
-   ```
-   CNAME www neuranaworld.github.io
-   ```
+# Virtual environment (önerilen)
+python -m venv venv
+source venv/bin/activate  # Linux/Mac
+# veya
+venv\Scripts\activate  # Windows
 
-## 🎨 Özellikler Detaylı
+# Dependencies yükleyin
+pip install -r requirements.txt
 
-### 🎯 Hero Section
-```
-🧠 Hoş Geldiniz!
-   NeuranaWorld
-```
-- Floating shapes animasyonları (20s loop)
-- Pulse emoji animasyonu
-- Shimmer gradient text efekti
-- 2 CTA butonu (Call-to-Action)
-- Canlı istatistikler
-- Bounce scroll indicator
-
-### 🎴 Card Sistemi
-- Gradient overlay hover efekti
-- 20px rounded corners
-- Box shadow transitions
-- "Yakında" badge animasyonları
-- Z-index layer management
-
-### 🔍 Arama & Filtreleme
-- Debounced search input
-- Real-time filtering
-- Category-based filters
-- Clear search button
-- Empty state messages
-
-### 📊 İstatistikler
-- Animated counters
-- Progress bars
-- Hover elevation effects
-- Icon wrappers with gradients
-
-### 📱 Responsive Breakpoints
-```css
-Desktop:  > 768px  (3-4 columns)
-Tablet:   768px    (2 columns)
-Mobile:   < 480px  (1 column)
+# Sunucuyu başlatın
+python server.py
 ```
 
-## 🎨 Renk Paleti
+---
 
-### CSS Variables
-```css
---primary-color: #667eea      /* Mor */
---secondary-color: #764ba2    /* Koyu Mor */
---accent-color: #f093fb       /* Pembe */
---success-color: #4ade80      /* Yeşil */
---danger-color: #f87171       /* Kırmızı */
+## 🌐 GitHub Pages Deployment
 
-/* Gray Scale */
---gray-100: #f5f7fa
---gray-200: #e8ecf3
---gray-300: #c3cfe2
---gray-400: #999
---gray-600: #666
---gray-900: #333
+### Otomatik Deployment
+
+GitHub Actions otomatik olarak her push'ta siteyi deploy eder.
+
+Workflow dosyası: `.github/workflows/deploy.yml`
+
+### Manuel Deployment
+
+```bash
+# Build
+npm run build
+
+# Commit ve push
+git add dist
+git commit -m "Deploy to GitHub Pages"
+git push
 ```
 
-### Gradients
-```css
-/* Primary Gradient */
-background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-
-/* Card Gradient */
-background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-
-/* Footer Gradient */
-background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+Site 2-3 dakika içinde hazır:
 ```
+https://neuranaworld.github.io/NeuranaWorld/
+```
+
+---
 
 ## 🛠️ Teknolojiler
 
-### Frontend
-- **HTML5**: Semantic markup
-- **CSS3**:
-  - Flexbox & Grid
-  - CSS Variables
-  - Animations & Transitions
-  - Media Queries
-- **JavaScript (ES6+)**:
-  - Vanilla JS (no frameworks)
-  - Intersection Observer API
-  - Event Delegation
-  - State Management
+### Ana Site
+- **React 18** - UI framework
+- **Vite** - Build tool & dev server
+- **React Router** - Client-side routing
+- **Vanilla CSS/JS** - Oyunlar için lightweight approach
 
-### Animations
-- **CSS Keyframes**: float, bounce, pulse, shimmer, fadeInUp, spin
-- **JS Animations**: Counter animations, Intersection Observer
-- **Transitions**: Smooth hover effects, color transitions
+### Frontend Platform
+- **Create React App** - React boilerplate
+- **shadcn/ui** - UI component library
+- **Tailwind CSS** - Utility-first CSS
+- **React Router v6** - Advanced routing
+- **Custom Hooks** - State management
 
-## 🎮 Oyun Listesi
+### Backend
+- **Python 3.x** - Backend language
+- **Flask/FastAPI** - Web framework
+- **LLM Integration** - AI özellikleri
+- **SQLite/PostgreSQL** - Database
 
-### ⚡ Aksiyon (7 oyun)
-- Breakout, City Runner, Dart, Flappy Bird, Pong, Sky Jumper, Snake
+---
 
-### 🧩 Bulmaca (12 oyun)
-- Çizim Oyunu, 2048, Yapboz, Hafıza, Mayın Tarlası, Nonogram, Puzzle, Şeker Eşleştirme, Tetris, Kelime Arama
+## 📁 Proje Dizin Yapısı
 
-### ♟️ Strateji (7 oyun)
-- Batak, Kart Oyunları, Connect Four, Okey 101, Okey Pro, Poker, XOX
-
-### 🌀 Macera (1 oyun)
-- Labirent
-
-## 💻 Uygulamalar
-
-### 🛠️ Araçlar
-- Hesap Makinesi, Birim Dönüştürücü
-
-### 📚 Eğitim
-- Dört İşlem
-
-### 🎹 Müzik
-- Müzik Klavyesi
-
-### ⏰ Zaman
-- Çalar Saat, Kronometre, Ses Kayıt
-
-### ✏️ Çizim
-- 2D Grafik Çizimi
-
-### 🌐 Sosyal
-- Neuranaverse (Metaverse platformu)
-
-## 🔧 Özelleştirme
-
-### Yeni Oyun Ekleme
-
-1. **Oyun dosyasını oluşturun**:
-   ```
-   Oyunlar/Kategori/YeniOyun.js
-   Oyunlar/Kategori/index_YeniOyun.html
-   ```
-
-2. **app.js'e ekleyin**:
-   ```javascript
-   {
-       id: 'yenioyun',
-       name: 'Yeni Oyun',
-       icon: '🎮',
-       category: 'Kategori',
-       path: 'Oyunlar/Kategori/index_YeniOyun.html',
-       shortDesc: 'Oyun açıklaması'
-   }
-   ```
-
-### Renk Teması Değiştirme
-
-`style.css` dosyasında `:root` değişkenlerini değiştirin:
-
-```css
-:root {
-    --primary-color: #your-color;
-    --secondary-color: #your-color;
-}
+```
+NeuranaWorld/
+├── 🎮 Ana Site (Root)
+│   ├── src/                # React source
+│   │   ├── App.jsx        # Main app + routing
+│   │   └── pages/         # Pages
+│   ├── Oyunlar/           # Oyun kategorileri
+│   │   ├── Aksiyon/       # *.jsx files
+│   │   ├── Bulmaca/       # *.jsx files
+│   │   ├── Strateji/      # *.jsx files
+│   │   └── Macera/        # *.jsx files
+│   └── Uygulamalar/       # Uygulama meta verileri
+│
+├── 🎓 Frontend Platform
+│   └── src/
+│       ├── pages/         # Page components
+│       ├── components/    # Reusable components
+│       └── utils/         # Helper functions
+│
+└── 🐍 Backend
+    ├── server.py          # Main server
+    ├── llm_router.py      # AI routing
+    └── okey_game.py       # Game server
 ```
 
-### Animasyon Hızını Ayarlama
+📖 **Tam yapı için:** [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md)
 
-```css
-/* Daha hızlı animasyon */
-.hero-shape {
-    animation: float 10s infinite ease-in-out;
-}
+---
 
-/* Daha yavaş animasyon */
-.hero-shape {
-    animation: float 30s infinite ease-in-out;
-}
+## 🎨 Özellikler Detaylı
+
+### Ana Site Özellikleri
+
+- **Modern UI/UX:** Glassmorphism, smooth animations
+- **Responsive:** Mobile-first design
+- **SEO Optimized:** Meta tags, semantic HTML
+- **Fast Loading:** Vite optimizations
+- **Akıllı Arama:** Real-time filtering
+- **Kategori Filtreleme:** Tek tıkla filtre
+
+### Frontend Platform Özellikleri
+
+- **AI Powered:** Multi-LLM comparison, intelligent routing
+- **Educational:** Structured learning paths
+- **Gamified:** Eğlenceli öğrenme deneyimi
+- **Progress Tracking:** Gelişim takibi
+- **Responsive:** Tüm cihazlarda mükemmel
+- **Accessibility:** WCAG 2.1 uyumlu
+
+### Backend Özellikleri
+
+- **LLM Router:** Çoklu AI modeli yönetimi
+- **Consensus Engine:** AI yanıtlarını birleştirme
+- **Game Server:** Multiplayer oyun desteği
+- **Question Generator:** Dinamik soru üretimi
+- **Word Validator:** Türkçe kelime kontrolü
+
+---
+
+## 🎯 Kullanım Senaryoları
+
+### Öğrenciler için
+- Matematik ve Türkçe pratik
+- Eğlenceli oyunlarla öğrenme
+- Sınav hazırlığı
+
+### Öğretmenler için
+- Öğrencilere kaynak önerme
+- Sınıf içi aktiviteler
+- Ödev kaynağı
+
+### Geliştiriciler için
+- Open-source örnek proje
+- React + Vite best practices
+- AI entegrasyon örnekleri
+
+### Casual Kullanıcılar için
+- Eğlenceli oyunlar
+- Kullanışlı araçlar
+- Zaman geçirme
+
+---
+
+## 📊 İstatistikler
+
+- ✅ **25+ Oyun** (Aksiyon, Bulmaca, Strateji, Macera)
+- ✅ **15+ Araç** (Hesap makinesi, zamanlayıcılar, vb.)
+- ✅ **2 Eğitim Modülü** (Matematik, Türkçe)
+- ✅ **AI Entegrasyonu** (Multi-LLM, çeviri)
+- ✅ **100% Ücretsiz** ve open-source
+- ✅ **Responsive** tasarım
+- ✅ **Modern** teknolojiler
+
+---
+
+## 🔧 Geliştirme
+
+### Ana Site Development
+
+```bash
+npm run dev        # Vite dev server (http://localhost:5173)
+npm run build      # Production build → dist/
+npm run preview    # Preview production build
 ```
 
-## 📱 Tarayıcı Desteği
+### Frontend Development
 
-| Tarayıcı | Desteklenen Versiyon |
-|----------|---------------------|
-| Chrome   | ✅ 90+             |
-| Firefox  | ✅ 88+             |
-| Safari   | ✅ 14+             |
-| Edge     | ✅ 90+             |
-| Opera    | ✅ 76+             |
+```bash
+cd frontend
+npm start          # CRA dev server (http://localhost:3000)
+npm run build      # Production build → build/
+npm test           # Run tests
+```
 
-## 🚀 Performans
+### Backend Development
 
-### Lighthouse Scores (Hedef)
-- Performance: 95+
-- Accessibility: 100
-- Best Practices: 100
-- SEO: 100
+```bash
+cd backend
+python server.py   # Start server (http://localhost:5000)
+pytest             # Run tests (eğer varsa)
+```
 
-### Optimizasyonlar
-- ✅ Minified CSS/JS (production için)
-- ✅ Lazy loading images
-- ✅ Hardware-accelerated animations
-- ✅ Debounced search
-- ✅ Efficient event listeners
+### Full Stack Development
 
-## 📈 Roadmap
+```bash
+# Terminal 1: Frontend
+cd frontend && npm start
 
-### Yakında Gelecek Özellikler
-- [ ] 🌙 Dark Mode toggle
-- [ ] ⭐ Oyun rating sistemi
-- [ ] 💾 LocalStorage (favoriler, geçmiş)
-- [ ] 🔔 Bildirim sistemi
-- [ ] 🎵 Ses efektleri
-- [ ] 📱 PWA (Progressive Web App)
-- [ ] 🔐 Kullanıcı sistemi
-- [ ] 🏆 Liderlik tablosu
+# Terminal 2: Backend
+cd backend && python server.py
 
-### Planlanıyor
-- [ ] Blog bölümü
-- [ ] Forum/Community
-- [ ] Multi-language support
-- [ ] Advanced analytics
-- [ ] Social sharing
-- [ ] Game recommendations
+# Terminal 3: Ana Site (opsiyonel)
+npm run dev
+```
+
+---
 
 ## 🤝 Katkıda Bulunma
 
 Katkılarınızı memnuniyetle karşılıyoruz!
 
+### Nasıl Katkıda Bulunulur?
+
 1. Fork edin
-2. Feature branch oluşturun (`git checkout -b feature/AmazingFeature`)
-3. Commit edin (`git commit -m 'Add some AmazingFeature'`)
-4. Push edin (`git push origin feature/AmazingFeature`)
+2. Feature branch oluşturun
+   ```bash
+   git checkout -b feature/YeniOzellik
+   ```
+3. Değişikliklerinizi commit edin
+   ```bash
+   git commit -m '✨ Yeni özellik: ...'
+   ```
+4. Branch'inizi push edin
+   ```bash
+   git push origin feature/YeniOzellik
+   ```
 5. Pull Request açın
+
+### Katkı Alanları
+
+- 🎮 Yeni oyunlar ekleyin
+- 🛠️ Yeni araçlar geliştirin
+- 📚 Eğitim içeriği ekleyin
+- 🐛 Bug fix'ler
+- 📝 Dokümantasyon iyileştirmeleri
+- 🎨 UI/UX iyileştirmeleri
+- ⚡ Performans optimizasyonları
+
+---
+
+## 📈 Roadmap
+
+### Kısa Vadeli
+- [ ] 🌙 Dark mode toggle
+- [ ] ⭐ Oyun rating sistemi
+- [ ] 💾 LocalStorage (favoriler, geçmiş)
+- [ ] 🔔 Bildirim sistemi
+- [ ] 📱 PWA desteği
+
+### Orta Vadeli
+- [ ] 🔐 Kullanıcı sistemi
+- [ ] 🏆 Liderlik tablosu
+- [ ] 🎵 Ses efektleri
+- [ ] 🌍 Multi-language support
+- [ ] 📊 Analytics dashboard
+
+### Uzun Vadeli
+- [ ] 💬 Forum/Community
+- [ ] 📝 Blog bölümü
+- [ ] 🤖 Advanced AI features
+- [ ] 🎮 Multiplayer games
+- [ ] 📱 Native mobile apps
+
+---
+
+## 🐛 Sorun Giderme
+
+### Build Hataları
+
+```bash
+# node_modules temizle
+rm -rf node_modules package-lock.json
+npm install
+
+# Cache temizle
+npm cache clean --force
+```
+
+### Port Çakışması
+
+```bash
+# Ana site (Vite varsayılan: 5173)
+npm run dev -- --port 3001
+
+# Frontend (CRA varsayılan: 3000)
+PORT=3001 npm start
+```
+
+### Backend Hataları
+
+```bash
+# Python dependencies yeniden yükle
+pip install --upgrade -r requirements.txt
+
+# Virtual environment yeniden oluştur
+deactivate
+rm -rf venv
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+---
 
 ## 📞 İletişim & Destek
 
-### Sorular
+### İletişim
+
 - 📧 Email: [email protected]
 - 💬 GitHub Issues: [Issues](https://github.com/neuranaworld/NeuranaWorld/issues)
-- 📖 Docs: Bu README
+- 📖 Docs: [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md)
 
 ### Bug Bildirme
-1. GitHub Issues'a gidin
+
+1. [GitHub Issues](https://github.com/neuranaworld/NeuranaWorld/issues) sayfasına gidin
 2. "New Issue" tıklayın
-3. Bug detaylarını yazın
+3. Detaylı açıklama ve adımlar yazın
 4. Screenshot ekleyin (varsa)
+
+### Feature Request
+
+1. Issues sayfasında "Feature Request" template'i kullanın
+2. Özelliği detaylı açıklayın
+3. Use case'leri belirtin
+
+---
 
 ## 📄 Lisans
 
-Bu proje kişisel kullanım içindir. Ticari kullanım için izin alınması gerekmektedir.
+Bu proje kişisel ve eğitim amaçlı kullanım içindir.
+
+Ticari kullanım için lütfen iletişime geçin.
+
+---
 
 ## 🎉 Teşekkürler
 
 NeuranaWorld'ü kullandığınız için teşekkürler!
 
 ### Katkıda Bulunanlar
-- 🧠 Ana Geliştirici: [NeuranaWorld Team]
-- 🎨 Tasarım: Modern UI/UX prensipleri
-- 💻 Kod: Vanilla JavaScript & CSS3
+
+- 🧠 **Ana Geliştirici:** NeuranaWorld Team
+- 🎨 **Tasarım:** Modern UI/UX prensipleri
+- 💻 **Teknolojiler:** React, Vite, Python, AI
+
+### İlham Kaynakları
+
+- React ekosistemi
+- shadcn/ui component library
+- Modern web development best practices
 
 ---
 
 <div align="center">
 
-**🧠 NeuranaWorld** - Oyunlar ve Uygulamalar Dünyası
+**🧠 NeuranaWorld** - Öğren, Oyna, Keşfet
 
 [![GitHub](https://img.shields.io/github/stars/neuranaworld/NeuranaWorld?style=social)](https://github.com/neuranaworld/NeuranaWorld)
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fneuranaworld.github.io%2FNeuranaWorld%2F)](https://neuranaworld.github.io/NeuranaWorld/)
 
-**[Live Demo](https://neuranaworld.github.io/NeuranaWorld/)** •
-**[Documentation](#)** •
-**[Report Bug](https://github.com/neuranaworld/NeuranaWorld/issues)** •
-**[Request Feature](https://github.com/neuranaworld/NeuranaWorld/issues)**
+**[🚀 Live Demo](https://neuranaworld.github.io/NeuranaWorld/)** •
+**[📖 Documentation](PROJECT_STRUCTURE.md)** •
+**[🐛 Report Bug](https://github.com/neuranaworld/NeuranaWorld/issues)** •
+**[💡 Request Feature](https://github.com/neuranaworld/NeuranaWorld/issues)**
 
 Made with ❤️ by NeuranaWorld Team
+
+*Son Güncelleme: 2025-11-26*
 
 </div>

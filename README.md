@@ -67,7 +67,35 @@ NeuranaWorld/
 
 ## 🚀 Hızlı Başlangıç
 
-### Yerel Geliştirme
+### Vite ile Modern Geliştirme (Önerilen)
+
+```bash
+# Repository'yi klonlayın
+git clone https://github.com/neuranaworld/NeuranaWorld.git
+
+# Klasöre girin
+cd NeuranaWorld
+
+# Bağımlılıkları yükleyin
+npm install
+
+# Geliştirme sunucusunu başlatın (Hot reload ile)
+npm run dev
+
+# Production build oluşturun
+npm run build
+
+# Build'i önizleyin
+npm run preview
+
+# Kodu lint'leyin
+npm run lint
+
+# Lint hatalarını otomatik düzeltin
+npm run lint:fix
+```
+
+### Klasik Geliştirme
 
 ```bash
 # Repository'yi klonlayın
@@ -87,6 +115,52 @@ python -m http.server 8000
 1. VS Code'da projeyi açın
 2. Live Server extension'ı yükleyin
 3. `index.html`'e sağ tıklayın → "Open with Live Server"
+
+## 🛠️ Geliştirme Ortamı Kurulumu
+
+### Önkoşullar
+- Node.js 16+ ve npm/yarn/pnpm
+- Git
+- Modern bir code editor (VS Code önerilir)
+
+### Ortam Değişkenleri
+```bash
+# .env.example dosyasını kopyalayın
+cp .env.example .env
+
+# .env dosyasını düzenleyerek kendi değerlerinizi ekleyin
+```
+
+### Kod Kalitesi Araçları
+
+#### ESLint Yapılandırması
+Proje ESLint ile kod kalitesi kontrolü yapmaktadır:
+- React hooks kuralları
+- Kod stili kontrolleri
+- Olası hataların tespiti
+- Console statement uyarıları
+
+#### Path Aliases
+Vite yapılandırması ile temiz import yolları:
+```javascript
+// Önceki:
+import Component from '../../../components/Component'
+
+// Yeni:
+import Component from '@components/Component'
+```
+
+Kullanılabilir alias'lar:
+- `@` → `./src`
+- `@components` → `./src/components`
+- `@utils` → `./src/utils`
+- `@assets` → `./src/assets`
+- `@pages` → `./src/pages`
+
+#### Hata Yönetimi
+- **ErrorBoundary**: React hata sınırları ile graceful error handling
+- **Logger Utility**: Yapılandırılabilir loglama sistemi
+- **useErrorHandler Hook**: Fonksiyonel componentler için hata yönetimi
 
 ## 🌐 GitHub Pages ile Yayınlama
 
@@ -207,17 +281,37 @@ background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
 ## 🛠️ Teknolojiler
 
 ### Frontend
+- **React 18**: Modern UI library
+- **Vite 5**: Lightning-fast build tool
+- **React Router v6**: Client-side routing
 - **HTML5**: Semantic markup
 - **CSS3**:
   - Flexbox & Grid
   - CSS Variables
   - Animations & Transitions
   - Media Queries
+  - Modern responsive design
 - **JavaScript (ES6+)**:
-  - Vanilla JS (no frameworks)
+  - React Hooks
+  - Async/Await
+  - ES Modules
   - Intersection Observer API
   - Event Delegation
   - State Management
+
+### Geliştirme Araçları
+- **ESLint**: Kod kalitesi ve stil kontrolü
+- **Vite Dev Server**: Hot Module Replacement (HMR)
+- **Path Aliases**: Temiz ve okunabilir import yolları
+- **Error Boundaries**: Hata yakalama ve graceful degradation
+- **Custom Hooks**: Tekrar kullanılabilir React mantığı
+- **Logger Utility**: Yapılandırılabilir loglama sistemi
+
+### Build Optimizasyonları
+- **Code Splitting**: Vendor ve app bundle'ları ayrımı
+- **Tree Shaking**: Kullanılmayan kodun temizlenmesi
+- **Minification**: Production için optimizasyon
+- **Source Maps**: Geliştirme için hata ayıklama (opsiyonel)
 
 ### Animations
 - **CSS Keyframes**: float, bounce, pulse, shimmer, fadeInUp, spin

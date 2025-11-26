@@ -6,39 +6,52 @@ Eğlenceli oyunlar ve kullanışlı uygulamalar sunan bir platform.
 
 ```
 NeuranaWorld/
-├── frontend/          # React frontend uygulaması (Create React App)
-├── backend/           # Python backend servisleri
-├── src/               # Vite React uygulaması
-├── Oyunlar/          # Oyun bileşenleri ve meta dosyaları
-├── Uygulamalar/      # Uygulama bileşenleri ve meta dosyaları
+├── src/               # React uygulaması (Vite)
+│   ├── App.jsx       # Ana uygulama ve route tanımları
+│   ├── main.jsx      # Giriş noktası
+│   ├── index.css     # Global stiller
+│   └── pages/        # Sayfa bileşenleri
+├── Oyunlar/          # Oyun bileşenleri (JSX)
+│   ├── Aksiyon/     # Aksiyon oyunları
+│   ├── Bulmaca/     # Bulmaca oyunları
+│   ├── Strateji/    # Strateji oyunları
+│   ├── Kelime/      # Kelime oyunları
+│   ├── Macera/      # Macera oyunları
+│   └── Spor/        # Spor oyunları
+├── Uygulamalar/      # Uygulama meta dosyaları
+│   ├── Araçlar/     # Araç uygulamaları
+│   ├── Eğitim/      # Eğitim uygulamaları
+│   ├── Ses Müzik/   # Ses ve müzik uygulamaları
+│   ├── Zaman/       # Zaman yönetimi uygulamaları
+│   └── Çizim Tasarım/ # Çizim ve tasarım uygulamaları
+├── backend/          # Python backend servisleri
 ├── docs/             # Dokümantasyon dosyaları
-├── scripts/          # Yardımcı scriptler (.bat dosyaları)
+├── scripts/          # Yardımcı scriptler
 └── archive/          # Eski/kullanılmayan dosyalar
 ```
 
-## Kurulum
+## Kurulum ve Çalıştırma
 
-### Frontend (React)
+### Geliştirme Ortamı
 
 ```bash
-cd frontend
 npm install
-npm start
+npm run dev
 ```
 
-### Backend (Python)
+### Production Build
+
+```bash
+npm run build
+npm run preview
+```
+
+### Backend (Opsiyonel)
 
 ```bash
 cd backend
 pip install -r requirements.txt
 python server.py
-```
-
-### Vite (Root)
-
-```bash
-npm install
-npm run dev
 ```
 
 ## Dokümantasyon

@@ -1,73 +1,109 @@
-# NeuranaWorld
+# 🧠 NeuranaWorld
 
-Eğlenceli oyunlar ve kullanışlı uygulamalar sunan bir platform.
+Modern, responsive ve kullanıcı dostu oyun/uygulama platformu.
 
-## Proje Yapısı
+[![Live Demo](https://img.shields.io/badge/demo-live-success)](https://neuranaworld.github.io/NeuranaWorld/)
+[![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+[![Version](https://img.shields.io/badge/version-2.0.0-green)](CHANGELOG.md)
 
-```
-NeuranaWorld/
-├── src/               # React uygulaması (Vite)
-│   ├── App.jsx       # Ana uygulama ve route tanımları
-│   ├── main.jsx      # Giriş noktası
-│   ├── index.css     # Global stiller
-│   └── pages/        # Sayfa bileşenleri
-├── Oyunlar/          # Oyun bileşenleri (JSX)
-│   ├── Aksiyon/     # Aksiyon oyunları
-│   ├── Bulmaca/     # Bulmaca oyunları
-│   ├── Strateji/    # Strateji oyunları
-│   ├── Kelime/      # Kelime oyunları
-│   ├── Macera/      # Macera oyunları
-│   └── Spor/        # Spor oyunları
-├── Uygulamalar/      # Uygulama meta dosyaları
-│   ├── Araçlar/     # Araç uygulamaları
-│   ├── Eğitim/      # Eğitim uygulamaları
-│   ├── Ses Müzik/   # Ses ve müzik uygulamaları
-│   ├── Zaman/       # Zaman yönetimi uygulamaları
-│   └── Çizim Tasarım/ # Çizim ve tasarım uygulamaları
-├── backend/          # Python backend servisleri
-├── docs/             # Dokümantasyon dosyaları
-├── scripts/          # Yardımcı scriptler
-└── archive/          # Eski/kullanılmayan dosyalar
-```
+## ✨ Özellikler
 
-## Kurulum ve Çalıştırma
+- 🎮 **25 Oyun**: Aksiyon, Bulmaca, Strateji, Macera kategorilerinde
+- 💻 **9 Uygulama**: Araçlar, Eğitim, Müzik ve daha fazlası
+- 🌙 **Dark Theme**: Göz dostu karanlık mod desteği
+- 🎨 **Modern UI**: Glassmorphism ve smooth animations
+- 📱 **Responsive**: Mobile-first tasarım
+- 🤖 **AI Backend**: Multi-LLM consensus sistemi
 
-### Geliştirme Ortamı
+## 🚀 Hızlı Başlangıç
+
+### Frontend
 
 ```bash
+# Bağımlılıkları yükle
 npm install
+
+# Development modunda çalıştır
 npm run dev
-```
 
-### Production Build
-
-```bash
+# Production build
 npm run build
-npm run preview
 ```
+
+Frontend: `http://localhost:5173`
 
 ### Backend (Opsiyonel)
 
 ```bash
+# Linux/Mac
 cd backend
-pip install -r requirements.txt
-python server.py
+./start_server.sh
+
+# Windows
+cd backend
+start_server.bat
 ```
 
-## Dokümantasyon
+Backend: `http://localhost:8000` | API Docs: `http://localhost:8000/docs`
 
-Detaylı dokümantasyon için `docs/` klasörüne bakınız:
-- [README](docs/README.md)
-- [React Build Guide](docs/REACT_BUILD_GUIDE.md)
-- [CMD Komutları](docs/CMD_KOMUTLARI.txt)
+## 📁 Proje Yapısı
 
-## Özellikler
+```
+NeuranaWorld/
+├── src/                    # React uygulaması (Vite)
+│   ├── components/         # Reusable UI components
+│   ├── constants/          # Oyun/uygulama verileri
+│   ├── services/           # API client
+│   ├── styles/             # CSS modülleri
+│   └── pages/              # Sayfa componentleri
+├── Oyunlar/               # Oyun bileşenleri (25 oyun)
+├── backend/               # Python FastAPI backend
+├── docs/                  # Dokümantasyon
+└── scripts/               # Yardımcı scriptler
+```
 
-- 🎮 Çeşitli oyunlar (Macera, Bulmaca, Kelime, Aksiyon, Spor, Strateji)
-- 🛠️ Kullanışlı uygulamalar (Araçlar, Eğitim, Ses & Müzik, Çizim & Tasarım, Zaman)
-- ⚛️ React tabanlı modern arayüz
-- 🐍 Python backend desteği
+## 🎨 Yeni Özellikler (v2.0)
 
-## Lisans
+- ✅ **Glassmorphism Design**: Modern blur effects
+- ✅ **Dark Theme Toggle**: Kalıcı tema tercihi
+- ✅ **Component-Based**: Modüler ve reusable yapı
+- ✅ **API Client**: Axios ile merkezi API yönetimi
+- ✅ **Smooth Animations**: Fade-in, float, pulse efektleri
+
+## 📚 Dokümantasyon
+
+- [Detaylı Dokümantasyon](docs/README.md) - Kapsamlı özellik listesi
+- [İyileştirmeler](docs/IMPROVEMENTS.md) - v2.0 yenilikleri
+- [Katkı Rehberi](CONTRIBUTING.md) - Nasıl katkıda bulunulur
+
+## 🎮 Oyunlar
+
+**Aksiyon (7)**: Breakout, City Runner, Dart, Flappy Bird, Pong, Sky Jumper, Snake
+
+**Bulmaca (10)**: 2048, Çizim, Hafıza, Mayın, Nonogram, Puzzle, Şeker, Tetris, Yapboz, Kelime
+
+**Strateji (7)**: Batak, Connect Four, Kart Oyunları, Okey 101, Okey Pro, Poker, XOX
+
+**Macera (1)**: Labirent
+
+## 🤝 Katkıda Bulunma
+
+1. Fork edin
+2. Feature branch oluşturun
+3. Commit edin (`git commit -m '✨ feat: Add feature'`)
+4. Push edin
+5. Pull Request açın
+
+## 📄 Lisans
 
 Bu proje [MIT lisansı](LICENSE) altında lisanslanmıştır.
+
+---
+
+<div align="center">
+
+**🧠 NeuranaWorld** - Made with ❤️ by NeuranaWorld Team
+
+[Live Demo](https://neuranaworld.github.io/NeuranaWorld/) • [Docs](docs/README.md) • [Report Bug](https://github.com/neuranaworld/NeuranaWorld/issues)
+
+</div>

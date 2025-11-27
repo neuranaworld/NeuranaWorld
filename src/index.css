@@ -1,2 +1,3 @@
-/* Copy of style.css for Vite */
-@import '../style.css';
+/* Import global styles and components */
+@import './styles/globals.css';
+@import './styles/components.css';

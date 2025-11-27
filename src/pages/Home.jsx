@@ -211,23 +211,10 @@ export default function Home() {
                   color: 'var(--text-tertiary)',
                   textTransform: 'uppercase',
                   fontWeight: '500',
-                  marginBottom: app.comingSoon ? '12px' : '0',
+                  marginBottom: '0',
                 }}>
                   {app.category}
                 </p>
-                {app.comingSoon && (
-                  <span style={{
-                    display: 'inline-block',
-                    padding: '4px 12px',
-                    background: 'linear-gradient(135deg, #FFA726, #FB8C00)',
-                    color: 'white',
-                    borderRadius: '12px',
-                    fontSize: '11px',
-                    fontWeight: '600',
-                  }}>
-                    🚧 YAKINDA
-                  </span>
-                )}
               </div>
             ))}
           </div>

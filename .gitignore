@@ -4,3 +4,20 @@ dist/
 *.log
 .DS_Store
 package-lock.json
+
+# Archive
+archive/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+Thumbs.db
+
+# Build outputs
+build/
+.cache/

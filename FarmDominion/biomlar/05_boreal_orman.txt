@@ -1,0 +1,36 @@
+# BOREAL ORMAN / TAYGA (Boreal Forest / Taiga)
+# Sıcaklık: -40 ile +20°C | Yağış: 300-900mm/yıl | Uzun kışlar
+
+## AĞAÇLAR
+Ladin|200-400|koyu yeşil|%40|%50|İğne yapraklı
+Kızılçam|150-300|koyu yeşil|%40|%50|İğne yapraklı
+Sarıçam|200-350|yeşil|%40|%50|İğne yapraklı
+Göknar|300-500|koyu yeşil|%40|%50|İğne yapraklı
+Sedir|250-400|koyu yeşil|%35|%45|İğne yapraklı
+Kayın|150-250|yeşil|%45|%55|Yaprak döken
+Huş|150-200|açık yeşil|%50|%60|Yaprak döken
+
+## MEYVELER (Çok Az)
+Yaban mersini|mavi|0.001kg|%60|%70|Yaz sonu
+Böğürtlen|siyah|0.002kg|%55|%65|Yaz sonu
+Ahududu|kırmızı|0.001kg|%60|%70|Yaz sonu
+Kızılcık|kırmızı|0.003kg|%50|%60|Sonbahar
+
+## SEBZELER (Yok - Çok sınırlı)
+Mantar|kahve-beyaz|0.05kg|%70|%80|Sonbahar
+
+## EKOLOJİK ÖZELLİKLER
+- Toprak: Podzol (asidik, açık renkli)
+- Kış: 6-8 ay kar
+- Yaz: Kısa (2-3 ay)
+- Permafrost: Yer yer mevcut
+- Biyoçeşitlilik: Düşük
+- İğne yaprak avantajı: Kar tutmaz, su kaybı az
+
+## GÖRSELLİK
+Kış: #e8f4f8, #c8dce8 (kar beyazı)
+Yaz: #1a3a1a, #2d4d2d (koyu yeşil)
+Renk Paleti: #1f4d1f, #2a5a2a, #3f6b3f
+Yoğunluk: Yoğun, tek tip
+Gölge: Koyu, %80-90
+Zemin: Yosun, iğne yaprak humusu

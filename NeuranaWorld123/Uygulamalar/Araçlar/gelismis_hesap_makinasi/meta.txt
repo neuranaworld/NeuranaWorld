@@ -1,0 +1,2 @@
+isim: gelismis_hesap_makinasi
+durum: aktif

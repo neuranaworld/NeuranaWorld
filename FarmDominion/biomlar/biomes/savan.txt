@@ -1,0 +1,152 @@
+# SAVAN - AĞAÇLI TROPİKAL ÇAYIR (Savanna)
+# Gerçek Dünya Lokasyonları: Serengeti (Afrika), Cerrado (Brezilya), Llanos (Venezuela)
+
+## İKLİM VERİLERİ
+Sıcaklık Ortalaması: 20-30°C
+Sıcaklık Aralığı: 15-35°C (mevsimsel)
+Günlük Sıcaklık Farkı: 10-15°C
+Yağış Miktarı: 500-1500 mm/yıl
+Nem Oranı: %40-70 (mevsimsel)
+Güneş Işığı: %95-100 (açık alan)
+Mevsim: 2 belirgin (6 ay yaş, 6 ay kuru)
+
+## MEVSIMLER
+YAŞ MEVSİM (Kasım-Nisan):
+- Yağış: 1200-1500mm
+- Sıcaklık: 25-30°C
+- Nem: %70-90
+- Ot Yüksekliği: 2-4m
+- Renk: Parlak yeşil
+
+KURU MEVSİM (Mayıs-Ekim):
+- Yağış: <50mm
+- Sıcaklık: 20-35°C (gün/gece fark yüksek)
+- Nem: %30-50
+- Ot Durumu: Kuru, sarı
+- Renk: Altın sarısı, kahverengi
+
+## TOPRAK ÖZELLİKLERİ
+Tip: Lateritik, Alfisol
+Renk: Kırmızı-kahverengi
+pH: 5.5-6.5
+Organik Madde: %1-2
+Derinlik: Orta (1-2m)
+Besin: Orta (yağmurla yıkanma)
+Drenaj: İyi
+Yangın Etkisi: Sık (doğal yangınlar)
+
+## AĞAÇ DAĞILIMI
+Ağaç Yoğunluğu: %10-30 (çok seyrek)
+Ağaç Türü: Tek tek veya küçük gruplar
+Ağaç Şekli: Yassı taç (umbrella)
+Ağaç Aralığı: 20-100m arası
+Çayır Alanı: %70-90
+
+## AĞAÇ LİSTESİ (Kuraklık Adaptasyonlu)
+# Format: Ad|Min_Yükseklik|Max_Yükseklik|Taç_Çapı|Büyüme_Yılı|Kök_Derinlik_m
+
+Akasya_Agaci|5|15|8|15|20
+Baobab|10|25|15|300|10
+Marula_Agaci|7|15|8|25|15
+Mopane_Agaci|5|10|6|40|18
+Sosis_Agaci|10|20|10|30|15
+Kigelya|8|15|7|25|12
+Shea_Agaci|10|20|8|100|20
+
+## MEYVELİ AĞAÇLAR
+Baobab|10|25|15|300|1
+Marula|7|15|8|25|1
+Mango_Savan|10|20|10|10|1
+Tamarind|12|25|10|50|1
+
+## OT VE ÇİM TÜRLERİ
+# Ad|Yaş_Yükseklik_m|Kuru_Yükseklik_m|Yoğunluk|Yangın_Toleransı
+
+Fil_Otu|3|1.5|Yoğun|Yüksek
+Rhodes_Cimleri|1.5|0.5|Orta|Yüksek
+Kirmizi_Ot|2|1|Yoğun|Yüksek
+Star_Cim|1|0.4|Orta|Orta
+Kangaroo_Cim|1.5|0.6|Yoğun|Yüksek
+
+## EKOLOJİK DÖNGÜ
+YAŞ MEVSIM:
+- Ot büyümesi: Hızlı (günde 5-10cm)
+- Ağaç yaprakları: Açılma
+- Çiçeklenme: Yoğun
+- Meyve: Oluşum
+- Hayvan aktivitesi: Yüksek
+
+KURU MEVSIM:
+- Ot: Kuru, dormant
+- Ağaç yaprakları: Bazıları döküyor
+- Yangın: Doğal (sık)
+- Meyve: Olgunlaşma
+- Hayvan aktivitesi: Su kaynaklarında
+
+## YANGIN EKOLOJİSİ
+Sıklık: 2-3 yılda bir
+Şiddet: Orta (ot yanar, ağaçlar hayatta)
+Fayda: Ot yenilenmesi, invaziv kontrolü
+Adaptasyonlar:
+- Kalın kabuk (ağaçlar)
+- Yeraltı gözleri (otlar)
+- Hızlı yenilenme
+
+## BÜYÜME KOŞULLARI
+Işık İhtiyacı:
+- Ağaçlar: %80-100 (güneş seven)
+- Otlar: %90-100 (açık alan)
+
+Su İhtiyacı:
+- Ağaçlar: 500-800mm/yıl
+- Derin kök sistemi (10-20m)
+- Kuraklık toleransı: Yüksek (6 ay)
+- Su depolama: Baobab'da var
+
+Sıcaklık Toleransı:
+- Optimum: 20-30°C
+- Minimum: 10°C
+- Maximum: 40°C (tolere eder)
+
+## AĞAÇ UYARLAMALARI
+Kök Sistemi:
+- Çok derin (10-30m)
+- Geniş yayılım (taç çapının 3 katı)
+- Yeraltı su erişimi
+
+Yaprak:
+- Küçük (su kaybı az)
+- Bazı türler yaprak döker (kuru mevsim)
+- Dikenli (otlayıcılara karşı)
+
+Gövde:
+- Kalın kabuk (yangına karşı)
+- Su depolama (baobab)
+- Kuraklık direnci
+
+## GÖRSELLİK
+YAŞ MEVSIM:
+- Çayır: #7cb342, #9ccc65 (parlak yeşil)
+- Ağaçlar: #558b2f, #689f38
+- Gökyüzü: #64b5f6 (açık mavi)
+
+KURU MEVSIM:
+- Çayır: #d4a574, #c19a6b (altın sarısı)
+- Ağaçlar: #8d6e63, #a1887f (kahverengi)
+- Gökyüzü: #90caf9 (sıcak mavi)
+
+Görüş Mesafesi: 500m-5km (çok açık)
+Işık Geçirgenlik: %95-100
+Gölge: Sadece ağaç altında (%10-20 alan)
+
+## SES PEYZAJI
+Gündüz: Rüzgar, kuş sesleri, böcekler
+Gece: Böcekler, yırtıcı hayvanlar
+Yaş mevsim: Şiddetli yağmur, gök gürültüsü
+Kuru mevsim: Rüzgar, kuru ot hışırtısı
+
+## ÖZEL ÖZELLİKLER
+Termit Yuvası: 2-6m yükseklik
+Kopye (Toprak tepeler): Ağaç grupları
+Ephemeral pools: Geçici su birikintileri (yaş mevsim)
+Fire corridors: Yangın geçişleri

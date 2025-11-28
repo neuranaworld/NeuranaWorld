@@ -1,0 +1,51 @@
+# ILIMAN YAPRAK DÖKEN ORMAN (Temperate Deciduous Forest)
+# Sıcaklık: -5 ile +25°C | Yağış: 750-1500mm/yıl | 4 Mevsim
+
+## AĞAÇLAR
+Meşe|150-250|yeşil-kırmızı|%70|%60|Mevsimsel
+Kayın|200-300|yeşil-sarı|%70|%65|Mevsimsel
+Akçaağaç|150-200|yeşil-kırmızı|%75|%60|Mevsimsel
+Karaağaç|200-250|yeşil|%65|%60|Mevsimsel
+Dişbudak|150-200|yeşil-sarı|%70|%65|Mevsimsel
+Ihlamur|200-300|yeşil|%75|%70|Mevsimsel
+Ceviz ağacı|150-200|koyu yeşil|%70|%60|İlkbahar-Sonbahar
+Kestane ağacı|200-300|yeşil|%75|%65|İlkbahar-Sonbahar
+Elma ağacı|50-80|açık yeşil|%80|%70|İlkbahar-Sonbahar
+Armut ağacı|60-90|yeşil|%75|%70|İlkbahar-Sonbahar
+
+## MEYVELER
+Elma|kırmızı-yeşil|0.2kg|%80|%70|Ağustos-Ekim
+Armut|sarı-yeşil|0.15kg|%75|%70|Ağustos-Eylül
+Kiraz|kırmızı|0.01kg|%80|%75|Haziran-Temmuz
+Vişne|koyu kırmızı|0.008kg|%80|%75|Haziran-Temmuz
+Erik|mor-sarı|0.05kg|%75|%70|Temmuz-Ağustos
+Şeftali|turuncu|0.15kg|%80|%75|Temmuz-Ağustos
+Ceviz|kahverengi|0.05kg|%70|%60|Eylül-Ekim
+Kestane|kahverengi|0.03kg|%75|%65|Ekim-Kasım
+Ayva|sarı|0.25kg|%75|%70|Ekim-Kasım
+
+## SEBZELER
+Patates|beyaz|0.15kg|%70|%60|
+Havuç|turuncu|0.1kg|%75|%65|
+Lahana|yeşil|1kg|%70|%70|
+Soğan|beyaz|0.15kg|%70|%60|
+Sarımsak|beyaz|0.05kg|%70|%60|
+Turp|kırmızı|0.05kg|%75|%70|
+Pancar|mor|0.2kg|%70|%65|
+Kereviz|yeşil|0.5kg|%75|%70|
+Marul|yeşil|0.3kg|%80|%75|
+Ispanak|koyu yeşil|0.2kg|%80|%75|
+
+## EKOLOJİK ÖZELLİKLER
+- Toprak: Kahverengi orman toprağı, zengin humus
+- Mevsimsel değişim: Belirgin 4 mevsim
+- Yaprak dökümü: Sonbahar (Ekim-Kasım)
+- Tomurcuklanma: İlkbahar (Mart-Nisan)
+- Biyoçeşitlilik: Orta-yüksek
+
+## GÖRSELLİK
+İlkbahar: #4d9d4d, #5aaa5a (açık yeşil)
+Yaz: #2d6b2d, #3d7c3d (koyu yeşil)
+Sonbahar: #d4a33f, #c45a3f, #9d4d2d (sarı-kırmızı-kahve)
+Kış: #8b8b8b, #ffffff (çıplak dallar, kar)
+Yoğunluk: Orta-yoğun

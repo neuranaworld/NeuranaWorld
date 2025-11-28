@@ -1,6 +1,7 @@
 # Dependencies
 node_modules/
 package-lock.json
+<<<<<<< HEAD
 yarn.lock
 pnpm-lock.yaml
 
@@ -40,4 +41,22 @@ coverage/
 # Temporary files
 *.tmp
 *.temp
+=======
+
+# Archive
+archive/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+Thumbs.db
+
+# Build outputs
+build/
+>>>>>>> 8e685d7d21f7da3347bd444e7cb4003aba738366
 .cache/

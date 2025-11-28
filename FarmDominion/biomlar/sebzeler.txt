@@ -1,0 +1,52 @@
+# Sebzeler Listesi
+
+1. Domates
+2. Salatalık
+3. Biber
+4. Patlıcan
+5. Patates
+6. Soğan
+7. Sarımsak
+8. Havuç
+9. Lahana
+10. Karnabahar
+11. Brokoli
+12. Ispanak
+13. Pazı
+14. Marul
+15. Roka
+16. Maydanoz
+17. Dereotu
+18. Nane
+19. Taze soğan
+20. Pırasa
+21. Fasulye
+22. Barbunya
+23. Nohut
+24. Mercimek
+25. Bezelye
+26. Mısır
+27. Kabak
+28. Bal kabağı
+29. Turp
+30. Kereviz
+31. Pancar
+32. Enginar
+33. Brüksel lahanası
+34. Kuşkonmaz
+35. Bamya
+36. Yer elması
+37. Şalgam
+38. Acur
+39. Semizotu
+40. Isırgan otu
+41. Rezene
+42. Şevketibostan
+43. Radika
+44. Frenk soğanı
+45. Tere
+46. Kuzu kulağı
+47. Tatlı patates
+48. Kırmızı lahana
+49. Çin lahanası
+50. Mor havuç

@@ -1,0 +1,3196 @@
+from pydantic import BaseModel, Field
+from typing import Optional, List, Dict, Any
+from datetime import datetime
+from enum import Enum
+
+class ThemeMode(str, Enum):
+    LIGHT = "light"
+    DARK = "dark"
+    AUTO = "auto"
+
+class LLMMode(str, Enum):
+    AUTO = "auto"
+    GPT4O = "gpt-4o"
+    CLAUDE = "claude-sonnet-4"
+    GEMINI = "gemini-2.0-flash"
+
+class AccuracyPriority(str, Enum):
+    MAX_ACCURACY = "max_accuracy"
+    LOW_LATENCY = "low_latency"
+
+class UserSettings(BaseModel):
+    theme: ThemeMode = ThemeMode.LIGHT
+    language: str = "tr"
+    llm_mode: LLMMode = LLMMode.AUTO
+    accuracy_priority: AccuracyPriority = AccuracyPriority.MAX_ACCURACY
+    deep_think_timeout: Optional[int] = None  # None = unlimited
+
+class UserStats(BaseModel):
+    total_points: int = 0
+    correct_answers: int = 0
+    games_played: int = 0
+    study_time_minutes: int = 0
+
+class User(BaseModel):
+    name: str
+    email: Optional[str] = None
+    password_hash: Optional[str] = None
+    is_anonymous: bool = True
+    profile_pic: Optional[str] = None
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+    settings: UserSettings = Field(default_factory=UserSettings)
+    stats: UserStats = Field(default_factory=UserStats)
+
+class QuestionDifficulty(int, Enum):
+    VERY_EASY = 1
+    EASY = 2
+    MEDIUM = 3
+    HARD = 4
+    VERY_HARD = 5
+
+class SubjectType(str, Enum):
+    MATH = "math"
+    TURKISH = "turkish"
+    TRANSLATE = "translate"
+
+class Question(BaseModel):
+    subject: SubjectType
+    category: str
+    difficulty: QuestionDifficulty
+    question_text: str
+    options: Optional[List[str]] = None
+    correct_answer: str
+    explanation: str
+    created_by: str  # "ai" or "preset"
+    llm_model: Optional[str] = None
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+
+class SessionMode(str, Enum):
+    DEEP = "deep"
+    FAST = "fast"
+
+class Session(BaseModel):
+    user_id: str
+    subject: SubjectType
+    mode: SessionMode
+    start_time: datetime = Field(default_factory=datetime.utcnow)
+    end_time: Optional[datetime] = None
+    questions_answered: int = 0
+    correct_count: int = 0
+
+class UserProgress(BaseModel):
+    user_id: str
+    subject: SubjectType
+    category: str
+    strength_score: float = 50.0  # 0-100
+    weak_areas: List[str] = []
+    last_practiced: datetime = Field(default_factory=datetime.utcnow)
+    total_attempts: int = 0
+
+class LLMCacheEntry(BaseModel):
+    question_hash: str
+    model: str
+    response: Dict[str, Any]
+    confidence: float
+    timestamp: datetime = Field(default_factory=datetime.utcnow)
+    verified: bool = False
+
+class GameScore(BaseModel):
+    user_id: str
+    game_type: str
+    score: int
+    duration: int  # seconds
+    timestamp: datetime = Field(default_factory=datetime.utcnow)
+
+# Request/Response Models
+class CreateUserRequest(BaseModel):
+    name: str
+    email: Optional[str] = None
+    password: Optional[str] = None
+    is_anonymous: bool = True
+
+class LoginRequest(BaseModel):
+    email: str
+    password: str
+
+class GenerateQuestionRequest(BaseModel):
+    subject: SubjectType
+    category: str
+    difficulty: QuestionDifficulty
+    use_ai: bool = False
+
+class VerifyAnswerRequest(BaseModel):
+    question_id: str
+    user_answer: str
+    session_id: str
+
+class DeepThinkRequest(BaseModel):
+    question: str
+    subject: SubjectType
+    mode: SessionMode = SessionMode.DEEP
+
+class TranslateRequest(BaseModel):
+    text: str
+    source_lang: str
+    target_lang: str
+aiohappyeyeballs==2.6.1
+aiohttp==3.13.1
+aiosignal==1.4.0
+annotated-types==0.7.0
+anyio==4.11.0
+attrs==25.4.0
+bcrypt==4.2.1
+black==25.9.0
+boto3==1.40.50
+botocore==1.40.50
+cachetools==6.2.1
+certifi==2025.10.5
+cffi==2.0.0
+charset-normalizer==3.4.3
+click==8.3.0
+cryptography==46.0.2
+distro==1.9.0
+dnspython==2.8.0
+ecdsa==0.19.1
+email-validator==2.3.0
+emergentintegrations==0.1.0
+fastapi==0.115.5
+fastuuid==0.14.0
+filelock==3.20.0
+flake8==7.3.0
+frozenlist==1.8.0
+fsspec==2025.9.0
+google-ai-generativelanguage==0.6.15
+google-api-core==2.26.0
+google-api-python-client==2.185.0
+google-auth==2.41.1
+google-auth-httplib2==0.2.0
+google-genai==1.45.0
+google-generativeai==0.8.5
+googleapis-common-protos==1.71.0
+grpcio==1.75.1
+grpcio-status==1.71.2
+h11==0.16.0
+hf-xet==1.1.10
+httpcore==1.0.9
+httplib2==0.31.0
+httpx==0.28.1
+huggingface-hub==0.35.3
+idna==3.10
+importlib_metadata==8.7.0
+iniconfig==2.1.0
+isort==6.1.0
+Jinja2==3.1.6
+jiter==0.11.1
+jmespath==1.0.1
+jq==1.10.0
+jsonschema==4.25.1
+jsonschema-specifications==2025.9.1
+litellm==1.78.5
+markdown-it-py==4.0.0
+MarkupSafe==3.0.3
+mccabe==0.7.0
+mdurl==0.1.2
+motor==3.6.0
+multidict==6.7.0
+mypy==1.18.2
+mypy_extensions==1.1.0
+numpy==2.3.3
+oauthlib==3.3.1
+openai==1.99.9
+packaging==25.0
+pandas==2.3.3
+passlib==1.7.4
+pathspec==0.12.1
+pillow==12.0.0
+platformdirs==4.5.0
+pluggy==1.6.0
+propcache==0.4.1
+proto-plus==1.26.1
+protobuf==5.29.5
+pyasn1==0.6.1
+pyasn1_modules==0.4.2
+pycodestyle==2.14.0
+pycparser==2.23
+pydantic==2.10.3
+pydantic_core==2.27.1
+pyflakes==3.4.0
+Pygments==2.19.2
+PyJWT==2.10.1
+pymongo==4.9.2
+pyparsing==3.2.5
+pytest==8.4.2
+python-dateutil==2.9.0.post0
+python-dotenv==1.0.1
+python-jose==3.5.0
+python-multipart==0.0.20
+pytokens==0.1.10
+pytz==2025.2
+PyYAML==6.0.3
+referencing==0.37.0
+regex==2025.10.22
+requests==2.32.5
+requests-oauthlib==2.0.0
+rich==14.2.0
+rpds-py==0.27.1
+rsa==4.9.1
+s3transfer==0.14.0
+s5cmd==0.2.0
+shellingham==1.5.4
+six==1.17.0
+sniffio==1.3.1
+starlette==0.41.3
+stripe==13.0.1
+tenacity==9.1.2
+tiktoken==0.12.0
+tokenizers==0.22.1
+tqdm==4.67.1
+typer==0.19.2
+typing-inspection==0.4.2
+typing_extensions==4.15.0
+tzdata==2025.2
+uritemplate==4.2.0
+urllib3==2.5.0
+uvicorn==0.32.1
+watchfiles==1.1.0
+websockets==15.0.1
+yarl==1.22.0
+zipp==3.23.0
+from fastapi import FastAPI, APIRouter, HTTPException, Depends
+from dotenv import load_dotenv
+from starlette.middleware.cors import CORSMiddleware
+from motor.motor_asyncio import AsyncIOMotorClient
+import os
+import logging
+from pathlib import Path
+from pydantic import BaseModel, Field
+from typing import List, Optional, Dict, Any
+import uuid
+from datetime import datetime
+import bcrypt
+import random
+
+# Local imports
+from models import *
+from llm_router import router as llm_router
+
+ROOT_DIR = Path(_file_).parent
+load_dotenv(ROOT_DIR / '.env')
+
+# MongoDB connection
+mongo_url = os.environ.get('MONGO_URL', 'mongodb://localhost:27017/neuramath')
+client = AsyncIOMotorClient(mongo_url)
+db = client.neuramath
+
+# Create the main app without a prefix
+app = FastAPI(title="NeuraMath+ API", version="1.0.0")
+
+# Create a router with the /api prefix
+api_router = APIRouter(prefix="/api")
+
+
+# ============================================
+# AUTHENTICATION & USER MANAGEMENT
+# ============================================
+
+@api_router.post("/auth/anonymous")
+async def create_anonymous_user():
+    """Anonim kullanıcı oluştur"""
+    user_id = str(uuid.uuid4())
+    user_data = {
+        "_id": user_id,
+        "name": f"Misafir#{random.randint(1000, 9999)}",
+        "is_anonymous": True,
+        "created_at": datetime.utcnow(),
+        "settings": {
+            "theme": "light",
+            "language": "tr",
+            "llm_mode": "auto",
+            "accuracy_priority": "max_accuracy"
+        },
+        "stats": {
+            "total_points": 0,
+            "correct_answers": 0,
+            "games_played": 0,
+            "study_time_minutes": 0
+        }
+    }
+    
+    await db.users.insert_one(user_data)
+    return {"user_id": user_id, "name": user_data["name"]}
+
+
+@api_router.post("/auth/register")
+async def register_user(req: CreateUserRequest):
+    """Yeni kullanıcı kaydı"""
+    # Email kontrolü
+    if req.email:
+        existing = await db.users.find_one({"email": req.email})
+        if existing:
+            raise HTTPException(status_code=400, detail="Email zaten kullanılıyor")
+    
+    user_id = str(uuid.uuid4())
+    password_hash = None
+    if req.password:
+        password_hash = bcrypt.hashpw(req.password.encode(), bcrypt.gensalt()).decode()
+    
+    user_data = {
+        "_id": user_id,
+        "name": req.name,
+        "email": req.email,
+        "password_hash": password_hash,
+        "is_anonymous": req.is_anonymous,
+        "created_at": datetime.utcnow(),
+        "settings": {
+            "theme": "light",
+            "language": "tr",
+            "llm_mode": "auto",
+            "accuracy_priority": "max_accuracy"
+        },
+        "stats": {
+            "total_points": 0,
+            "correct_answers": 0,
+            "games_played": 0,
+            "study_time_minutes": 0
+        }
+    }
+    
+    await db.users.insert_one(user_data)
+    return {"user_id": user_id, "name": user_data["name"]}
+
+
+@api_router.post("/auth/login")
+async def login_user(req: LoginRequest):
+    """Kullanıcı girişi"""
+    user = await db.users.find_one({"email": req.email})
+    if not user:
+        raise HTTPException(status_code=401, detail="Email veya şifre hatalı")
+    
+    if not user.get("password_hash"):
+        raise HTTPException(status_code=401, detail="Bu hesap için şifre ayarlanmamış")
+    
+    if not bcrypt.checkpw(req.password.encode(), user["password_hash"].encode()):
+        raise HTTPException(status_code=401, detail="Email veya şifre hatalı")
+    
+    return {
+        "user_id": user["_id"],
+        "name": user["name"],
+        "email": user["email"]
+    }
+
+
+@api_router.get("/user/{user_id}/stats")
+async def get_user_stats(user_id: str):
+    """Kullanıcı istatistiklerini getir"""
+    user = await db.users.find_one({"_id": user_id})
+    if not user:
+        raise HTTPException(status_code=404, detail="Kullanıcı bulunamadı")
+    
+    return user.get("stats", {})
+
+
+@api_router.get("/user/{user_id}/settings")
+async def get_user_settings(user_id: str):
+    """Kullanıcı ayarlarını getir"""
+    user = await db.users.find_one({"_id": user_id})
+    if not user:
+        raise HTTPException(status_code=404, detail="Kullanıcı bulunamadı")
+    
+    return user.get("settings", {})
+
+
+@api_router.put("/user/{user_id}/settings")
+async def update_user_settings(user_id: str, settings: dict):
+    """Kullanıcı ayarlarını güncelle"""
+    result = await db.users.update_one(
+        {"_id": user_id},
+        {"$set": {"settings": settings}}
+    )
+    
+    if result.matched_count == 0:
+        raise HTTPException(status_code=404, detail="Kullanıcı bulunamadı")
+    
+    return {"success": True}
+
+
+# ============================================
+# LLM & DEEP THINKING
+# ============================================
+
+@api_router.post("/llm/deep-think")
+async def deep_think(req: DeepThinkRequest):
+    """Derin düşünme modu - karmaşık problemler için"""
+    try:
+        # Soru tipini belirle
+        if req.subject == SubjectType.MATH:
+            question_type = "math_deep" if req.mode == SessionMode.DEEP else "math_fast"
+        elif req.subject == SubjectType.TURKISH:
+            question_type = "turkish_grammar"
+        else:
+            question_type = "general"
+        
+        # LLM Router'a gönder
+        result = await llm_router.route_request(
+            question_type=question_type,
+            content=req.question,
+            mode=req.mode.value
+        )
+        
+        return result
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"AI işlemi başarısız: {str(e)}")
+
+
+@api_router.post("/llm/translate")
+async def translate_text(req: TranslateRequest):
+    """Çoklu-dil çeviri (ensemble mode)"""
+    try:
+        content = {
+            "text": req.text,
+            "source_lang": req.source_lang,
+            "target_lang": req.target_lang
+        }
+        
+        result = await llm_router.route_request(
+            question_type="translate",
+            content=str(content),
+            mode="deep"
+        )
+        
+        return result
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Çeviri başarısız: {str(e)}")
+
+
+# ============================================
+# QUESTION GENERATION & MANAGEMENT
+# ============================================
+
+# Hazır matematik soruları
+PRESET_MATH_QUESTIONS = {
+    "dört_işlem": [
+        {"question": "25 + 47 = ?", "answer": "72", "explanation": "25 ile 47'yi toplarken: 20 + 40 = 60, 5 + 7 = 12, toplam 72", "difficulty": 1},
+        {"question": "134 - 67 = ?", "answer": "67", "explanation": "134'ten 67 çıkarırsak 67 kalır", "difficulty": 2},
+        {"question": "12 × 8 = ?", "answer": "96", "explanation": "12'yi 8 ile çarparken: 12 × 8 = 96", "difficulty": 2},
+        {"question": "144 ÷ 12 = ?", "answer": "12", "explanation": "144'ü 12'ye böldüğümüzde 12 elde ederiz", "difficulty": 2},
+    ],
+    "üslü_sayılar": [
+        {"question": "2³ = ?", "answer": "8", "explanation": "2³ = 2 × 2 × 2 = 8", "difficulty": 2},
+        {"question": "5² = ?", "answer": "25", "explanation": "5² = 5 × 5 = 25", "difficulty": 1},
+        {"question": "3⁴ = ?", "answer": "81", "explanation": "3⁴ = 3 × 3 × 3 × 3 = 81", "difficulty": 3},
+    ]
+}
+
+# Hazır Türkçe soruları
+PRESET_TURKISH_QUESTIONS = {
+    "noktalama": [
+        {
+            "question": "Hangi cümlede noktalama doğru kullanılmıştır?",
+            "options": [
+                "Ali gel buraya.",
+                "Ali, gel buraya.",
+                "Ali gel, buraya.",
+                "Ali; gel buraya."
+            ],
+            "answer": "Ali, gel buraya.",
+            "explanation": "Hitap sözcüklerinden sonra virgül kullanılır.",
+            "difficulty": 2
+        }
+    ],
+    "fiilimsi": [
+        {
+            "question": "'Koşan çocuk' örneğinde hangi fiilimsi vardır?",
+            "options": ["Sıfat-fiil", "Zarf-fiil", "İsim-fiil", "Fiilimsi yoktur"],
+            "answer": "Sıfat-fiil",
+            "explanation": "'-an/-en' eki sıfat-fiil ekidir ve ismi niteler.",
+            "difficulty": 3
+        }
+    ]
+}
+
+
+@api_router.post("/questions/generate")
+async def generate_question(req: GenerateQuestionRequest):
+    """Soru üret (hibrit: hazır havuz veya AI)"""
+    
+    # Kolay-orta sorular: hazır havuzdan
+    if not req.use_ai and req.difficulty.value <= 3:
+        if req.subject == SubjectType.MATH:
+            category_questions = PRESET_MATH_QUESTIONS.get(req.category, [])
+            if category_questions:
+                # Zorluğa göre filtrele
+                filtered = [q for q in category_questions if q.get("difficulty", 1) == req.difficulty.value]
+                if filtered:
+                    question = random.choice(filtered)
+                    question["id"] = str(uuid.uuid4())
+                    question["source"] = "preset"
+                    return question
+        
+        elif req.subject == SubjectType.TURKISH:
+            category_questions = PRESET_TURKISH_QUESTIONS.get(req.category, [])
+            if category_questions:
+                filtered = [q for q in category_questions if q.get("difficulty", 1) == req.difficulty.value]
+                if filtered:
+                    question = random.choice(filtered)
+                    question["id"] = str(uuid.uuid4())
+                    question["source"] = "preset"
+                    return question
+    
+    # Zor sorular veya AI talep edildi: LLM kullan
+    if req.subject == SubjectType.MATH:
+        prompt = f"""
+Lütfen aşağıdaki özelliklerde bir matematik sorusu üret:
+
+Kategori: {req.category}
+Zorluk: {req.difficulty.value}/5
+
+Soruyu JSON formatında ver:
+{{
+    "question": "soru metni",
+    "answer": "doğru cevap",
+    "explanation": "adım adım açıklama"
+}}
+
+Sadece JSON döndür, başka metin ekleme.
+"""
+        
+        result = await llm_router.route_request(
+            question_type="math_fast",
+            content=prompt,
+            mode="fast"
+        )
+        
+        try:
+            import json
+            question_data = json.loads(result.get("answer", "{}"))
+            question_data["id"] = str(uuid.uuid4())
+            question_data["source"] = "ai"
+            question_data["model"] = result.get("model")
+            return question_data
+        except:
+            raise HTTPException(status_code=500, detail="AI soru üretimi başarısız")
+    
+    elif req.subject == SubjectType.TURKISH:
+        prompt = f"""
+Lütfen aşağıdaki özelliklerde bir Türkçe dilbilgisi sorusu üret:
+
+Kategori: {req.category}
+Zorluk: {req.difficulty.value}/5
+
+Soruyu JSON formatında ver:
+{{
+    "question": "soru metni",
+    "options": ["A", "B", "C", "D"],
+    "answer": "doğru cevap",
+    "explanation": "detaylı açıklama"
+}}
+
+Sadece JSON döndür.
+"""
+        
+        result = await llm_router.route_request(
+            question_type="turkish_grammar",
+            content=prompt,
+            mode="fast"
+        )
+        
+        try:
+            import json
+            question_data = json.loads(result.get("answer", "{}"))
+            question_data["id"] = str(uuid.uuid4())
+            question_data["source"] = "ai"
+            question_data["model"] = result.get("model")
+            return question_data
+        except:
+            raise HTTPException(status_code=500, detail="AI soru üretimi başarısız")
+    
+    raise HTTPException(status_code=400, detail="Desteklenmeyen konu")
+
+
+@api_router.post("/questions/verify")
+async def verify_answer(req: VerifyAnswerRequest):
+    """Kullanıcı cevabını doğrula ve istatistikleri güncelle"""
+    
+    # Session'ı bul
+    session = await db.sessions.find_one({"_id": req.session_id})
+    if not session:
+        raise HTTPException(status_code=404, detail="Oturum bulunamadı")
+    
+    # Soruyu bul (eğer veritabanında kaydedilmişse)
+    question = await db.questions.find_one({"_id": req.question_id})
+    
+    is_correct = False
+    if question:
+        is_correct = (req.user_answer.strip().lower() == question.get("correct_answer", "").strip().lower())
+    
+    # Session güncelle
+    update_data = {
+        "$inc": {"questions_answered": 1}
+    }
+    if is_correct:
+        update_data["$inc"]["correct_count"] = 1
+    
+    await db.sessions.update_one({"_id": req.session_id}, update_data)
+    
+    # User stats güncelle
+    user_id = session.get("user_id")
+    if user_id:
+        user_update = {
+            "$inc": {"stats.total_points": 10 if is_correct else 0, "stats.correct_answers": 1 if is_correct else 0}
+        }
+        await db.users.update_one({"_id": user_id}, user_update)
+    
+    return {
+        "is_correct": is_correct,
+        "explanation": question.get("explanation") if question else None
+    }
+
+
+# ============================================
+# GAMES
+# ============================================
+
+@api_router.post("/games/math/start")
+async def start_math_game(user_id: str, game_type: str):
+    """Matematik oyunu başlat"""
+    game_id = str(uuid.uuid4())
+    
+    game_data = {
+        "_id": game_id,
+        "user_id": user_id,
+        "game_type": game_type,
+        "start_time": datetime.utcnow(),
+        "score": 0,
+        "questions_answered": 0
+    }
+    
+    await db.games.insert_one(game_data)
+    
+    return {"game_id": game_id, "message": f"{game_type} oyunu başladı!"}
+
+
+@api_router.post("/games/turkish/start")
+async def start_turkish_game(user_id: str, game_type: str):
+    """Türkçe oyunu başlat"""
+    game_id = str(uuid.uuid4())
+    
+    game_data = {
+        "_id": game_id,
+        "user_id": user_id,
+        "game_type": game_type,
+        "start_time": datetime.utcnow(),
+        "score": 0,
+        "questions_answered": 0
+    }
+    
+    await db.games.insert_one(game_data)
+    
+    return {"game_id": game_id, "message": f"{game_type} oyunu başladı!"}
+
+
+@api_router.post("/games/score")
+async def save_game_score(game_id: str, score: int, duration: int):
+    """Oyun skorunu kaydet"""
+    
+    await db.games.update_one(
+        {"_id": game_id},
+        {
+            "$set": {
+                "score": score,
+                "duration": duration,
+                "end_time": datetime.utcnow()
+            }
+        }
+    )
+    
+    # User stats güncelle
+    game = await db.games.find_one({"_id": game_id})
+    if game:
+        user_id = game.get("user_id")
+        await db.users.update_one(
+            {"_id": user_id},
+            {"$inc": {"stats.games_played": 1, "stats.total_points": score}}
+        )
+    
+    return {"success": True, "score": score}
+
+
+@api_router.get("/")
+async def root():
+    """API sağlık kontrolü"""
+    return {
+        "app": "NeuraMath+", 
+        "version": "1.0.0",
+        "status": "healthy",
+        "description": "Çoklu-LLM destekli eğitim platformu"
+    }
+
+
+# ============================================
+# CONSENSUS & POLYNOMIAL ARENA
+# ============================================
+
+from consensus_engine import consensus_engine
+from turkish_games import turkish_games
+
+@api_router.post("/llm/consensus")
+async def consensus_solve(req: DeepThinkRequest):
+    """
+    %0 hata hedefi ile konsensus çözüm
+    - K-self-consistency
+    - Çapraz doğrulama
+    - Kural tabanlı kontrol
+    """
+    try:
+        # K-self-consistency (3 kez sor, çoğunluk oyu)
+        k_result = await consensus_engine.k_self_consistency(
+            question=req.question,
+            k=3,
+            model="gpt-4o"
+        )
+        
+        # Eğer güven düşükse çapraz doğrulama yap
+        if k_result.get("confidence", 0) < 0.95:
+            cross_result = await consensus_engine.cross_verification(
+                question=req.question,
+                primary_model="gpt-4o",
+                verifier_model="claude-sonnet-4"
+            )
+            
+            return {
+                **cross_result,
+                "method": "cross-verification",
+                "k_consistency": k_result,
+                "confidence_boost": True
+            }
+        
+        return {
+            **k_result,
+            "method": "k-self-consistency",
+            "threshold_met": True
+        }
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Konsensus hatası: {str(e)}")
+
+
+@api_router.post("/games/polynomial-arena/start")
+async def start_polynomial_arena(user_id: str, level: int = 1):
+    """
+    Polinom Arena oyunu başlat
+    
+    Seviyeler:
+    1-5: Kolay (derece ≤ 3, tam sayı kökler)
+    6-10: Orta (derece ≤ 5, rasyonel kökler)
+    11-15: Zor (derece ≤ 8, karmaşık kökler)
+    16+: Usta (faktörizasyon + bölme)
+    """
+    game_id = str(uuid.uuid4())
+    
+    # Seviye parametreleri
+    if level <= 5:
+        degree = random.randint(2, 3)
+        coeff_range = (-10, 10)
+        difficulty_label = "Kolay"
+    elif level <= 10:
+        degree = random.randint(3, 5)
+        coeff_range = (-20, 20)
+        difficulty_label = "Orta"
+    elif level <= 15:
+        degree = random.randint(5, 8)
+        coeff_range = (-50, 50)
+        difficulty_label = "Zor"
+    else:
+        degree = random.randint(6, 8)
+        coeff_range = (-100, 100)
+        difficulty_label = "Usta"
+    
+    # AI ile polinom sorusu üret
+    prompt = f"""
+Seviye {level} ({difficulty_label}) için bir polinom sorusu üret:
+
+Parametreler:
+- Derece: {degree}
+- Katsayı aralığı: {coeff_range}
+
+Soru tiplerinden birini seç:
+1. Çarpanlara Ayırma: "P(x) = ... polinomunu çarpanlarına ayır"
+2. Kök Bulma: "P(x) = 0 denkleminin köklerini bul"
+3. Polinom Bölme: "P(x)'i Q(x)'e böl, bölüm ve kalanı bul"
+4. Çoktan Seçmeli: "Aşağıdakilerden hangisi P(x)'in çarpanıdır?"
+
+JSON formatında döndür:
+{{
+    "polynomial": "x^2 + 5x + 6",
+    "question": "Soru metni",
+    "question_type": "factorization",
+    "correct_answer": "Doğru cevap",
+    "options": ["A", "B", "C", "D"],  // Çoktan seçmeli ise
+    "explanation": "Adım adım çözüm",
+    "difficulty": {level}
+}}
+"""
+    
+    try:
+        result = await llm_router.route_request(
+            question_type="math_deep",
+            content=prompt,
+            mode="deep"
+        )
+        
+        import json
+        question_data = json.loads(result.get("answer", "{}"))
+        
+        # Oyun verisini kaydet
+        game_data = {
+            "_id": game_id,
+            "user_id": user_id,
+            "game_type": "polynomial_arena",
+            "level": level,
+            "difficulty": difficulty_label,
+            "question": question_data,
+            "start_time": datetime.utcnow(),
+            "score": 0,
+            "turns_completed": 0
+        }
+        
+        await db.games.insert_one(game_data)
+        
+        return {
+            "game_id": game_id,
+            "level": level,
+            "difficulty": difficulty_label,
+            "question": question_data,
+            "message": f"Polinom Arena - Seviye {level} başladı!"
+        }
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Oyun başlatılamadı: {str(e)}")
+
+
+@api_router.post("/games/polynomial-arena/answer")
+async def answer_polynomial_question(
+    game_id: str,
+    user_answer: str
+):
+    """
+    Polinom Arena cevap doğrulama
+    Konsensus engine ile %0 hata kontrolü
+    """
+    try:
+        # Oyunu bul
+        game = await db.games.find_one({"_id": game_id})
+        if not game:
+            raise HTTPException(status_code=404, detail="Oyun bulunamadı")
+        
+        question_data = game.get("question", {})
+        correct_answer = question_data.get("correct_answer", "")
+        
+        # Cevabı doğrula - Konsensus ile
+        verify_prompt = f"""
+Polinom sorusu: {question_data.get('question')}
+Doğru cevap: {correct_answer}
+Kullanıcı cevabı: {user_answer}
+
+Bu iki cevap matematiksel olarak eşdeğer mi? 
+(Örn: (x+2)(x+3) ile x^2+5x+6 eşdeğerdir)
+
+JSON formatında yanıt ver:
+{{
+    "is_correct": true/false,
+    "confidence": 0.0-1.0,
+    "explanation": "Açıklama"
+}}
+"""
+        
+        verify_result = await llm_router.route_request(
+            question_type="math_deep",
+            content=verify_prompt,
+            mode="deep"
+        )
+        
+        import json
+        verification = json.loads(verify_result.get("answer", "{}"))
+        
+        is_correct = verification.get("is_correct", False)
+        confidence = verification.get("confidence", 0.0)
+        
+        # Puanla
+        if is_correct:
+            xp_gained = 10
+            await db.games.update_one(
+                {"_id": game_id},
+                {
+                    "$inc": {"score": xp_gained, "turns_completed": 1},
+                    "$set": {"last_answer_correct": True}
+                }
+            )
+            
+            # User stats güncelle
+            await db.users.update_one(
+                {"_id": game.get("user_id")},
+                {"$inc": {"stats.total_points": xp_gained, "stats.correct_answers": 1}}
+            )
+            
+            message = f"✅ Doğru! +{xp_gained} XP"
+        else:
+            await db.games.update_one(
+                {"_id": game_id},
+                {
+                    "$inc": {"turns_completed": 1},
+                    "$set": {"last_answer_correct": False}
+                }
+            )
+            message = "❌ Yanlış. Doğru cevap: " + correct_answer
+        
+        return {
+            "is_correct": is_correct,
+            "confidence": confidence,
+            "message": message,
+            "explanation": question_data.get("explanation", ""),
+            "xp_gained": xp_gained if is_correct else 0
+        }
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Cevap doğrulanamadı: {str(e)}")
+
+
+# ============================================
+# TÜRKÇE OYUNLARI
+# ============================================
+
+@api_router.post("/games/turkish/hangman/start")
+async def start_hangman(user_id: str, difficulty: str = "kolay"):
+    """Adam Asmaca 2.0 başlat"""
+    game_id = str(uuid.uuid4())
+    
+    game_data = turkish_games.generate_hangman(difficulty)
+    game_data["_id"] = game_id
+    game_data["user_id"] = user_id
+    game_data["start_time"] = datetime.utcnow()
+    
+    await db.games.insert_one(game_data)
+    
+    return {
+        "game_id": game_id,
+        "hint": game_data["hint"],
+        "display_word": game_data["display_word"],
+        "remaining_attempts": game_data["remaining_attempts"],
+        "difficulty": difficulty
+    }
+
+
+@api_router.post("/games/turkish/hangman/guess")
+async def guess_hangman(game_id: str, letter: str):
+    """Adam Asmaca tahmin"""
+    game = await db.games.find_one({"_id": game_id})
+    if not game:
+        raise HTTPException(status_code=404, detail="Oyun bulunamadı")
+    
+    result = turkish_games.check_hangman_guess(game, letter)
+    
+    # Veritabanını güncelle
+    await db.games.update_one(
+        {"_id": game_id},
+        {"$set": result}
+    )
+    
+    # Kazandıysa puan ver
+    if result.get("game_status") == "won":
+        await db.users.update_one(
+            {"_id": game.get("user_id")},
+            {"$inc": {"stats.total_points": 20, "stats.games_played": 1}}
+        )
+    
+    return result
+
+
+@api_router.post("/games/turkish/word-chain/start")
+async def start_word_chain(user_id: str):
+    """Kelime Türetme başlat"""
+    game_id = str(uuid.uuid4())
+    
+    game_data = turkish_games.generate_word_chain()
+    game_data["_id"] = game_id
+    game_data["user_id"] = user_id
+    game_data["start_time"] = datetime.utcnow()
+    
+    await db.games.insert_one(game_data)
+    
+    return {
+        "game_id": game_id,
+        "current_word": game_data["current_word"],
+        "last_letter": game_data["last_letter"],
+        "score": 0,
+        "message": f"İlk kelime: {game_data['current_word']}. Şimdi '{game_data['last_letter']}' harfi ile başla!"
+    }
+
+
+@api_router.post("/games/turkish/word-chain/answer")
+async def answer_word_chain(game_id: str, word: str):
+    """Kelime türetme cevap"""
+    game = await db.games.find_one({"_id": game_id})
+    if not game:
+        raise HTTPException(status_code=404, detail="Oyun bulunamadı")
+    
+    result = turkish_games.validate_word_chain(game, word)
+    
+    # Güncelle
+    await db.games.update_one(
+        {"_id": game_id},
+        {"$set": result}
+    )
+    
+    if result.get("is_valid"):
+        await db.users.update_one(
+            {"_id": game.get("user_id")},
+            {"$inc": {"stats.total_points": 10}}
+        )
+    
+    return result
+
+
+@api_router.get("/games/turkish/punctuation/quiz")
+async def get_punctuation_quiz():
+    """Noktalama oyunu sorusu al"""
+    return turkish_games.generate_punctuation_quiz()
+
+
+@api_router.get("/games/turkish/fiilimsi/quiz")
+async def get_fiilimsi_quiz():
+    """Fiilimsi oyunu sorusu al"""
+    return turkish_games.generate_fiilimsi_quiz()
+
+
+# ============================================
+# MATEMATİK OYUNLARI
+# ============================================
+
+@api_router.post("/games/math/basic-ops/start")
+async def start_basic_ops(user_id: str, operation: str = "all"):
+    """
+    Dört İşlem Oyunu
+    operation: addition, subtraction, multiplication, division, all
+    """
+    game_id = str(uuid.uuid4())
+    
+    # İşlem seç
+    ops = {
+        "addition": "+",
+        "subtraction": "-",
+        "multiplication": "×",
+        "division": "÷"
+    }
+    
+    if operation == "all":
+        selected_op = random.choice(list(ops.values()))
+    else:
+        selected_op = ops.get(operation, "+")
+    
+    # Sayılar üret
+    if selected_op == "+":
+        a, b = random.randint(1, 50), random.randint(1, 50)
+        answer = a + b
+        question = f"{a} + {b} = ?"
+    elif selected_op == "-":
+        a, b = random.randint(10, 100), random.randint(1, 50)
+        answer = a - b
+        question = f"{a} - {b} = ?"
+    elif selected_op == "×":
+        a, b = random.randint(2, 12), random.randint(2, 12)
+        answer = a * b
+        question = f"{a} × {b} = ?"
+    else:  # division
+        b = random.randint(2, 12)
+        answer = random.randint(2, 12)
+        a = answer * b
+        question = f"{a} ÷ {b} = ?"
+    
+    game_data = {
+        "_id": game_id,
+        "user_id": user_id,
+        "game_type": "basic_ops",
+        "question": question,
+        "correct_answer": str(answer),
+        "operation": selected_op,
+        "start_time": datetime.utcnow(),
+        "score": 0
+    }
+    
+    await db.games.insert_one(game_data)
+    
+    return {
+        "game_id": game_id,
+        "question": question,
+        "operation": selected_op
+    }
+
+
+@api_router.post("/games/math/basic-ops/answer")
+async def answer_basic_ops(game_id: str, user_answer: str):
+    """Dört işlem cevap doğrula"""
+    game = await db.games.find_one({"_id": game_id})
+    if not game:
+        raise HTTPException(status_code=404, detail="Oyun bulunamadı")
+    
+    correct_answer = game.get("correct_answer")
+    is_correct = (user_answer.strip() == correct_answer.strip())
+    
+    if is_correct:
+        await db.games.update_one(
+            {"_id": game_id},
+            {"$inc": {"score": 10}}
+        )
+        await db.users.update_one(
+            {"_id": game.get("user_id")},
+            {"$inc": {"stats.total_points": 10, "stats.correct_answers": 1}}
+        )
+        
+        return {
+            "is_correct": True,
+            "message": "✅ Doğru! +10 puan",
+            "correct_answer": correct_answer
+        }
+    else:
+        return {
+            "is_correct": False,
+            "message": f"❌ Yanlış. Doğru cevap: {correct_answer}",
+            "correct_answer": correct_answer
+        }
+
+
+@api_router.post("/games/math/number-guess/start")
+async def start_number_guess(user_id: str):
+    """Sayı Tahmin Oyunu"""
+    game_id = str(uuid.uuid4())
+    
+    target = random.randint(1, 100)
+    
+    game_data = {
+        "_id": game_id,
+        "user_id": user_id,
+        "game_type": "number_guess",
+        "target_number": target,
+        "attempts": 0,
+        "max_attempts": 7,
+        "guesses": [],
+        "start_time": datetime.utcnow()
+    }
+    
+    await db.games.insert_one(game_data)
+    
+    return {
+        "game_id": game_id,
+        "message": "1 ile 100 arasında bir sayı tuttum. 7 hakta tahmin et!",
+        "max_attempts": 7
+    }
+
+
+@api_router.post("/games/math/number-guess/guess")
+async def guess_number(game_id: str, guess: int):
+    """Sayı tahmin"""
+    game = await db.games.find_one({"_id": game_id})
+    if not game:
+        raise HTTPException(status_code=404, detail="Oyun bulunamadı")
+    
+    target = game.get("target_number")
+    attempts = game.get("attempts", 0) + 1
+    max_attempts = game.get("max_attempts", 7)
+    guesses = game.get("guesses", [])
+    guesses.append(guess)
+    
+    if guess == target:
+        # Kazandı
+        await db.games.update_one(
+            {"_id": game_id},
+            {"$set": {"attempts": attempts, "guesses": guesses, "status": "won"}}
+        )
+        await db.users.update_one(
+            {"_id": game.get("user_id")},
+            {"$inc": {"stats.total_points": 30, "stats.games_played": 1}}
+        )
+        
+        return {
+            "is_correct": True,
+            "message": f"🎉 Tebrikler! {attempts} denemede buldun! +30 puan",
+            "target_number": target,
+            "game_over": True
+        }
+    elif attempts >= max_attempts:
+        # Kaybetti
+        await db.games.update_one(
+            {"_id": game_id},
+            {"$set": {"attempts": attempts, "guesses": guesses, "status": "lost"}}
+        )
+        
+        return {
+            "is_correct": False,
+            "message": f"😞 Hakkın bitti! Sayı: {target}",
+            "target_number": target,
+            "game_over": True
+        }
+    else:
+        # Devam
+        hint = "büyük" if guess < target else "küçük"
+        await db.games.update_one(
+            {"_id": game_id},
+            {"$set": {"attempts": attempts, "guesses": guesses}}
+        )
+        
+        return {
+            "is_correct": False,
+            "message": f"Daha {hint}! Kalan hak: {max_attempts - attempts}",
+            "hint": hint,
+            "attempts_left": max_attempts - attempts,
+            "game_over": False
+        }
+
+# Include the router in the main app
+app.include_router(api_router)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_credentials=True,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(_name_)
+
+@app.on_event("shutdown")
+async def shutdown_db_client():
+    client.close()
+"""
+Türkçe Oyunları - Adam Asmaca, Kelime Türetme, Noktalama
+"""
+import random
+from typing import List, Dict, Any
+
+# Türkçe kelime havuzu
+TURKISH_WORDS = {
+    "kolay": [
+        {"word": "OKUL", "hint": "Eğitim kurumu"},
+        {"word": "KITAP", "hint": "Okumak için kullanılır"},
+        {"word": "KALEM", "hint": "Yazmak için kullanılır"},
+        {"word": "MASA", "hint": "Üzerinde yemek yenir"},
+        {"word": "SANDALYE", "hint": "Oturmak için kullanılır"},
+        {"word": "AĞAÇ", "hint": "Yeşil yaprakları vardır"},
+        {"word": "ARABA", "hint": "Dört tekerlekli taşıt"},
+        {"word": "DENIZ", "hint": "Tuzlu su kütlesi"},
+        {"word": "GÖKYÜZÜ", "hint": "Yukarıda, mavidir"},
+        {"word": "GÜNEŞ", "hint": "Işık ve ısı kaynağı"},
+    ],
+    "orta": [
+        {"word": "BİLGİSAYAR", "hint": "Elektronik cihaz"},
+        {"word": "KÜTÜPHANE", "hint": "Kitapların bulunduğu yer"},
+        {"word": "ÖĞRETMEN", "hint": "Ders anlatan kişi"},
+        {"word": "HASTANE", "hint": "Hastaların tedavi edildiği yer"},
+        {"word": "YOLCULUK", "hint": "Bir yerden başka bir yere gitme"},
+        {"word": "MEYDAN", "hint": "Geniş açık alan"},
+        {"word": "DÜĞÜN", "hint": "Evlenme töreni"},
+        {"word": "BAYRAM", "hint": "Özel kutlama günü"},
+    ],
+    "zor": [
+        {"word": "MUHASEBE", "hint": "Hesap işleri"},
+        {"word": "MÜHENDİS", "hint": "Teknik işlerle uğraşan meslek"},
+        {"word": "ARAŞTIRMA", "hint": "İnceleme yapma"},
+        {"word": "DÖNÜŞÜM", "hint": "Değişim, transformasyon"},
+        {"word": "KÜTLECE", "hint": "Ağırlık olarak"},
+    ]
+}
+
+# Noktalama kuralları
+PUNCTUATION_RULES = [
+    {
+        "rule": "Hitap sözcüklerinden sonra virgül",
+        "example": "Ali, gel buraya.",
+        "wrong": "Ali gel buraya.",
+        "explanation": "Hitap sözcüklerinden sonra virgül kullanılır."
+    },
+    {
+        "rule": "Sıralı cümleler arasında virgül",
+        "example": "Kitap okudum, ödev yaptım, uyudum.",
+        "wrong": "Kitap okudum ödev yaptım uyudum.",
+        "explanation": "Sıralanan eylemler arasında virgül kullanılır."
+    },
+    {
+        "rule": "Ünlem sözcüklerinden sonra ünlem işareti",
+        "example": "Vay canına!",
+        "wrong": "Vay canına",
+        "explanation": "Ünlem ve hayret bildiren sözcüklerden sonra ünlem işareti kullanılır."
+    },
+]
+
+# Fiilimsi örnekleri
+FIILIMSI_EXAMPLES = [
+    {
+        "sentence": "Koşan çocuk",
+        "fiilimsi": "Sıfat-fiil",
+        "ek": "-an/-en",
+        "explanation": "Sıfat-fiil, ismi niteleyen fiilimsi türüdür."
+    },
+    {
+        "sentence": "Okuyarak öğrenir",
+        "fiilimsi": "Zarf-fiil",
+        "ek": "-arak/-erek",
+        "explanation": "Zarf-fiil, eylemi niteleyen fiilimsi türüdür."
+    },
+    {
+        "sentence": "Yürümek sağlıklıdır",
+        "fiilimsi": "İsim-fiil",
+        "ek": "-mak/-mek",
+        "explanation": "İsim-fiil, cümlede isim gibi kullanılan fiilimsi türüdür."
+    },
+]
+
+class TurkishGames:
+    """Türkçe oyunları yönetici sınıfı"""
+    
+    @staticmethod
+    def generate_hangman(difficulty: str = "kolay") -> Dict[str, Any]:
+        """
+        Adam Asmaca 2.0 - Gelişmiş versiyon
+        
+        Args:
+            difficulty: kolay, orta, zor
+            
+        Returns:
+            Oyun verisi
+        """
+        words = TURKISH_WORDS.get(difficulty, TURKISH_WORDS["kolay"])
+        selected = random.choice(words)
+        
+        word = selected["word"]
+        hint = selected["hint"]
+        
+        # Türkçe karakterleri normalize et
+        display_word = ["_" if c != " " else " " for c in word]
+        
+        return {
+            "word": word,
+            "hint": hint,
+            "display_word": display_word,
+            "difficulty": difficulty,
+            "max_attempts": 6,
+            "remaining_attempts": 6,
+            "guessed_letters": [],
+            "game_status": "active"
+        }
+    
+    @staticmethod
+    def check_hangman_guess(game_data: Dict, letter: str) -> Dict[str, Any]:
+        """
+        Adam asmaca tahmin kontrolü
+        
+        Args:
+            game_data: Mevcut oyun verisi
+            letter: Tahmin edilen harf
+            
+        Returns:
+            Güncellenmiş oyun durumu
+        """
+        letter = letter.upper()
+        word = game_data["word"]
+        display_word = game_data["display_word"]
+        guessed_letters = game_data["guessed_letters"]
+        
+        if letter in guessed_letters:
+            return {
+                **game_data,
+                "message": "Bu harfi zaten denedin!",
+                "is_new": False
+            }
+        
+        guessed_letters.append(letter)
+        
+        if letter in word:
+            # Doğru tahmin
+            for i, c in enumerate(word):
+                if c == letter:
+                    display_word[i] = letter
+            
+            # Kazandı mı?
+            if "_" not in display_word:
+                return {
+                    **game_data,
+                    "display_word": display_word,
+                    "guessed_letters": guessed_letters,
+                    "game_status": "won",
+                    "message": "🎉 Tebrikler! Kelimeyi buldun!",
+                    "is_correct": True
+                }
+            
+            return {
+                **game_data,
+                "display_word": display_word,
+                "guessed_letters": guessed_letters,
+                "message": "✅ Doğru harf!",
+                "is_correct": True
+            }
+        else:
+            # Yanlış tahmin
+            remaining = game_data["remaining_attempts"] - 1
+            
+            if remaining <= 0:
+                return {
+                    **game_data,
+                    "remaining_attempts": 0,
+                    "guessed_letters": guessed_letters,
+                    "game_status": "lost",
+                    "message": f"❌ Oyun bitti! Doğru kelime: {word}",
+                    "is_correct": False
+                }
+            
+            return {
+                **game_data,
+                "remaining_attempts": remaining,
+                "guessed_letters": guessed_letters,
+                "message": f"❌ Yanlış harf! Kalan hak: {remaining}",
+                "is_correct": False
+            }
+    
+    @staticmethod
+    def generate_word_chain() -> Dict[str, Any]:
+        """
+        Kelime Türetme Oyunu
+        Son harfle başlayan kelime bulma
+        
+        Returns:
+            Başlangıç kelimesi
+        """
+        starting_words = ["MASA", "AĞAÇ", "OKUL", "DENIZ", "GÖKYÜZÜ"]
+        word = random.choice(starting_words)
+        
+        return {
+            "current_word": word,
+            "last_letter": word[-1],
+            "chain": [word],
+            "score": 0,
+            "used_words": [word]
+        }
+    
+    @staticmethod
+    def validate_word_chain(game_data: Dict, user_word: str) -> Dict[str, Any]:
+        """
+        Kelime türetme doğrulama
+        
+        Rules:
+        1. Son harfle başlamalı
+        2. Daha önce kullanılmamış olmalı
+        3. Geçerli Türkçe kelime olmalı
+        """
+        user_word = user_word.upper()
+        last_letter = game_data["last_letter"]
+        used_words = game_data["used_words"]
+        
+        # Kontroller
+        if user_word in used_words:
+            return {
+                **game_data,
+                "is_valid": False,
+                "message": "❌ Bu kelime zaten kullanıldı!"
+            }
+        
+        if not user_word.startswith(last_letter):
+            return {
+                **game_data,
+                "is_valid": False,
+                "message": f"❌ Kelime '{last_letter}' harfi ile başlamalı!"
+            }
+        
+        # TODO: Gerçek kelime kontrolü (TDK API veya liste)
+        # Şimdilik basit kontrol
+        if len(user_word) < 2:
+            return {
+                **game_data,
+                "is_valid": False,
+                "message": "❌ Çok kısa kelime!"
+            }
+        
+        # Geçerli
+        chain = game_data["chain"]
+        chain.append(user_word)
+        used_words.append(user_word)
+        
+        return {
+            "current_word": user_word,
+            "last_letter": user_word[-1],
+            "chain": chain,
+            "score": game_data["score"] + 10,
+            "used_words": used_words,
+            "is_valid": True,
+            "message": f"✅ Doğru! +10 puan. Şimdi '{user_word[-1]}' ile başla."
+        }
+    
+    @staticmethod
+    def generate_punctuation_quiz() -> Dict[str, Any]:
+        """Noktalama oyunu - doğru cümleyi seç"""
+        rule = random.choice(PUNCTUATION_RULES)
+        
+        # 4 seçenek oluştur
+        options = [
+            rule["example"],
+            rule["wrong"],
+        ]
+        
+        # 2 tane daha yanlış seçenek ekle
+        other_wrongs = [
+            rule["example"].replace(",", ";"),
+            rule["example"].replace(".", "!"),
+        ]
+        options.extend(other_wrongs[:2])
+        random.shuffle(options)
+        
+        return {
+            "question": f"Hangi cümlede '{rule['rule']}' kuralı doğru uygulanmıştır?",
+            "options": options,
+            "correct_answer": rule["example"],
+            "explanation": rule["explanation"],
+            "rule": rule["rule"]
+        }
+    
+    @staticmethod
+    def generate_fiilimsi_quiz() -> Dict[str, Any]:
+        """Fiilimsi tanıma oyunu"""
+        example = random.choice(FIILIMSI_EXAMPLES)
+        
+        options = ["Sıfat-fiil", "Zarf-fiil", "İsim-fiil", "Fiilimsi yoktur"]
+        random.shuffle(options)
+        
+        return {
+            "question": f"'{example['sentence']}' cümlesinde hangi fiilimsi türü vardır?",
+            "options": options,
+            "correct_answer": example["fiilimsi"],
+            "explanation": example["explanation"],
+            "ek": example["ek"]
+        }
+
+# Global instance
+turkish_games = TurkishGames()
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# IDE and editors
+.idea/
+.vscode/
+
+# Dependencies
+node_modules/
+/node_modules
+/.pnp
+.pnp.js
+.yarn/install-state.gz
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# Testing
+/coverage
+
+# Next.js
+/.next/
+/out/
+next-env.d.ts
+*.tsbuildinfo
+
+# Production builds
+/build
+dist/
+dist
+
+# Environment files (comprehensive coverage)
+
+token.json
+credentials.json
+
+# Logs and debug files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+dump.rdb
+
+# System files
+.DS_Store
+*.pem
+
+# Python
+_pycache_/
+pyc
+venv/
+.venv/
+
+# Development tools
+chainlit.md
+.chainlit
+.ipynb_checkpoints/
+.ac
+
+# Deployment
+.vercel
+
+# Data and databases
+agenthub/agents/youtube/db
+
+# Archive files and large assets
+*/.zip
+*/.tar.gz
+*/.tar
+*/.tgz
+*.pack
+*.deb
+*.dylib
+
+# Build caches
+.cache/
+
+# Mobile development
+android-sdk/ -e 
+# Environment files
+*.env
+.env.
+diff --git a/frontend/.metro-cache/cache/01/7bf473d443d033147d023a9db8cb1e2f8a3211f07c32117e3ba40a0809d4d66b3f9dff b/frontend/.metro-cache/cache/01/7bf473d443d033147d023a9db8cb1e2f8a3211f07c32117e3ba40a0809d4d66b3f9dff
+new file mode 100644
+index 0000000..65d4b3c
+--- /dev/null
++++ b/frontend/.metro-cache/cache/01/7bf473d443d033147d023a9db8cb1e2f8a3211f07c32117e3ba40a0809d4d66b3f9dff
+@@ -0,0 +1 @@
++{"dependencies":[{"name":"@babel/runtime/helpers/interopRequireDefault","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":13,"column":29,"index":257},"end":{"line":13,"column":84,"index":312}}],"key":"kslwqCIsh6ew+I1KeA1rlVRjsAk=","exportNames":[""],"imports":1}},{"name":"@babel/runtime/helpers/interopRequireWildcard","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":14,"column":30,"index":352},"end":{"line":14,"column":86,"index":408}}],"key":"fGo7mEc/tw/OblLqGBCp3J3h+jY=","exportNames":[""],"imports":1}},{"name":"@babel/runtime/helpers/extends","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":17,"column":39,"index":510},"end":{"line":17,"column":80,"index":551}}],"key":"+IMV7fApFxYj6g0kcsGRJafP6mc=","exportNames":[""],"imports":1}},{"name":"@babel/runtime/helpers/objectWithoutPropertiesLoose","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":18,"column":60,"index":614},"end":{"line":18,"column":122,"index":676}}],"key":"HFkXuFcBAqfzGtqyPj8g62MKT0M=","exportNames":[""],"imports":1}},{"name":"react","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":19,"column":37,"index":716},"end":{"line":19,"column":53,"index":732}}],"key":"XN65eZP/QkNMzaBAXbG/zPyidpY=","exportNames":[""],"imports":1}},{"name":"../../modules/useMergeRefs","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":21,"column":43,"index":798},"end":{"line":21,"column":80,"index":835}}],"key":"bhCrLbYI/MwDTv21kPFm6yAJV1Y=","exportNames":[""],"imports":1}},{"name":"../../modules/useHover","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":22,"column":39,"index":877},"end":{"line":22,"column":72,"index":910}}],"key":"pIilrkH+ra87qHHgOvy+1UO9tW0=","exportNames":[""],"imports":1}},{"name":"../../modules/usePressEvents","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":23,"column":45,"index":958},"end":{"line":23,"column":84,"index":997}}],"key":"DG6ydHMrops5pVR1MDbv0qY4ucE=","exportNames":[""],"imports":1}},{"name":"../StyleSheet","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":24,"column":41,"index":1041},"end":{"line":24,"column":65,"index":1065}}],"key":"/lt4dx9lv63AgWlsquNRD95qldk=","exportNames":[""],"imports":1}},{"name":"../View","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":25,"column":35,"index":1103},"end":{"line":25,"column":53,"index":1121}}],"key":"Icwd30FnXIbYRs+oNMUjfX4uvbc=","exportNames":[""],"imports":1}}],"output":[{"data":{"code":"_d(function (global, require, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {\n  \"use strict\";\n\n  /\n   * Copyright (c) Meta Platforms, Inc. and affiliates.\n   *\n   * This source code is licensed under the MIT license found in the\n   * LICENSE file in the root directory of this source tree.\n   *\n   * \n   */\n\n  'use client';\n\n  var _interopRequireDefault = require(_dependencyMap[0], \"@babel/runtime/helpers/interopRequireDefault\").default;\n  var _interopRequireWildcard = require(_dependencyMap[1], \"@babel/runtime/helpers/interopRequireWildcard\").default;\n  exports.esModule = true;\n  exports.default = void 0;\n  var _extends2 = _interopRequireDefault(require(_dependencyMap[2], \"@babel/runtime/helpers/extends\"));\n  var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require(_dependencyMap[3], \"@babel/runtime/helpers/objectWithoutPropertiesLoose\"));\n  var _react = _interopRequireWildcard(require(_dependencyMap[4], \"react\"));\n  var React = _react;\n  var _useMergeRefs = _interopRequireDefault(require(_dependencyMap[5], \"../../modules/useMergeRefs\"));\n  var _useHover = _interopRequireDefault(require(_dependencyMap[6], \"../../modules/useHover\"));\n  var _usePressEvents = _interopRequireDefault(require(_dependencyMap[7], \"../../modules/usePressEvents\"));\n  var _StyleSheet = _interopRequireDefault(require(_dependencyMap[8], \"../StyleSheet\"));\n  var _View = _interopRequireDefault(require(_dependencyMap[9], \"../View\"));\n  var _excluded = [\"children\", \"delayLongPress\", \"delayPressIn\", \"delayPressOut\", \"disabled\", \"onBlur\", \"onContextMenu\", \"onFocus\", \"onHoverIn\", \"onHoverOut\", \"onKeyDown\", \"onLongPress\", \"onPress\", \"onPressMove\", \"onPressIn\", \"onPressOut\", \"style\", \"tabIndex\", \"testOnly_hovered\", \"testOnly_pressed\"];\n  /\n   * Component used to build display components that should respond to whether the\n   * component is currently pressed or not.\n   /\n  function Pressable(props, forwardedRef) {\n    var children = props.children,\n      delayLongPress = props.delayLongPress,\n      delayPressIn = props.delayPressIn,\n      delayPressOut = props.delayPressOut,\n      disabled = props.disabled,\n      onBlur = props.onBlur,\n      onContextMenu = props.onContextMenu,\n      onFocus = props.onFocus,\n      onHoverIn = props.onHoverIn,\n      onHoverOut = props.onHoverOut,\n      onKeyDown = props.onKeyDown,\n      onLongPress = props.onLongPress,\n      onPress = props.onPress,\n      onPressMove = props.onPressMove,\n      onPressIn = props.onPressIn,\n      onPressOut = props.onPressOut,\n      style = props.style,\n      tabIndex = props.tabIndex,\n      testOnly_hovered = props.testOnly_hovered,\n      testOnly_pressed = props.testOnly_pressed,\n      rest = (0, _objectWithoutPropertiesLoose2.default)(props, _excluded);\n    var _useForceableState = useForceableState(testOnly_hovered === true),\n      hovered = _useForceableState[0],\n      setHovered = _useForceableState[1];\n    var _useForceableState2 = useForceableState(false),\n      focused = _useForceableState2[0],\n      setFocused = _useForceableState2[1];\n    var _useForceableState3 = useForceableState(testOnly_pressed === true),\n      pressed = _useForceableState3[0],\n      setPressed = _useForceableState3[1];\n    var hostRef = (0, _react.useRef)(null);\n    var setRef = (0, _useMergeRefs.default)(forwardedRef, hostRef);\n    var pressConfig = (0, _react.useMemo)(() => ({\n      delayLongPress,\n      delayPressStart: delayPressIn,\n      delayPressEnd: delayPressOut,\n      disabled,\n      onLongPress,\n      onPress,\n      onPressChange: setPressed,\n      onPressStart: onPressIn,\n      onPressMove,\n      onPressEnd: onPressOut\n    }), [delayLongPress, delayPressIn, delayPressOut, disabled, onLongPress, onPress, onPressIn, onPressMove, onPressOut, setPressed]);\n    var pressEventHandlers = (0, _usePressEvents.default)(hostRef, pressConfig);\n    var onContextMenuPress = pressEventHandlers.onContextMenu,\n      onKeyDownPress = pressEventHandlers.onKeyDown;\n    (0, _useHover.default)(hostRef, {\n      contain: true,\n      disabled,\n      onHoverChange: setHovered,\n      onHoverStart: onHoverIn,\n      onHoverEnd: onHoverOut\n    });\n    var interactionState = {\n      hovered,\n      focused,\n      pressed\n    };\n    var blurHandler = React.useCallback(e => {\n      if (e.nativeEvent.target === hostRef.current) {\n        setFocused(false);\n        if (onBlur != null) {\n          onBlur(e);\n        }\n      }\n    }, [hostRef, setFocused, onBlur]);\n    var focusHandler = React.useCallback(e => {\n      if (e.nativeEvent.target === hostRef.current) {\n        setFocused(true);\n        if (onFocus != null) {\n          onFocus(e);\n        }\n      }\n    }, [hostRef, setFocused, onFocus]);\n    var contextMenuHandler = React.useCallback(e => {\n      if (onContextMenuPress != null) {\n        onContextMenuPress(e);\n      }\n      if (onContextMenu != null) {\n        onContextMenu(e);\n      }\n    }, [onContextMenu, onContextMenuPress]);\n    var keyDownHandler = React.useCallback(e => {\n      if (onKeyDownPress != null) {\n        onKeyDownPress(e);\n      }\n      if (onKeyDown != null) {\n        onKeyDown(e);\n      }\n    }, [onKeyDown, onKeyDownPress]);\n    var _tabIndex;\n    if (tabIndex !== undefined) {\n      _tabIndex = tabIndex;\n    } else {\n      _tabIndex = disabled ? -1 : 0;\n    }\n    return /#PURE/React.createElement(_View.default, (0, _extends2.default)({}, rest, pressEventHandlers, {\n      \"aria-disabled\": disabled,\n      onBlur: blurHandler,\n      onContextMenu: contextMenuHandler,\n      onFocus: focusHandler,\n      onKeyDown: keyDownHandler,\n      ref: setRef,\n      style: [disabled ? styles.disabled : styles.active, typeof style === 'function' ? style(interactionState) : style],\n      tabIndex: _tabIndex\n    }), typeof children === 'function' ? children(interactionState) : children);\n  }\n  function useForceableState(forced) {\n    var _useState = (0, _react.useState)(false),\n      bool = _useState[0],\n      setBool = _useState[1];\n    return [bool || forced, setBool];\n  }\n  var styles = _StyleSheet.default.create({\n    active: {\n      cursor: 'pointer',\n      touchAction: 'manipulation'\n    },\n    disabled: {\n      pointerEvents: 'box-none'\n    }\n  });\n  var MemoedPressable = /#PURE/(0, _react.memo)(/#PURE*/(0, _react.forwardRef)(Pressable));\n  MemoedPressable.displayName = 'Pressable';\n  var _default = exports.default = MemoedPressable;\n  module.exports = exports.default;\n});","lineCount":161,"map":[[2,2,1,0],[2,14,1,12],[4,2,2,0],[5,0,3,0],[6,0,4,0],[7,0,5,0],[8,0,6,0],[9,0,7,0],[10,0,8,0],[11,0,9,0],[13,2,11,0],[13,14,11,12],[15,2,13,0],[15,6,13,4,"_interopRequireDefault"],[15,28,13,26],[15,31,13,29,"require"],[15,38,13,36],[15,39,13,36,"_dependencyMap"],[15,53,13,36],[15,104,13,83],[15,105,13,84],[15,106,13,85,"default"],[15,113,13,92],[16,2,14,0],[16,6,14,4,"_interopRequireWildcard"],[16,29,14,27],[16,32,14,30,"require"],[16,39,14,37],[16,40,14,37,"_dependencyMap"],[16,54,14,37],[16,106,14,85],[16,107,14,86],[16,108,14,87,"default"],[16,115,14,94],[17,2,15,0,"exports"],[17,9,15,7],[17,10,15,8,"_esModule"],[17,20,15,18],[17,23,15,21],[17,27,15,25],[18,2,16,0,"exports"],[18,9,16,7],[18,10,16,8,"default"],[18,17,16,15],[18,20,16,18],[18,25,16,23],[18,26,16,24],[19,2,17,0],[19,6,17,4,"_extends2"],[19,15,17,13],[19,18,17,16,"_interopRequireDefault"],[19,40,17,38],[19,41,17,39,"require"],[19,48,17,46],[19,49,17,46,"_dependencyMap"],[19,63,17,46],[19,100,17,79],[19,101,17,80],[19,102,17,81],[20,2,18,0],[20,6,18,4,"_objectWithoutPropertiesLoose2"],[20,36,18,34],[20,39,18,37,"_interopRequireDefault"],[20,61,18,59],[20,62,18,60,"require"],[20,69,18,67],[20,70,18,67,"_dependencyMap"],[20,84,18,67],[20,142,18,121],[20,143,18,122],[20,144,18,123],[21,2,19,0],[21,6,19,4,"_react"],[21,12,19,10],[21,15,19,13,"_interopRequireWildcard"],[21,38,19,36],[21,39,19,37,"require"],[21,46,19,44],[21,47,19,44,"_dependencyMap"],[21,61,19,44],[21,73,19,52],[21,74,19,53],[21,75,19,54],[22,2,20,0],[22,6,20,4,"React"],[22,11,20,9],[22,14,20,12,"_react"],[22,20,20,18],[23,2,21,0],[23,6,21,4,"_useMergeRefs"],[23,19,21,17],[23,22,21,20,"_interopRequireDefault"],[23,44,21,42],[23,45,21,43,"require"],[23,52,21,50],[23,53,21,50,"_dependencyMap"],[23,67,21,50],[23,100,21,79],[23,101,21,80],[23,102,21,81],[24,2,22,0],[24,6,22,4,"_useHover"],[24,15,22,13],[24,18,22,16,"_interopRequireDefault"],[24,40,22,38],[24,41,22,39,"require"],[24,48,22,46],[24,49,22,46,"_dependencyMap"],[24,63,22,46],[24,92,22,71],[24,93,22,72],[24,94,22,73],[25,2,23,0],[25,6,23,4,"_usePressEvents"],[25,21,23,19],[25,24,23,22,"_interopRequireDefault"],[25,46,23,44],[25,47,23,45,"require"],[25,54,23,52],[25,55,23,52,"_dependencyMap"],[25,69,23,52],[25,104,23,83],[25,105,23,84],[25,106,23,85],[26,2,24,0],[26,6,24,4,"_StyleSheet"],[26,17,24,15],[26,20,24,18,"_interopRequireDefault"],[26,42,24,40],[26,43,24,41,"require"],[26,50,24,48],[26,51,24,48,"_dependencyMap"],[26,65,24,48],[26,85,24,64],[26,86,24,65],[26,87,24,66],[27,2,25,0],[27,6,25,4,"_View"],[27,11,25,9],[27,14,25,12,"_interopRequireDefault"],[27,36,25,34],[27,37,25,35,"require"],[27,44,25,42],[27,45,25,42,"_dependencyMap"],[27,59,25,42],[27,73,25,52],[27,74,25,53],[27,75,25,54],[28,2,26,0],[28,6,26,4,"_excluded"],[28,15,26,13],[28,18,26,16],[28,19,26,17],[28,29,26,27],[28,31,26,29],[28,47,26,45],[28,49,26,47],[28,63,26,61],[28,65,26,63],[28,80,26,78],[28,82,26,80],[28,92,26,90],[28,94,26,92],[28,102,26,100],[28,104,26,102],[28,119,26,117],[28,121,26,119],[28,130,26,128],[28,132,26,130],[28,143,26,141],[28,145,26,143],[28,157,26,155],[28,159,26,157],[28,170,26,168],[28,172,26,170],[28,185,26,183],[28,187,26,185],[28,196,26,194],[28,198,26,196],[28,211,26,209],[28,213,26,211],[28,224,26,222],[28,226,26,224],[28,238,26,236],[28,240,26,238],[28,247,26,245],[28,249,26,247],[28,259,26,257],[28,261,26,259],[28,279,26,277],[28,281,26,279],[28,299,26,297],[28,300,26,298],[29,2,27,0],[30,0,28,0],[31,0,29,0],[32,0,30,0],[33,2,31,0],[33,11,31,9,"Pressable"],[33,20,31,18,"Pressable"],[33,21,31,19,"props"],[33,26,31,24],[33,28,31,26,"forwardedRef"],[33,40,31,38],[33,42,31,40],[34,4,32,2],[34,8,32,6,"children"],[34,16,32,14],[34,19,32,17,"props"],[34,24,32,22],[34,25,32,23,"children"],[34,33,32,31],[35,6,33,4,"delayLongPress"],[35,20,33,18],[35,23,33,21,"props"],[35,28,33,26],[35,29,33,27,"delayLongPress"],[35,43,33,41],[36,6,34,4,"delayPressIn"],[36,18,34,16],[36,21,34,19,"props"],[36,26,34,24],[36,27,34,25,"delayPressIn"],[36,39,34,37],[37,6,35,4,"delayPressOut"],[37,19,35,17],[37,22,35,20,"props"],[37,27,35,25],[37,28,35,26,"delayPressOut"],[37,41,35,39],[38,6,36,4,"disabled"],[38,14,36,12],[38,17,36,15,"props"],[38,22,36,20],[38,23,36,21,"disabled"],[38,31,36,29],[39,6,37,4,"onBlur"],[39,12,37,10],[39,15,37,13,"props"],[39,20,37,18],[39,21,37,19,"onBlur"],[39,27,37,25],[40,6,38,4,"onContextMenu"],[40,19,38,17],[40,22,38,20,"props"],[40,27,38,25],[40,28,38,26,"onContextMenu"],[40,41,38,39],[41,6,39,4,"onFocus"],[41,13,39,11],[41,16,39,14,"props"],[41,21,39,19],[41,22,39,20,"onFocus"],[41,29,39,27],[42,6,40,4,"onHoverIn"],[42,15,40,13],[42,18,40,16,"props"],[42,23,40,21],[42,24,40,22,"onHoverIn"],[42,33,40,31],[43,6,41,4,"onHoverOut"],[43,16,41,14],[43,19,41,17,"props"],[43,24,41,22],[43,25,41,23,"onHoverOut"],[43,35,41,33],[44,6,42,4,"onKeyDown"],[44,15,42,13],[44,18,42,16,"props"],[44,23,42,21],[44,24,42,22,"onKeyDown"],[44,33,42,31],[45,6,43,4,"onLongPress"],[45,17,43,15],[45,20,43,18,"props"],[45,25,43,23],[45,26,43,24,"onLongPress"],[45,37,43,35],[46,6,44,4,"onPress"],[46,13,44,11],[46,16,44,14,"props"],[46,21,44,19],[46,22,44,20,"onPress"],[46,29,44,27],[47,6,45,4,"onPressMove"],[47,17,45,15],[47,20,45,18,"props"],[47,25,45,23],[47,26,45,24,"onPressMove"],[47,37,45,35],[48,6,46,4,"onPressIn"],[48,15,46,13],[48,18,46,16,"props"],[48,23,46,21],[48,24,46,22,"onPressIn"],[48,33,46,31],[49,6,47,4,"onPressOut"],[49,16,47,14],[49,19,47,17,"props"],[49,24,47,22],[49,25,47,23,"onPressOut"],[49,35,47,33],[50,6,48,4,"style"],[50,11,48,9],[50,14,48,12,"props"],[50,19,48,17],[50,20,48,18,"style"],[50,25,48,23],[51,6,49,4,"tabIndex"],[51,14,49,12],[51,17,49,15,"props"],[51,22,49,20],[51,23,49,21,"tabIndex"],[51,31,49,29],[52,6,50,4,"testOnly_hovered"],[52,22,50,20],[52,25,50,23,"props"],[52,30,50,28],[52,31,50,29,"testOnly_hovered"],[52,47,50,45],[53,6,51,4,"testOnly_pressed"],[53,22,51,20],[53,25,51,23,"props"],[53,30,51,28],[53,31,51,29,"testOnly_pressed"],[53,47,51,45],[54,6,52,4,"rest"],[54,10,52,8],[54,13,52,11],[54,14,52,12],[54,15,52,13],[54,17,52,15,"_objectWithoutPropertiesLoose2"],[54,47,52,45],[54,48,52,46,"default"],[54,55,52,53],[54,57,52,55,"props"],[54,62,52,60],[54,64,52,62,"_excluded"],[54,73,52,71],[54,74,52,72],[55,4,53,2],[55,8,53,6,"_useForceableState"],[55,26,53,24],[55,29,53,27,"useForceableState"],[55,46,53,44],[55,47,53,45,"testOnly_hovered"],[55,63,53,61],[55,68,53,66],[55,72,53,70],[55,73,53,71],[56,6,54,4,"hovered"],[56,13,54,11],[56,16,54,14,"_useForceableState"],[56,34,54,32],[56,35,54,33],[56,36,54,34],[56,37,54,35],[57,6,55,4,"setHovered"],[57,16,55,14],[57,19,55,17,"_useForceableState"],[57,37,55,35],[57,38,55,36],[57,39,55,37],[57,40,55,38],[58,4,56,2],[58,8,56,6,"_useForceableState2"],[58,27,56,25],[58,30,56,28,"useForceableState"],[58,47,56,45],[58,48,56,46],[58,53,56,51],[58,54,56,52],[59,6,57,4,"focused"],[59,13,57,11],[59,16,57,14,"_useForceableState2"],[59,35,57,33],[59,36,57,34],[59,37,57,35],[59,38,57,36],[60,6,58,4,"setFocused"],[60,16,58,14],[60,19,58,17,"_useForceableState2"],[60,38,58,36],[60,39,58,37],[60,40,58,38],[60,41,58,39],[61,4,59,2],[61,8,59,6,"_useForceableState3"],[61,27,59,25],[61,30,59,28,"useForceableState"],[61,47,59,45],[61,48,59,46,"testOnly_pressed"],[61,64,59,62],[61,69,59,67],[61,73,59,71],[61,74,59,72],[62,6,60,4,"pressed"],[62,13,60,11],[62,16,60,14,"_useForceableState3"],[62,35,60,33],[62,36,60,34],[62,37,60,35],[62,38,60,36],[63,6,61,4,"setPressed"],[63,16,61,14],[63,19,61,17,"_useForceableState3"],[63,38,61,36],[63,39,61,37],[63,40,61,38],[63,41,61,39],[64,4,62,2],[64,8,62,6,"hostRef"],[64,15,62,13],[64,18,62,16],[64,19,62,17],[64,20,62,18],[64,22,62,20,"_react"],[64,28,62,26],[64,29,62,27,"useRef"],[64,35,62,33],[64,37,62,35],[64,41,62,39],[64,42,62,40],[65,4,63,2],[65,8,63,6,"setRef"],[65,14,63,12],[65,17,63,15],[65,18,63,16],[65,19,63,17],[65,21,63,19,"_useMergeRefs"],[65,34,63,32],[65,35,63,33,"default"],[65,42,63,40],[65,44,63,42,"forwardedRef"],[65,56,63,54],[65,58,63,56,"hostRef"],[65,65,63,63],[65,66,63,64],[66,4,64,2],[66,8,64,6,"pressConfig"],[66,19,64,17],[66,22,64,20],[66,23,64,21],[66,24,64,22],[66,26,64,24,"_react"],[66,32,64,30],[66,33,64,31,"useMemo"],[66,40,64,38],[66,42,64,40],[66,49,64,47],[67,6,65,4,"delayLongPress"],[67,20,65,18],[68,6,66,4,"delayPressStart"],[68,21,66,19],[68,23,66,21,"delayPressIn"],[68,35,66,33],[69,6,67,4,"delayPressEnd"],[69,19,67,17],[69,21,67,19,"delayPressOut"],[69,34,67,32],[70,6,68,4,"disabled"],[70,14,68,12],[71,6,69,4,"onLongPress"],[71,17,69,15],[72,6,70,4,"onPress"],[72,13,70,11],[73,6,71,4,"onPressChange"],[73,19,71,17],[73,21,71,19,"setPressed"],[73,31,71,29],[74,6,72,4,"onPressStart"],[74,18,72,16],[74,20,72,18,"onPressIn"],[74,29,72,27],[75,6,73,4,"onPressMove"],[75,17,73,15],[76,6,74,4,"onPressEnd"],[76,16,74,14],[76,18,74,16,"onPressOut"],[77,4,75,2],[77,5,75,3],[77,6,75,4],[77,8,75,6],[77,9,75,7,"delayLongPress"],[77,23,75,21],[77,25,75,23,"delayPressIn"],[77,37,75,35],[77,39,75,37,"delayPressOut"],[77,52,75,50],[77,54,75,52,"disabled"],[77,62,75,60],[77,64,75,62,"onLongPress"],[77,75,75,73],[77,77,75,75,"onPress"],[77,84,75,82],[77,86,75,84,"onPressIn"],[77,95,75,93],[77,97,75,95,"onPressMove"],[77,108,75,106],[77,110,75,108,"onPressOut"],[77,120,75,118],[77,122,75,120,"setPressed"],[77,132,75,130],[77,133,75,131],[77,134,75,132],[78,4,76,2],[78,8,76,6,"pressEventHandlers"],[78,26,76,24],[78,29,76,27],[78,30,76,28],[78,31,76,29],[78,33,76,31,"_usePressEvents"],[78,48,76,46],[78,49,76,47,"default"],[78,56,76,54],[78,58,76,56,"hostRef"],[78,65,76,63],[78,67,76,65,"pressConfig"],[78,78,76,76],[78,79,76,77],[79,4,77,2],[79,8,77,6,"onContextMenuPress"],[79,26,77,24],[79,29,77,27,"pressEventHandlers"],[79,47,77,45],[79,48,77,46,"onContextMenu"],[79,61,77,59],[80,6,78,4,"onKeyDownPress"],[80,20,78,18],[80,23,78,21,"pressEventHandlers"],[80,41,78,39],[80,42,78,40,"onKeyDown"],[80,51,78,49],[81,4,79,2],[81,5,79,3],[81,6,79,4],[81,8,79,6,"_useHover"],[81,17,79,15],[81,18,79,16,"default"],[81,25,79,23],[81,27,79,25,"hostRef"],[81,34,79,32],[81,36,79,34],[82,6,80,4,"contain"],[82,13,80,11],[82,15,80,13],[82,19,80,17],[83,6,81,4,"disabled"],[83,14,81,12],[84,6,82,4,"onHoverChange"],[84,19,82,17],[84,21,82,19,"setHovered"],[84,31,82,29],[85,6,83,4,"onHoverStart"],[85,18,83,16],[85,20,83,18,"onHoverIn"],[85,29,83,27],[86,6,84,4,"onHoverEnd"],[86,16,84,14],[86,18,84,16,"onHoverOut"],[87,4,85,2],[87,5,85,3],[87,6,85,4],[88,4,86,2],[88,8,86,6,"interactionState"],[88,24,86,22],[88,27,86,25],[89,6,87,4,"hovered"],[89,13,87,11],[90,6,88,4,"focused"],[90,13,88,11],[91,6,89,4,"pressed"],[92,4,90,2],[92,5,90,3],[93,4,91,2],[93,8,91,6,"blurHandler"],[93,19,91,17],[93,22,91,20,"React"],[93,27,91,25],[93,28,91,26,"useCallback"],[93,39,91,37],[93,40,91,38,"e"],[93,41,91,39],[93,45,91,43],[94,6,92,4],[94,10,92,8,"e"],[94,11,92,9],[94,12,92,10,"nativeEvent"],[94,23,92,21],[94,24,92,22,"target"],[94,30,92,28],[94,35,92,33,"hostRef"],[94,42,92,40],[94,43,92,41,"current"],[94,50,92,48],[94,52,92,50],[95,8,93,6,"setFocused"],[95,18,93,16],[95,19,93,17],[95,24,93,22],[95,25,93,23],[96,8,94,6],[96,12,94,10,"onBlur"],[96,18,94,16],[96,22,94,20],[96,26,94,24],[96,28,94,26],[97,10,95,8,"onBlur"],[97,16,95,14],[97,17,95,15,"e"],[97,18,95,16],[97,19,95,17],[98,8,96,6],[99,6,97,4],[100,4,98,2],[100,5,98,3],[100,7,98,5],[100,8,98,6,"hostRef"],[100,15,98,13],[100,17,98,15,"setFocused"],[100,27,98,25],[100,29,98,27,"onBlur"],[100,35,98,33],[100,36,98,34],[100,37,98,35],[101,4,99,2],[101,8,99,6,"focusHandler"],[101,20,99,18],[101,23,99,21,"React"],[101,28,99,26],[101,29,99,27,"useCallback"],[101,40,99,38],[101,41,99,39,"e"],[101,42,99,40],[101,46,99,44],[102,6,100,4],[102,10,100,8,"e"],[102,11,100,9],[102,12,100,10,"nativeEvent"],[102,23,100,21],[102,24,100,22,"target"],[102,30,100,28],[102,35,100,33,"hostRef"],[102,42,100,40],[102,43,100,41,"current"],[102,50,100,48],[102,52,100,50],[103,8,101,6,"setFocused"],[103,18,101,16],[103,19,101,17],[103,23,101,21],[103,24,101,22],[104,8,102,6],[104,12,102,10,"onFocus"],[104,19,102,17],[104,23,102,21],[104,27,102,25],[104,29,102,27],[105,10,103,8,"onFocus"],[105,17,103,15],[105,18,103,16,"e"],[105,19,103,17],[105,20,103,18],[106,8,104,6],[107,6,105,4],[108,4,106,2],[108,5,106,3],[108,7,106,5],[108,8,106,6,"hostRef"],[108,15,106,13],[108,17,106,15,"setFocused"],[108,27,106,25],[108,29,106,27,"onFocus"],[108,36,106,34],[108,37,106,35],[108,38,106,36],[109,4,107,2],[109,8,107,6,"contextMenuHandler"],[109,26,107,24],[109,29,107,27,"React"],[109,34,107,32],[109,35,107,33,"useCallback"],[109,46,107,44],[109,47,107,45,"e"],[109,48,107,46],[109,52,107,50],[110,6,108,4],[110,10,108,8,"onContextMenuPress"],[110,28,108,26],[110,32,108,30],[110,36,108,34],[110,38,108,36],[111,8,109,6,"onContextMenuPress"],[111,26,109,24],[111,27,109,25,"e"],[111,28,109,26],[111,29,109,27],[112,6,110,4],[113,6,111,4],[113,10,111,8,"onContextMenu"],[113,23,111,21],[113,27,111,25],[113,31,111,29],[113,33,111,31],[114,8,112,6,"onContextMenu"],[114,21,112,19],[114,22,112,20,"e"],[114,23,112,21],[114,24,112,22],[115,6,113,4],[116,4,114,2],[116,5,114,3],[116,7,114,5],[116,8,114,6,"onContextMenu"],[116,21,114,19],[116,23,114,21,"onContextMenuPress"],[116,41,114,39],[116,42,114,40],[116,43,114,41],[117,4,115,2],[117,8,115,6,"keyDownHandler"],[117,22,115,20],[117,25,115,23,"React"],[117,30,115,28],[117,31,115,29,"useCallback"],[117,42,115,40],[117,43,115,41,"e"],[117,44,115,42],[117,48,115,46],[118,6,116,4],[118,10,116,8,"onKeyDownPress"],[118,24,116,22],[118,28,116,26],[118,32,116,30],[118,34,116,32],[119,8,117,6,"onKeyDownPress"],[119,22,117,20],[119,23,117,21,"e"],[119,24,117,22],[119,25,117,23],[120,6,118,4],[121,6,119,4],[121,10,119,8,"onKeyDown"],[121,19,119,17],[121,23,119,21],[121,27,119,25],[121,29,119,27],[122,8,120,6,"onKeyDown"],[122,17,120,15],[122,18,120,16,"e"],[122,19,120,17],[122,20,120,18],[123,6,121,4],[124,4,122,2],[124,5,122,3],[124,7,122,5],[124,8,122,6,"onKeyDown"],[124,17,122,15],[124,19,122,17,"onKeyDownPress"],[124,33,122,31],[124,34,122,32],[124,35,122,33],[125,4,123,2],[125,8,123,6,"_tabIndex"],[125,17,123,15],[126,4,124,2],[126,8,124,6,"tabIndex"],[126,16,124,14],[126,21,124,19,"undefined"],[126,30,124,28],[126,32,124,30],[127,6,125,4,"_tabIndex"],[127,15,125,13],[127,18,125,16,"tabIndex"],[127,26,125,24],[128,4,126,2],[128,5,126,3],[128,11,126,9],[129,6,127,4,"_tabIndex"],[129,15,127,13],[129,18,127,16,"disabled"],[129,26,127,24],[129,29,127,27],[129,30,127,28],[129,31,127,29],[129,34,127,32],[129,35,127,33],[130,4,128,2],[131,4,129,2],[131,11,129,9],[131,24,129,22,"React"],[131,29,129,27],[131,30,129,28,"createElement"],[131,43,129,41],[131,44,129,42,"_View"],[131,49,129,47],[131,50,129,48,"default"],[131,57,129,55],[131,59,129,57],[131,60,129,58],[131,61,129,59],[131,63,129,61,"_extends2"],[131,72,129,70],[131,73,129,71,"default"],[131,80,129,78],[131,82,129,80],[131,83,129,81],[131,84,129,82],[131,86,129,84,"rest"],[131,90,129,88],[131,92,129,90,"pressEventHandlers"],[131,110,129,108],[131,112,129,110],[132,6,130,4],[132,21,130,19],[132,23,130,21,"disabled"],[132,31,130,29],[133,6,131,4,"onBlur"],[133,12,131,10],[133,14,131,12,"blurHandler"],[133,25,131,23],[134,6,132,4,"onContextMenu"],[134,19,132,17],[134,21,132,19,"contextMenuHandler"],[134,39,132,37],[135,6,133,4,"onFocus"],[135,13,133,11],[135,15,133,13,"focusHandler"],[135,27,133,25],[136,6,134,4,"onKeyDown"],[136,15,134,13],[136,17,134,15,"keyDownHandler"],[136,31,134,29],[137,6,135,4,"ref"],[137,9,135,7],[137,11,135,9,"setRef"],[137,17,135,15],[138,6,136,4,"style"],[138,11,136,9],[138,13,136,11],[138,14,136,12,"disabled"],[138,22,136,20],[138,25,136,23,"styles"],[138,31,136,29],[138,32,136,30,"disabled"],[138,40,136,38],[138,43,136,41,"styles"],[138,49,136,47],[138,50,136,48,"active"],[138,56,136,54],[138,58,136,56],[138,65,136,63,"style"],[138,70,136,68],[138,75,136,73],[138,85,136,83],[138,88,136,86,"style"],[138,93,136,91],[138,94,136,92,"interactionState"],[138,110,136,108],[138,111,136,109],[138,114,136,112,"style"],[138,119,136,117],[138,120,136,118],[139,6,137,4,"tabIndex"],[139,14,137,12],[139,16,137,14,"_tabIndex"],[140,4,138,2],[140,5,138,3],[140,6,138,4],[140,8,138,6],[140,15,138,13,"children"],[140,23,138,21],[140,28,138,26],[140,38,138,36],[140,41,138,39,"children"],[140,49,138,47],[140,50,138,48,"interactionState"],[140,66,138,64],[140,67,138,65],[140,70,138,68,"children"],[140,78,138,76],[140,79,138,77],[141,2,139,0],[142,2,140,0],[142,11,140,9,"useForceableState"],[142,28,140,26,"useForceableState"],[142,29,140,27,"forced"],[142,35,140,33],[142,37,140,35],[143,4,141,2],[143,8,141,6,"_useState"],[143,17,141,15],[143,20,141,18],[143,21,141,19],[143,22,141,20],[143,24,141,22,"_react"],[143,30,141,28],[143,31,141,29,"useState"],[143,39,141,37],[143,41,141,39],[143,46,141,44],[143,47,141,45],[144,6,142,4,"bool"],[144,10,142,8],[144,13,142,11,"_useState"],[144,22,142,20],[144,23,142,21],[144,24,142,22],[144,25,142,23],[145,6,143,4,"setBool"],[145,13,143,11],[145,16,143,14,"_useState"],[145,25,143,23],[145,26,143,24],[145,27,143,25],[145,28,143,26],[146,4,144,2],[146,11,144,9],[146,12,144,10,"bool"],[146,16,144,14],[146,20,144,18,"forced"],[146,26,144,24],[146,28,144,26,"setBool"],[146,35,144,33],[146,36,144,34],[147,2,145,0],[148,2,146,0],[148,6,146,4,"styles"],[148,12,146,10],[148,15,146,13,"_StyleSheet"],[148,26,146,24],[148,27,146,25,"default"],[148,34,146,32],[148,35,146,33,"create"],[148,41,146,39],[148,42,146,40],[149,4,147,2,"active"],[149,10,147,8],[149,12,147,10],[150,6,148,4,"cursor"],[150,12,148,10],[150,14,148,12],[150,23,148,21],[151,6,149,4,"touchAction"],[151,17,149,15],[151,19,149,17],[152,4,150,2],[152,5,150,3],[153,4,151,2,"disabled"],[153,12,151,10],[153,14,151,12],[154,6,152,4,"pointerEvents"],[154,19,152,17],[154,21,152,19],[155,4,153,2],[156,2,154,0],[156,3,154,1],[156,4,154,2],[157,2,155,0],[157,6,155,4,"MemoedPressable"],[157,21,155,19],[157,24,155,22],[157,37,155,35],[157,38,155,36],[157,39,155,37],[157,41,155,39,"_react"],[157,47,155,45],[157,48,155,46,"memo"],[157,52,155,50],[157,54,155,52],[157,67,155,65],[157,68,155,66],[157,69,155,67],[157,71,155,69,"_react"],[157,77,155,75],[157,78,155,76,"forwardRef"],[157,88,155,86],[157,90,155,88,"Pressable"],[157,99,155,97],[157,100,155,98],[157,101,155,99],[158,2,156,0,"MemoedPressable"],[158,17,156,15],[158,18,156,16,"displayName"],[158,29,156,27],[158,32,156,30],[158,43,156,41],[159,2,157,0],[159,6,157,4,"_default"],[159,14,157,12],[159,17,157,15,"exports"],[159,24,157,22],[159,25,157,23,"default"],[159,32,157,30],[159,35,157,33,"MemoedPressable"],[159,50,157,48],[160,2,158,0,"module"],[160,8,158,6],[160,9,158,7,"exports"],[160,16,158,14],[160,19,158,17,"exports"],[160,26,158,24],[160,27,158,25,"default"],[160,34,158,32],[161,0,158,33],[161,3]],"functionMap":{"names":["<global>","Pressable","<anonymous>","blurHandler","focusHandler","contextMenuHandler","keyDownHandler","useForceableState"],"mappings":"AAA;AC8B;wCCiC;IDW;sCEgB;GFO;uCGC;GHO;6CIC;GJO;yCKC;GLO;CDiB;AOC;CPK"},"hasCjsExports":true},"type":"js/module"}]}
+\ No newline at end of file
+diff --git a/frontend/.metro-cache/cache/03/e565fbaac89786566f19e53ea65df73ca5f4786be805cedd9180574a8553fdc228df2c b/frontend/.metro-cache/cache/03/e565fbaac89786566f19e53ea65df73ca5f4786be805cedd9180574a8553fdc228df2c
+new file mode 100644
+index 0000000..2155475
+--- /dev/null
++++ b/frontend/.metro-cache/cache/03/e565fbaac89786566f19e53ea65df73ca5f4786be805cedd9180574a8553fdc228df2c
+@@ -0,0 +1 @@
++{"dependencies":[{"name":"react","data":{"asyncType":null,"isESMImport":true,"locs":[{"start":{"line":1,"column":0,"index":0},"end":{"line":1,"column":31,"index":31}}],"key":"RtGiGa+/H7VrI7GDQDLhO1UbpU8=","exportNames":[""],"imports":1}},{"name":"./UnimplementedView","data":{"asyncType":null,"isESMImport":true,"locs":[{"start":{"line":2,"column":0,"index":32},"end":{"line":2,"column":52,"index":84}}],"key":"iVdAOjtOEGP30AzUG6sARi9KfP8=","exportNames":[""],"imports":1}}],"output":[{"data":{"code":"_d(function (global, require, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {\n  \"use strict\";\n\n  Object.defineProperty(exports, 'esModule', {\n    value: true\n  });\n  function _interopNamespace(e) {\n    if (e && e.esModule) return e;\n    var n = {};\n    if (e) Object.keys(e).forEach(function (k) {\n      var d = Object.getOwnPropertyDescriptor(e, k);\n      Object.defineProperty(n, k, d.get ? d : {\n        enumerable: true,\n        get: function () {\n          return e[k];\n        }\n      });\n    });\n    n.default = e;\n    return n;\n  }\n  function _interopDefault(e) {\n    return e && e.esModule ? e : {\n      default: e\n    };\n  }\n  Object.defineProperty(exports, \"default\", {\n    enumerable: true,\n    get: function () {\n      return _default;\n    }\n  });\n  var _react = require(_dependencyMap[0], \"react\");\n  var React = _interopNamespace(_react);\n  var _UnimplementedView = require(_dependencyMap[1], \"./UnimplementedView\");\n  var UnimplementedView = _interopDefault(_UnimplementedView);\n  function PickerIOS() {\n    return /*#PURE_/React.createElement(UnimplementedView.default, null);\n  }\n\n  /*\n   * Fallback for other platforms\n   */\n  PickerIOS.Item = UnimplementedView.default;\n  var _default = PickerIOS;\n});","lineCount":46,"map":[[27,2,11,0,"Object"],[27,8,11,0],[27,9,11,0,"defineProperty"],[27,23,11,0],[27,24,11,0,"exports"],[27,31,11,0],[28,4,11,0,"enumerable"],[28,14,11,0],[29,4,11,0,"get"],[29,7,11,0],[29,18,11,0,"get"],[29,19,11,0],[30,6,11,0],[30,13,11,0,"_default"],[30,21,11,0],[31,4,11,0],[32,2,11,0],[33,2,1,0],[33,6,1,0,"_react"],[33,12,1,0],[33,15,1,0,"require"],[33,22,1,0],[33,23,1,0,"_dependencyMap"],[33,37,1,0],[34,2,1,0],[34,6,1,0,"React"],[34,11,1,0],[34,14,1,0,"_interopNamespace"],[34,31,1,0],[34,32,1,0,"_react"],[34,38,1,0],[35,2,2,0],[35,6,2,0,"_UnimplementedView"],[35,24,2,0],[35,27,2,0,"require"],[35,34,2,0],[35,35,2,0,"_dependencyMap"],[35,49,2,0],[36,2,2,0],[36,6,2,0,"UnimplementedView"],[36,23,2,0],[36,26,2,0,"_interopDefault"],[36,41,2,0],[36,42,2,0,"_UnimplementedView"],[36,60,2,0],[37,2,3,0],[37,11,3,9,"PickerIOS"],[37,20,3,18,"PickerIOS"],[37,21,3,18],[37,23,3,21],[38,4,4,2],[38,11,4,9],[38,24,4,22,"React"],[38,29,4,27],[38,30,4,28,"createElement"],[38,43,4,41],[38,44,4,42,"UnimplementedView"],[38,61,4,59],[38,62,4,59,"default"],[38,69,4,59],[38,71,4,61],[38,75,4,65],[38,76,4,66],[39,2,5,0],[41,2,7,0],[42,0,8,0],[43,0,9,0],[44,2,10,0,"PickerIOS"],[44,11,10,9],[44,12,10,10,"Item"],[44,16,10,14],[44,19,10,17,"UnimplementedView"],[44,36,10,34],[44,37,10,34,"default"],[44,44,10,34],[45,2,11,0],[45,6,11,0,"_default"],[45,14,11,0],[45,17,11,15,"PickerIOS"],[45,26,11,24],[46,0,11,25],[46,3]],"functionMap":{"names":["<global>","PickerIOS"],"mappings":"AAA;ACE;CDE"},"hasCjsExports":false},"type":"js/module"}]}
+\ No newline at end of file
+diff --git a/frontend/.metro-cache/cache/05/64c2432155b00e2552bf3b18abcf6e25ed5860d360672ad388eccc9c3438ad6d47f5b0 b/frontend/.metro-cache/cache/05/64c2432155b00e2552bf3b18abcf6e25ed5860d360672ad388eccc9c3438ad6d47f5b0
+new file mode 100644
+index 0000000..763c4fb
+--- /dev/null
++++ b/frontend/.metro-cache/cache/05/64c2432155b00e2552bf3b18abcf6e25ed5860d360672ad388eccc9c3438ad6d47f5b0
+@@ -0,0 +1 @@
++{"dependencies":[{"name":"@babel/runtime/helpers/interopRequireDefault","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":13,"column":29,"index":254},"end":{"line":13,"column":84,"index":309}}],"key":"kslwqCIsh6ew+I1KeA1rlVRjsAk=","exportNames":[""],"imports":1}},{"name":"./bezier","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":16,"column":38,"index":410},"end":{"line":16,"column":57,"index":429}}],"key":"WdDb91kFRAGyP8FNeqQNQW4CqhM=","exportNames":[""],"imports":1}}],"output":[{"data":{"code":"_d(function (global, require, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {\n  /\n   * Copyright (c) Meta Platforms, Inc. and affiliates.\n   *\n   * This source code is licensed under the MIT license found in the\n   * LICENSE file in the root directory of this source tree.\n   *\n   * @format\n   * \n   */\n\n  'use strict';\n\n  var _interopRequireDefault = require(_dependencyMap[0], \"@babel/runtime/helpers/interopRequireDefault\").default;\n  exports._esModule = true;\n  exports.default = void 0;\n  var _bezier2 = _interopRequireDefault(require(_dependencyMap[1], \"./bezier\"));\n  var ease;\n\n  /\n   * The Easing module implements common easing functions. This module is used\n   * by [Animate.timing()](docs/animate.html#timing) to convey physically\n   * believable motion in animations.\n   *\n   * You can find a visualization of some common easing functions at\n   * http://easings.net/\n   *\n   * ### Predefined animations\n   *\n   * The Easing module provides several predefined animations through the\n   * following methods:\n   *\n   * - [back](docs/easing.html#back) provides a simple animation where the\n   *   object goes slightly back before moving forward\n   * - [bounce](docs/easing.html#bounce) provides a bouncing animation\n   * - [ease](docs/easing.html#ease) provides a simple inertial animation\n   * - [elastic](docs/easing.html#elastic) provides a simple spring interaction\n   *\n   * ### Standard functions\n   *\n   * Three standard easing functions are provided:\n   *\n   * - [linear](docs/easing.html#linear)\n   * - [quad](docs/easing.html#quad)\n   * - [cubic](docs/easing.html#cubic)\n   *\n   * The [poly](docs/easing.html#poly) function can be used to implement\n   * quartic, quintic, and other higher power functions.\n   *\n   * ### Additional functions\n   *\n   * Additional mathematical functions are provided by the following methods:\n   *\n   * - [bezier](docs/easing.html#bezier) provides a cubic bezier curve\n   * - [circle](docs/easing.html#circle) provides a circular function\n   * - [sin](docs/easing.html#sin) provides a sinusoidal function\n   * - [exp](docs/easing.html#exp) provides an exponential function\n   *\n   * The following helpers are used to modify other easing functions.\n   *\n   * - [in](docs/easing.html#in) runs an easing function forwards\n   * - [inOut](docs/easing.html#inout) makes any easing function symmetrical\n   * - [out](docs/easing.html#out) runs an easing function backwards\n   /\n  class Easing {\n    /*\n     * A stepping function, returns 1 for any positive value of n.\n     /\n    static step0(n) {\n      return n > 0 ? 1 : 0;\n    }\n\n    /*\n     * A stepping function, returns 1 if n is greater than or equal to 1.\n     /\n    static step1(n) {\n      return n >= 1 ? 1 : 0;\n    }\n\n    /*\n     * A linear function, f(t) = t. Position correlates to elapsed time one to\n     * one.\n     \n     * http://cubic-bezier.com/#0,0,1,1\n     */\n    static linear(t) {\n      return t;\n    }\n\n    /\n     * A simple inertial interaction, similar to an object slowly accelerating to\n     * speed.\n     *\n     * http://cubic-bezier.com/#.42,0,1,1\n     */\n    static ease(t) {\n      if (!ease) {\n        ease = Easing.bezier(0.42, 0, 1, 1);\n      }\n      return ease(t);\n    }\n\n    /*\n     * A quadratic function, f(t) = t * t. Position equals the square of elapsed\n     * time.\n     \n     * http://easings.net/#easeInQuad\n     */\n    static quad(t) {\n      return t * t;\n    }\n\n    /*\n     * A cubic function, f(t) = t * t * t. Position equals the cube of elapsed\n     * time.\n     \n     * http://easings.net/#easeInCubic\n     */\n    static cubic(t) {\n      return t * t * t;\n    }\n\n    /\n     * A power function. Position is equal to the Nth power of elapsed time.\n     *\n     * n = 4: http://easings.net/#easeInQuart\n     * n = 5: http://easings.net/#easeInQuint\n     */\n    static poly(n) {\n      return t => Math.pow(t, n);\n    }\n\n    /\n     * A sinusoidal function.\n     *\n     * http://easings.net/#easeInSine\n     */\n    static sin(t) {\n      return 1 - Math.cos(t * Math.PI / 2);\n    }\n\n    /\n     * A circular function.\n     *\n     * http://easings.net/#easeInCirc\n     */\n    static circle(t) {\n      return 1 - Math.sqrt(1 - t * t);\n    }\n\n    /\n     * An exponential function.\n     *\n     * http://easings.net/#easeInExpo\n     */\n    static exp(t) {\n      return Math.pow(2, 10 * (t - 1));\n    }\n\n    /\n     * A simple elastic interaction, similar to a spring oscillating back and\n     * forth.\n     *\n     * Default bounciness is 1, which overshoots a little bit once. 0 bounciness\n     * doesn't overshoot at all, and bounciness of N > 1 will overshoot about N\n     * times.\n     *\n     * http://easings.net/#easeInElastic\n     */\n    static elastic(bounciness) {\n      if (bounciness === void 0) {\n        bounciness = 1;\n      }\n      var p = bounciness * Math.PI;\n      return t => 1 - Math.pow(Math.cos(t * Math.PI / 2), 3) * Math.cos(t * p);\n    }\n\n    /*\n     * Use with Animated.parallel() to create a simple effect where the object\n     * animates back slightly as the animation starts.\n     \n     * Wolfram Plot:\n     *\n     * - http://tiny.cc/back_default (s = 1.70158, default)\n     */\n    static back(s) {\n      if (s === void 0) {\n        s = 1.70158;\n      }\n      return t => t * t * ((s + 1) * t - s);\n    }\n\n    /\n     * Provides a simple bouncing effect.\n     *\n     * http://easings.net/#easeInBounce\n     */\n    static bounce(t) {\n      if (t < 1 / 2.75) {\n        return 7.5625 * t * t;\n      }\n      if (t < 2 / 2.75) {\n        var _t = t - 1.5 / 2.75;\n        return 7.5625 * _t * _t + 0.75;\n      }\n      if (t < 2.5 / 2.75) {\n        var _t2 = t - 2.25 / 2.75;\n        return 7.5625 * _t2 * _t2 + 0.9375;\n      }\n      var t2 = t - 2.625 / 2.75;\n      return 7.5625 * t2 * t2 + 0.984375;\n    }\n\n    /*\n     * Provides a cubic bezier curve, equivalent to CSS Transitions'\n     * transition-timing-function.\n     \n     * A useful tool to visualize cubic bezier curves can be found at\n     * http://cubic-bezier.com/\n     */\n    static bezier(x1, y1, x2, y2) {\n      return (0, _bezier2.default)(x1, y1, x2, y2);\n    }\n\n    /\n     * Runs an easing function forwards.\n     */\n    static in(easing) {\n      return easing;\n    }\n\n    /\n     * Runs an easing function backwards.\n     */\n    static out(easing) {\n      return t => 1 - easing(1 - t);\n    }\n\n    /*\n     * Makes any easing function symmetrical. The easing function will run\n     * forwards for half of the duration, then backwards for the rest of the\n     * duration.\n     */\n    static inOut(easing) {\n      return t => {\n        if (t < 0.5) {\n          return easing(t * 2) / 2;\n        }\n        return 1 - easing((1 - t) * 2) / 2;\n      };\n    }\n  }\n  var default = exports.default = Easing;\n  module.exports = exports.default;\n});","lineCount":255,"map":[[2,2,1,0],[3,0,2,0],[4,0,3,0],[5,0,4,0],[6,0,5,0],[7,0,6,0],[8,0,7,0],[9,0,8,0],[10,0,9,0],[12,2,11,0],[12,14,11,12],[14,2,13,0],[14,6,13,4,"_interopRequireDefault"],[14,28,13,26],[14,31,13,29,"require"],[14,38,13,36],[14,39,13,36,"_dependencyMap"],[14,53,13,36],[14,104,13,83],[14,105,13,84],[14,106,13,85,"default"],[14,113,13,92],[15,2,14,0,"exports"],[15,9,14,7],[15,10,14,8,"_esModule"],[15,20,14,18],[15,23,14,21],[15,27,14,25],[16,2,15,0,"exports"],[16,9,15,7],[16,10,15,8,"default"],[16,17,15,15],[16,20,15,18],[16,25,15,23],[16,26,15,24],[17,2,16,0],[17,6,16,4,"_bezier2"],[17,14,16,12],[17,17,16,15,"_interopRequireDefault"],[17,39,16,37],[17,40,16,38,"require"],[17,47,16,45],[17,48,16,45,"_dependencyMap"],[17,62,16,45],[17,77,16,56],[17,78,16,57],[17,79,16,58],[18,2,17,0],[18,6,17,4,"ease"],[18,10,17,8],[20,2,19,0],[21,0,20,0],[22,0,21,0],[23,0,22,0],[24,0,23,0],[25,0,24,0],[26,0,25,0],[27,0,26,0],[28,0,27,0],[29,0,28,0],[30,0,29,0],[31,0,30,0],[32,0,31,0],[33,0,32,0],[34,0,33,0],[35,0,34,0],[36,0,35,0],[37,0,36,0],[38,0,37,0],[39,0,38,0],[40,0,39,0],[41,0,40,0],[42,0,41,0],[43,0,42,0],[44,0,43,0],[45,0,44,0],[46,0,45,0],[47,0,46,0],[48,0,47,0],[49,0,48,0],[50,0,49,0],[51,0,50,0],[52,0,51,0],[53,0,52,0],[54,0,53,0],[55,0,54,0],[56,0,55,0],[57,0,56,0],[58,0,57,0],[59,0,58,0],[60,0,59,0],[61,0,60,0],[62,0,61,0],[63,0,62,0],[64,0,63,0],[65,2,64,0],[65,8,64,6,"Easing"],[65,14,64,12],[65,15,64,13],[66,4,65,2],[67,0,66,0],[68,0,67,0],[69,4,68,2],[69,11,68,9,"step0"],[69,16,68,14,"step0"],[69,17,68,15,"n"],[69,18,68,16],[69,20,68,18],[70,6,69,4],[70,13,69,11,"n"],[70,14,69,12],[70,17,69,15],[70,18,69,16],[70,21,69,19],[70,22,69,20],[70,25,69,23],[70,26,69,24],[71,4,70,2],[73,4,72,2],[74,0,73,0],[75,0,74,0],[76,4,75,2],[76,11,75,9,"step1"],[76,16,75,14,"step1"],[76,17,75,15,"n"],[76,18,75,16],[76,20,75,18],[77,6,76,4],[77,13,76,11,"n"],[77,14,76,12],[77,18,76,16],[77,19,76,17],[77,22,76,20],[77,23,76,21],[77,26,76,24],[77,27,76,25],[78,4,77,2],[80,4,79,2],[81,0,80,0],[82,0,81,0],[83,0,82,0],[84,0,83,0],[85,0,84,0],[86,4,85,2],[86,11,85,9,"linear"],[86,17,85,15,"linear"],[86,18,85,16,"t"],[86,19,85,17],[86,21,85,19],[87,6,86,4],[87,13,86,11,"t"],[87,14,86,12],[88,4,87,2],[90,4,89,2],[91,0,90,0],[92,0,91,0],[93,0,92,0],[94,0,93,0],[95,0,94,0],[96,4,95,2],[96,11,95,9,"ease"],[96,15,95,13,"ease"],[96,16,95,14,"t"],[96,17,95,15],[96,19,95,17],[97,6,96,4],[97,10,96,8],[97,11,96,9,"ease"],[97,15,96,13],[97,17,96,15],[98,8,97,6,"ease"],[98,12,97,10],[98,15,97,13,"Easing"],[98,21,97,19],[98,22,97,20,"bezier"],[98,28,97,26],[98,29,97,27],[98,33,97,31],[98,35,97,33],[98,36,97,34],[98,38,97,36],[98,39,97,37],[98,41,97,39],[98,42,97,40],[98,43,97,41],[99,6,98,4],[100,6,99,4],[100,13,99,11,"ease"],[100,17,99,15],[100,18,99,16,"t"],[100,19,99,17],[100,20,99,18],[101,4,100,2],[103,4,102,2],[104,0,103,0],[105,0,104,0],[106,0,105,0],[107,0,106,0],[108,0,107,0],[109,4,108,2],[109,11,108,9,"quad"],[109,15,108,13,"quad"],[109,16,108,14,"t"],[109,17,108,15],[109,19,108,17],[110,6,109,4],[110,13,109,11,"t"],[110,14,109,12],[110,17,109,15,"t"],[110,18,109,16],[111,4,110,2],[113,4,112,2],[114,0,113,0],[115,0,114,0],[116,0,115,0],[117,0,116,0],[118,0,117,0],[119,4,118,2],[119,11,118,9,"cubic"],[119,16,118,14,"cubic"],[119,17,118,15,"t"],[119,18,118,16],[119,20,118,18],[120,6,119,4],[120,13,119,11,"t"],[120,14,119,12],[120,17,119,15,"t"],[120,18,119,16],[120,21,119,19,"t"],[120,22,119,20],[121,4,120,2],[123,4,122,2],[124,0,123,0],[125,0,124,0],[126,0,125,0],[127,0,126,0],[128,0,127,0],[129,4,128,2],[129,11,128,9,"poly"],[129,15,128,13,"poly"],[129,16,128,14,"n"],[129,17,128,15],[129,19,128,17],[130,6,129,4],[130,13,129,11,"t"],[130,14,129,12],[130,18,129,16,"Math"],[130,22,129,20],[130,23,129,21,"pow"],[130,26,129,24],[130,27,129,25,"t"],[130,28,129,26],[130,30,129,28,"n"],[130,31,129,29],[130,32,129,30],[131,4,130,2],[133,4,132,2],[134,0,133,0],[135,0,134,0],[136,0,135,0],[137,0,136,0],[138,4,137,2],[138,11,137,9,"sin"],[138,14,137,12,"sin"],[138,15,137,13,"t"],[138,16,137,14],[138,18,137,16],[139,6,138,4],[139,13,138,11],[139,14,138,12],[139,17,138,15,"Math"],[139,21,138,19],[139,22,138,20,"cos"],[139,25,138,23],[139,26,138,24,"t"],[139,27,138,25],[139,30,138,28,"Math"],[139,34,138,32],[139,35,138,33,"PI"],[139,37,138,35],[139,40,138,38],[139,41,138,39],[139,42,138,40],[140,4,139,2],[142,4,141,2],[143,0,142,0],[144,0,143,0],[145,0,144,0],[146,0,145,0],[147,4,146,2],[147,11,146,9,"circle"],[147,17,146,15,"circle"],[147,18,146,16,"t"],[147,19,146,17],[147,21,146,19],[148,6,147,4],[148,13,147,11],[148,14,147,12],[148,17,147,15,"Math"],[148,21,147,19],[148,22,147,20,"sqrt"],[148,26,147,24],[148,27,147,25],[148,28,147,26],[148,31,147,29,"t"],[148,32,147,30],[148,35,147,33,"t"],[148,36,147,34],[148,37,147,35],[149,4,148,2],[151,4,150,2],[152,0,151,0],[153,0,152,0],[154,0,153,0],[155,0,154,0],[156,4,155,2],[156,11,155,9,"exp"],[156,14,155,12,"exp"],[156,15,155,13,"t"],[156,16,155,14],[156,18,155,16],[157,6,156,4],[157,13,156,11,"Math"],[157,17,156,15],[157,18,156,16,"pow"],[157,21,156,19],[157,22,156,20],[157,23,156,21],[157,25,156,23],[157,27,156,25],[157,31,156,29,"t"],[157,32,156,30],[157,35,156,33],[157,36,156,34],[157,37,156,35],[157,38,156,36],[158,4,157,2],[160,4,159,2],[161,0,160,0],[162,0,161,0],[163,0,162,0],[164,0,163,0],[165,0,164,0],[166,0,165,0],[167,0,166,0],[168,0,167,0],[169,0,168,0],[170,4,169,2],[170,11,169,9,"elastic"],[170,18,169,16,"elastic"],[170,19,169,17,"bounciness"],[170,29,169,27],[170,31,169,29],[171,6,170,4],[171,10,170,8,"bounciness"],[171,20,170,18],[171,25,170,23],[171,30,170,28],[171,31,170,29],[171,33,170,31],[172,8,171,6,"bounciness"],[172,18,171,16],[172,21,171,19],[172,22,171,20],[173,6,172,4],[174,6,173,4],[174,10,173,8,"p"],[174,11,173,9],[174,14,173,12,"bounciness"],[174,24,173,22],[174,27,173,25,"Math"],[174,31,173,29],[174,32,173,30,"PI"],[174,34,173,32],[175,6,174,4],[175,13,174,11,"t"],[175,14,174,12],[175,18,174,16],[175,19,174,17],[175,22,174,20,"Math"],[175,26,174,24],[175,27,174,25,"pow"],[175,30,174,28],[175,31,174,29,"Math"],[175,35,174,33],[175,36,174,34,"cos"],[175,39,174,37],[175,40,174,38,"t"],[175,41,174,39],[175,44,174,42,"Math"],[175,48,174,46],[175,49,174,47,"PI"],[175,51,174,49],[175,54,174,52],[175,55,174,53],[175,56,174,54],[175,58,174,56],[175,59,174,57],[175,60,174,58],[175,63,174,61,"Math"],[175,67,174,65],[175,68,174,66,"cos"],[175,71,174,69],[175,72,174,70,"t"],[175,73,174,71],[175,76,174,74,"p"],[175,77,174,75],[175,78,174,76],[176,4,175,2],[178,4,177,2],[179,0,178,0],[180,0,179,0],[181,0,180,0],[182,0,181,0],[183,0,182,0],[184,0,183,0],[185,0,184,0],[186,4,185,2],[186,11,185,9,"back"],[186,15,185,13,"back"],[186,16,185,14,"s"],[186,17,185,15],[186,19,185,17],[187,6,186,4],[187,10,186,8,"s"],[187,11,186,9],[187,16,186,14],[187,21,186,19],[187,22,186,20],[187,24,186,22],[188,8,187,6,"s"],[188,9,187,7],[188,12,187,10],[188,19,187,17],[189,6,188,4],[190,6,189,4],[190,13,189,11,"t"],[190,14,189,12],[190,18,189,16,"t"],[190,19,189,17],[190,22,189,20,"t"],[190,23,189,21],[190,27,189,25],[190,28,189,26,"s"],[190,29,189,27],[190,32,189,30],[190,33,189,31],[190,37,189,35,"t"],[190,38,189,36],[190,41,189,39,"s"],[190,42,189,40],[190,43,189,41],[191,4,190,2],[193,4,192,2],[194,0,193,0],[195,0,194,0],[196,0,195,0],[197,0,196,0],[198,4,197,2],[198,11,197,9,"bounce"],[198,17,197,15,"bounce"],[198,18,197,16,"t"],[198,19,197,17],[198,21,197,19],[199,6,198,4],[199,10,198,8,"t"],[199,11,198,9],[199,14,198,12],[199,15,198,13],[199,18,198,16],[199,22,198,20],[199,24,198,22],[200,8,199,6],[200,15,199,13],[200,21,199,19],[200,24,199,22,"t"],[200,25,199,23],[200,28,199,26,"t"],[200,29,199,27],[201,6,200,4],[202,6,201,4],[202,10,201,8,"t"],[202,11,201,9],[202,14,201,12],[202,15,201,13],[202,18,201,16],[202,22,201,20],[202,24,201,22],[203,8,202,6],[203,12,202,10,"_t"],[203,14,202,12],[203,17,202,15,"t"],[203,18,202,16],[203,21,202,19],[203,24,202,22],[203,27,202,25],[203,31,202,29],[204,8,203,6],[204,15,203,13],[204,21,203,19],[204,24,203,22,"_t"],[204,26,203,24],[204,29,203,27,"_t"],[204,31,203,29],[204,34,203,32],[204,38,203,36],[205,6,204,4],[206,6,205,4],[206,10,205,8,"t"],[206,11,205,9],[206,14,205,12],[206,17,205,15],[206,20,205,18],[206,24,205,22],[206,26,205,24],[207,8,206,6],[207,12,206,10,"_t2"],[207,15,206,13],[207,18,206,16,"t"],[207,19,206,17],[207,22,206,20],[207,26,206,24],[207,29,206,27],[207,33,206,31],[208,8,207,6],[208,15,207,13],[208,21,207,19],[208,24,207,22,"_t2"],[208,27,207,25],[208,30,207,28,"_t2"],[208,33,207,31],[208,36,207,34],[208,42,207,40],[209,6,208,4],[210,6,209,4],[210,10,209,8,"t2"],[210,12,209,10],[210,15,209,13,"t"],[210,16,209,14],[210,19,209,17],[210,24,209,22],[210,27,209,25],[210,31,209,29],[211,6,210,4],[211,13,210,11],[211,19,210,17],[211,22,210,20,"t2"],[211,24,210,22],[211,27,210,25,"t2"],[211,29,210,27],[211,32,210,30],[211,40,210,38],[212,4,211,2],[214,4,213,2],[215,0,214,0],[216,0,215,0],[217,0,216,0],[218,0,217,0],[219,0,218,0],[220,0,219,0],[221,4,220,2],[221,11,220,9,"bezier"],[221,17,220,15,"bezier"],[221,18,220,16,"x1"],[221,20,220,18],[221,22,220,20,"y1"],[221,24,220,22],[221,26,220,24,"x2"],[221,28,220,26],[221,30,220,28,"y2"],[221,32,220,30],[221,34,220,32],[222,6,221,4],[222,13,221,11],[222,14,221,12],[222,15,221,13],[222,17,221,15,"_bezier2"],[222,25,221,23],[222,26,221,24,"default"],[222,33,221,31],[222,35,221,33,"x1"],[222,37,221,35],[222,39,221,37,"y1"],[222,41,221,39],[222,43,221,41,"x2"],[222,45,221,43],[222,47,221,45,"y2"],[222,49,221,47],[222,50,221,48],[223,4,222,2],[225,4,224,2],[226,0,225,0],[227,0,226,0],[228,4,227,2],[228,11,227,9,"in"],[228,13,227,11,"in"],[228,14,227,12,"easing"],[228,20,227,18],[228,22,227,20],[229,6,228,4],[229,13,228,11,"easing"],[229,19,228,17],[230,4,229,2],[232,4,231,2],[233,0,232,0],[234,0,233,0],[235,4,234,2],[235,11,234,9,"out"],[235,14,234,12,"out"],[235,15,234,13,"easing"],[235,21,234,19],[235,23,234,21],[236,6,235,4],[236,13,235,11,"t"],[236,14,235,12],[236,18,235,16],[236,19,235,17],[236,22,235,20,"easing"],[236,28,235,26],[236,29,235,27],[236,30,235,28],[236,33,235,31,"t"],[236,34,235,32],[236,35,235,33],[237,4,236,2],[239,4,238,2],[240,0,239,0],[241,0,240,0],[242,0,241,0],[243,0,242,0],[244,4,243,2],[244,11,243,9,"inOut"],[244,16,243,14,"inOut"],[244,17,243,15,"easing"],[244,23,243,21],[244,25,243,23],[245,6,244,4],[245,13,244,11,"t"],[245,14,244,12],[245,18,244,16],[246,8,245,6],[246,12,245,10,"t"],[246,13,245,11],[246,16,245,14],[246,19,245,17],[246,21,245,19],[247,10,246,8],[247,17,246,15,"easing"],[247,23,246,21],[247,24,246,22,"t"],[247,25,246,23],[247,28,246,26],[247,29,246,27],[247,30,246,28],[247,33,246,31],[247,34,246,32],[248,8,247,6],[249,8,248,6],[249,15,248,13],[249,16,248,14],[249,19,248,17,"easing"],[249,25,248,23],[249,26,248,24],[249,27,248,25],[249,28,248,26],[249,31,248,29,"t"],[249,32,248,30],[249,36,248,34],[249,37,248,35],[249,38,248,36],[249,41,248,39],[249,42,248,40],[250,6,249,4],[250,7,249,5],[251,4,250,2],[252,2,251,0],[253,2,252,0],[253,6,252,4,"_default"],[253,14,252,12],[253,17,252,15,"exports"],[253,24,252,22],[253,25,252,23,"default"],[253,32,252,30],[253,35,252,33,"Easing"],[253,41,252,39],[254,2,253,0,"module"],[254,8,253,6],[254,9,253,7,"exports"],[254,16,253,14],[254,19,253,17,"exports"],[254,26,253,24],[254,27,253,25,"default"],[254,34,253,32],[255,0,253,33],[255,3]],"functionMap":{"names":["<global>","Easing","step0","step1","linear","ease","quad","cubic","poly","<anonymous>","sin","circle","exp","elastic","back","bounce","bezier","_in","out","inOut"],"mappings":"AAA;AC+D;ECI;GDE;EEK;GFE;EGQ;GHE;EIQ;GJK;EKQ;GLE;EMQ;GNE;EOQ;WCC,mBD;GPC;ESO;GTE;EUO;GVE;EWO;GXE;EYY;WJK,iEI;GZC;EaU;WLI,8BK;GbC;EcO;Gdc;EeS;GfE;EgBK;GhBE;EiBK;WTC,sBS;GjBC;EkBO;WVC;KUK;GlBC;CDC"},"hasCjsExports":true},"type":"js/module"}]}
+\ No newline at end of file
+diff --git a/frontend/.metro-cache/cache/06/4889afb2aacfe1ac838fd0fa3f34bb3bfc975b3161796f95c55dd062e9750cae315d70 b/frontend/.metro-cache/cache/06/4889afb2aacfe1ac838fd0fa3f34bb3bfc975b3161796f95c55dd062e9750cae315d70
+new file mode 100644
+index 0000000..c629f79
+--- /dev/null
++++ b/frontend/.metro-cache/cache/06/4889afb2aacfe1ac838fd0fa3f34bb3bfc975b3161796f95c55dd062e9750cae315d70
+@@ -0,0 +1 @@
++{"dependencies":[{"name":"@babel/runtime/helpers/interopRequireDefault","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":14,"column":29,"index":293},"end":{"line":14,"column":84,"index":348}}],"key":"kslwqCIsh6ew+I1KeA1rlVRjsAk=","exportNames":[""],"imports":1}},{"name":"@babel/runtime/helpers/interopRequireWildcard","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":15,"column":30,"index":388},"end":{"line":15,"column":86,"index":444}}],"key":"fGo7mEc/tw/OblLqGBCp3J3h+jY=","exportNames":[""],"imports":1}},{"name":"@babel/runtime/helpers/objectSpread2","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":18,"column":44,"index":551},"end":{"line":18,"column":91,"index":598}}],"key":"F+ExrfS9dcoZxXJOBwTmx09hji8=","exportNames":[""],"imports":1}},{"name":"@babel/runtime/helpers/objectWithoutPropertiesLoose","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":19,"column":60,"index":661},"end":{"line":19,"column":122,"index":723}}],"key":"HFkXuFcBAqfzGtqyPj8g62MKT0M=","exportNames":[""],"imports":1}},{"name":"react","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":20,"column":36,"index":762},"end":{"line":20,"column":52,"index":778}}],"key":"XN65eZP/QkNMzaBAXbG/zPyidpY=","exportNames":[""],"imports":1}},{"name":"../createElement","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":21,"column":44,"index":825},"end":{"line":21,"column":71,"index":852}}],"key":"DpbWKa0NP/6byKnWuDVyZWmKfdI=","exportNames":[""],"imports":1}},{"name":"../../modules/forwardedProps","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":22,"column":45,"index":900},"end":{"line":22,"column":84,"index":939}}],"key":"DhFbObiujXnISHVCjtL6nd0SVcc=","exportNames":[""],"imports":1}},{"name":"../../modules/pick","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":23,"column":35,"index":977},"end":{"line":23,"column":64,"index":1006}}],"key":"1lirYLm36OoRVawck37oFmD34pk=","exportNames":[""],"imports":1}},{"name":"../../modules/useElementLayout","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":24,"column":47,"index":1056},"end":{"line":24,"column":88,"index":1097}}],"key":"0Y85i6DjccHF58sqmhXUYqN+3Fc=","exportNames":[""],"imports":1}},{"name":"../../modules/useMergeRefs","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":25,"column":43,"index":1143},"end":{"line":25,"column":80,"index":1180}}],"key":"bhCrLbYI/MwDTv21kPFm6yAJV1Y=","exportNames":[""],"imports":1}},{"name":"../../modules/usePlatformMethods","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":26,"column":49,"index":1232},"end":{"line":26,"column":92,"index":1275}}],"key":"zJr3AYK+t6xrbY6u/Q3xn7HwhSc=","exportNames":[""],"imports":1}},{"name":"../../modules/useResponderEvents","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":27,"column":49,"index":1327},"end":{"line":27,"column":92,"index":1370}}],"key":"r+PTVCQa/RF2ZoXitKZTK++TN3E=","exportNames":[""],"imports":1}},{"name":"../StyleSheet","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":28,"column":41,"index":1414},"end":{"line":28,"column":65,"index":1438}}],"key":"/lt4dx9lv63AgWlsquNRD95qldk=","exportNames":[""],"imports":1}},{"name":"./TextAncestorContext","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":29,"column":50,"index":1491},"end":{"line":29,"column":82,"index":1523}}],"key":"JOiJSeY9s9u2IrCWQNYLnV2i5Us=","exportNames":[""],"imports":1}},{"name":"../../modules/useLocale","data":{"asyncType":null,"isESMImport":false,"locs":[{"start":{"line":30,"column":17,"index":1543},"end":{"line":30,"column":51,"index":1577}}],"key":"mHXjJWXZRWAjnhAMCAgCet4Tod4=","exportNames":[""],"imports":1}}],"output":[{"data":{"code":"__d(function (global, require, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {\n  \"use strict\";\n\n  /\n   * Copyright (c) Nicolas Gallagher.\n   * Copyright (c) Meta Platforms, Inc. and affiliates.\n   *\n   * This source code is licensed under the MIT license found in the\n   * LICENSE file in the root directory of this source tree.\n   *\n   * \n   */\n\n  'use client';\n\n  var interopRequireDefault = require(_dependencyMap[0], \"@babel/runtime/helpers/interopRequireDefault\").default;\n  var _interopRequireWildcard = require(_dependencyMap[1], \"@babel/runtime/helpers/interopRequireWildcard\").default;\n  exports._esModule = true;\n  exports.default = void 0;\n  var _objectSpread2 = _interopRequireDefault(require(_dependencyMap[2], \"@babel/runtime/helpers/objectSpread2\"));\n  var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require(_dependencyMap[3], \"@babel/runtime/helpers/objectWithoutPropertiesLoose\"));\n  var React = _interopRequireWildcard(require(_dependencyMap[4], \"react\"));\n  var _createElement = _interopRequireDefault(require(_dependencyMap[5], \"../createElement\"));\n  var forwardedProps = _interopRequireWildcard(require(_dependencyMap[6], \"../../modules/forwardedProps\"));\n  var _pick = _interopRequireDefault(require(_dependencyMap[7], \"../../modules/pick\"));\n  var _useElementLayout = _interopRequireDefault(require(_dependencyMap[8], \"../../modules/useElementLayout\"));\n  var _useMergeRefs = _interopRequireDefault(require(_dependencyMap[9], \"../../modules/useMergeRefs\"));\n  var _usePlatformMethods = _interopRequireDefault(require(_dependencyMap[10], \"../../modules/usePlatformMethods\"));\n  var _useResponderEvents = _interopRequireDefault(require(_dependencyMap[11], \"../../modules/useResponderEvents\"));\n  var _StyleSheet = _interopRequireDefault(require(_dependencyMap[12], \"../StyleSheet\"));\n  var _TextAncestorContext = _interopRequireDefault(require(_dependencyMap[13], \"./TextAncestorContext\"));\n  var _useLocale = require(_dependencyMap[14], \"../../modules/useLocale\");\n  var _excluded = [\"hrefAttrs\", \"numberOfLines\", \"onClick\", \"onLayout\", \"onPress\", \"onMoveShouldSetResponder\", \"onMoveShouldSetResponderCapture\", \"onResponderEnd\", \"onResponderGrant\", \"onResponderMove\", \"onResponderReject\", \"onResponderRelease\", \"onResponderStart\", \"onResponderTerminate\", \"onResponderTerminationRequest\", \"onScrollShouldSetResponder\", \"onScrollShouldSetResponderCapture\", \"onSelectionChangeShouldSetResponder\", \"onSelectionChangeShouldSetResponderCapture\", \"onStartShouldSetResponder\", \"onStartShouldSetResponderCapture\", \"selectable\"];\n  //import { warnOnce } from '../../modules/warnOnce';\n\n  var forwardPropsList = Object.assign({}, forwardedProps.defaultProps, forwardedProps.accessibilityProps, forwardedProps.clickProps, forwardedProps.focusProps, forwardedProps.keyboardProps, forwardedProps.mouseProps, forwardedProps.touchProps, forwardedProps.styleProps, {\n    href: true,\n    lang: true,\n    pointerEvents: true\n  });\n  var pickProps = props => (0, _pick.default)(props, forwardPropsList);\n  var Text = /#_PURE/React.forwardRef((props, forwardedRef) => {\n    var hrefAttrs = props.hrefAttrs,\n      numberOfLines = props.numberOfLines,\n      onClick = props.onClick,\n      onLayout = props.onLayout,\n      onPress = props.onPress,\n      onMoveShouldSetResponder = props.onMoveShouldSetResponder,\n      onMoveShouldSetResponderCapture = props.onMoveShouldSetResponderCapture,\n      onResponderEnd = props.onResponderEnd,\n      onResponderGrant = props.onResponderGrant,\n      onResponderMove = props.onResponderMove,\n      onResponderReject = props.onResponderReject,\n      onResponderRelease = props.onResponderRelease,\n      onResponderStart = props.onResponderStart,\n      onResponderTerminate = props.onResponderTerminate,\n      onResponderTerminationRequest = props.onResponderTerminationRequest,\n      onScrollShouldSetResponder = props.onScrollShouldSetResponder,\n      onScrollShouldSetResponderCapture = props.onScrollShouldSetResponderCapture,\n      onSelectionChangeShouldSetResponder = props.onSelectionChangeShouldSetResponder,\n      onSelectionChangeShouldSetResponderCapture = props.onSelectionChangeShouldSetResponderCapture,\n      onStartShouldSetResponder = props.onStartShouldSetResponder,\n      onStartShouldSetResponderCapture = props.onStartShouldSetResponderCapture,\n      selectable = props.selectable,\n      rest = (0, _objectWithoutPropertiesLoose2.default)(props, _excluded);\n\n    /\n    if (selectable != null) {\n      warnOnce(\n        'selectable',\n        'selectable prop is deprecated. Use styles.userSelect.'\n      );\n    }\n    */\n\n    var hasTextAncestor = React.useContext(_TextAncestorContext.default);\n    var hostRef = React.useRef(null);\n    var _useLocaleContext = (0, _useLocale.useLocaleContext)(),\n      contextDirection = _useLocaleContext.direction;\n    (0, _useElementLayout.default)(hostRef, onLayout);\n    (0, _useResponderEvents.default)(hostRef, {\n      onMoveShouldSetResponder,\n      onMoveShouldSetResponderCapture,\n      onResponderEnd,\n      onResponderGrant,\n      onResponderMove,\n      onResponderReject,\n      onResponderRelease,\n      onResponderStart,\n      onResponderTerminate,\n      onResponderTerminationRequest,\n      onScrollShouldSetResponder,\n      onScrollShouldSetResponderCapture,\n      onSelectionChangeShouldSetResponder,\n      onSelectionChangeShouldSetResponderCapture,\n      onStartShouldSetResponder,\n      onStartShouldSetResponderCapture\n    });\n    var handleClick = React.useCallback(e => {\n      if (onClick != null) {\n        onClick(e);\n      } else if (onPress != null) {\n        e.stopPropagation();\n        onPress(e);\n      }\n    }, [onClick, onPress]);\n    var component = hasTextAncestor ? 'span' : 'div';\n    var langDirection = props.lang != null ? (0, _useLocale.getLocaleDirection)(props.lang) : null;\n    var componentDirection = props.dir || langDirection;\n    var writingDirection = componentDirection || contextDirection;\n    var supportedProps = pickProps(rest);\n    supportedProps.dir = componentDirection;\n    // 'auto' by default allows browsers to infer writing direction (root elements only)\n    if (!hasTextAncestor) {\n      supportedProps.dir = componentDirection != null ? componentDirection : 'auto';\n    }\n    if (onClick || onPress) {\n      supportedProps.onClick = handleClick;\n    }\n    supportedProps.style = [numberOfLines != null && numberOfLines > 1 && {\n      WebkitLineClamp: numberOfLines\n    }, hasTextAncestor === true ? styles.textHasAncestor$raw : styles.text$raw, numberOfLines === 1 && styles.textOneLine, numberOfLines != null && numberOfLines > 1 && styles.textMultiLine, props.style, selectable === true && styles.selectable, selectable === false && styles.notSelectable, onPress && styles.pressable];\n    if (props.href != null) {\n      component = 'a';\n      if (hrefAttrs != null) {\n        var download = hrefAttrs.download,\n          rel = hrefAttrs.rel,\n          target = hrefAttrs.target;\n        if (download != null) {\n          supportedProps.download = download;\n        }\n        if (rel != null) {\n          supportedProps.rel = rel;\n        }\n        if (typeof target === 'string') {\n          supportedProps.target = target.charAt(0) !== '' ? '' + target : target;\n        }\n      }\n    }\n    var platformMethodsRef = (0, _usePlatformMethods.default)(supportedProps);\n    var setRef = (0, _useMergeRefs.default)(hostRef, platformMethodsRef, forwardedRef);\n    supportedProps.ref = setRef;\n    var element = (0, _createElement.default)(component, supportedProps, {\n      writingDirection\n    });\n    return hasTextAncestor ? element : /*#PURE_*/React.createElement(_TextAncestorContext.default.Provider, {\n      value: true\n    }, element);\n  });\n  Text.displayName = 'Text';\n  var textStyle = {\n    backgroundColor: 'transparent',\n    border: '0 solid black',\n    boxSizing: 'border-box',\n    color: 'black',\n    display: 'inline',\n    font: '14px System',\n    listStyle: 'none',\n    margin: 0,\n    padding: 0,\n    position: 'relative',\n    textAlign: 'start',\n    textDecoration: 'none',\n    whiteSpace: 'pre-wrap',\n    wordWrap: 'break-word'\n  };\n  var styles = _StyleSheet.default.create({\n    text$raw: textStyle,\n    textHasAncestor$raw: (0, _objectSpread2.default)((0, _objectSpread2.default)({}, textStyle), {}, {\n      color: 'inherit',\n      font: 'inherit',\n      textAlign: 'inherit',\n      whiteSpace: 'inherit'\n    }),\n    textOneLine: {\n      maxWidth: '100%',\n      overflow: 'hidden',\n      textOverflow: 'ellipsis',\n      whiteSpace: 'nowrap',\n      wordWrap: 'normal'\n    },\n    // S
+# NeuraMath+ - Complete Project Specification
+*Version:* 5.1  
+*Status:* Ready for External Development with Rust/WASM Stack  
+*Export Date:* 2025-01-XX
+
+---
+
+## Executive Summary
+
+*NeuraMath+* is a multilingual AI-powered scientific and educational assistant combining advanced mathematics, productivity tools, and adaptive learning features.
+
+*Core Architecture:* Rust → WebAssembly (WASM) computation engine with web (Next.js) and mobile (React Native) frontends.
+
+---
+
+## 1. Technology Stack (Non-Negotiable)
+
+### Core Computation Engine
+- *Language:* Rust
+- *Output:* WebAssembly (WASM) via wasm-bindgen
+- *Libraries:* 
+  - nalgebra (linear algebra, matrices)
+  - num-rational (exact rational arithmetic)
+  - simba (symbolic computation foundation)
+  - Custom CAS implementation
+
+### Frontend - Web
+- *Framework:* Next.js 14+ with TypeScript
+- *Styling:* Tailwind CSS or CSS-in-JS
+- *State Management:* Zustand or Redux Toolkit
+- *WASM Integration:* wasm-bindgen, wasm-pack
+
+### Frontend - Mobile
+- *Framework:* React Native with react-native-wasm
+- *Alternative:* Flutter with flutter_rust_bridge
+- *Navigation:* React Navigation or Flutter Navigator
+
+### Storage
+- *Primary:* Local-first architecture
+  - Web: IndexedDB
+  - Mobile: SQLite
+- *Sync:* Optional E2E-encrypted cloud sync (AES-256-GCM)
+
+### Backend (Optional, Sync Only)
+- *API:* REST or gRPC
+- *No remote CAS execution* - computation stays on device
+
+---
+
+## 2. Security Requirements (Mandatory)
+
+### WASM Sandbox
+- All untrusted code/plugins run in isolated WASM workers
+- Message-passing interface only (no shared memory)
+- Strict CPU/memory/time quotas per worker
+
+### HTTP Security Headers
+
+Content-Security-Policy: default-src 'self'; script-src 'self' 'wasm-unsafe-eval'
+Cross-Origin-Opener-Policy: same-origin
+Cross-Origin-Embedder-Policy: require-corp
+
+- *No eval()* or inline scripts
+- *No dynamic code generation* outside WASM
+
+### Certificate Pinning
+- Mobile apps: Pin certificate for update/sync endpoints
+- Prevent MITM attacks
+
+### Input Validation
+- All inputs validated via schema (Serde in Rust, Zod in TypeScript)
+- Human-readable error messages
+- No execution of unvalidated expressions
+
+### Resource Limits
+rust
+const MAX_POLYNOMIAL_DEGREE: u32 = 64;
+const MAX_MATRIX_SIZE: usize = 256;
+const SOFT_TIMEOUT_MS: u64 = 3000;
+const HARD_TIMEOUT_MS: u64 = 30000;
+
+- Graceful degradation with helpful suggestions when exceeded
+
+### Signed Exports
+- All exports signed with SHA256 hash
+- Metadata includes: timestamp, version, mode, RNG seed
+- Verify signature on import
+
+### Supply Chain Security
+- SBOM (Software Bill of Materials) generation
+- SCA (Software Composition Analysis) scans
+- Fail builds on critical vulnerabilities
+- Pin all dependencies with exact versions
+
+---
+
+## 3. Core Features
+
+### 3.1 Advanced Math Engine (CAS-Level)
+
+#### Computation Modes
+1. *EXACT Mode* - Symbolic computation with rational arithmetic
+2. *APPROX Mode* - Numerical approximation with precision tracking
+3. *STEPS Mode* - Step-by-step solution with explanations
+
+#### Capabilities
+- *Algebra:* Simplification, expansion, factorization, solve equations
+- *Calculus:* Derivatives, integrals (symbolic & numerical), limits, series
+- *Linear Algebra:* Matrix operations, determinants, eigenvalues, LU/QR decomposition
+- *Polynomials:* Roots, GCD, factorization, Sturm sequences
+- *Statistics:* Mean, variance, distributions, hypothesis tests
+- *Units:* Dimensional analysis, automatic conversion, error checking
+
+#### Result Badge System
+Every computation displays:
+
+[MODE: EXACT | ~APPROX(P=0.001) | STEPS]
+Method: Newton-Raphson | Seed: 0x1A2B3C4D
+
+
+### 3.2 Graphing Engine
+
+#### 2D Plotting
+- Function graphs: y=f(x)
+- Parametric curves: (x(t), y(t))
+- Implicit equations: F(x,y)=0
+- Zoom, pan, point labels
+- Export: PNG, PDF, SVG
+
+#### Interactive Features
+- Trace mode with coordinates
+- Tangent/normal line visualization
+- Area under curve highlighting
+- Link graph to notebook
+
+### 3.3 Specialized Tools
+
+#### Equation Wizard
+- Step-by-step solver for linear, quadratic, cubic equations
+- System of equations (Gaussian elimination, Cramer's rule)
+- Differential equations (simple cases)
+
+#### Matrix Lab
+- Visual matrix editor
+- Operations: +, -, ×, inverse, transpose, rank
+- Decompositions: LU, QR, SVD, Cholesky
+- Eigenvalue/eigenvector computation
+
+#### Polynomial Studio
+- Polynomial manipulation interface
+- Root finding (exact & numerical)
+- Polynomial division, GCD/LCM
+- Graphing with root markers
+
+#### Unit-Aware Calculator
+- Natural input: "5 m/s + 3 km/h"
+- Automatic unit conversion
+- Dimensional consistency checking
+- Support for SI, Imperial, custom units
+
+### 3.4 AI Tutor
+
+#### Features
+- *Explain Steps:* Break down complex solutions
+- *Why Button:* Opens step-by-step explainer for any result
+- *Language Support:* Explanations in all 6 supported languages
+- *Adaptive Hints:* Progressively revealing hints
+
+#### Integration
+- AI model: OpenAI GPT-4, Anthropic Claude, or local model
+- Prompt engineering for mathematical accuracy
+- Fallback to rule-based explanations offline
+
+### 3.5 Smart Notebook
+
+#### Cell Types
+- Text (Markdown)
+- LaTeX equations
+- Code cells (mini CAS shell)
+- Graphs and plots
+- Mixed media
+
+#### Export Formats
+- *LaTeX:* Full document with preamble
+- *PDF:* Typeset with proper math rendering
+- *Markdown:* With LaTeX math blocks
+- *HTML:* Interactive version
+
+#### Features
+- Auto-save with version history
+- Collaborative editing (optional cloud sync)
+- Search across notebooks
+- Tag and categorize
+
+### 3.6 Exam Mode
+
+#### Restrictions
+- Offline operation only
+- Clipboard disabled or with warning banner
+- Screenshot detection with audit log entry
+- Network access blocked
+- Timer with visual countdown
+
+#### Audit Log
+- All actions logged locally
+- Export audit trail for verification
+- Tamper-evident (signed with timestamp)
+
+#### UI Indicators
+- Red banner: "EXAM MODE ACTIVE"
+- List of active restrictions visible
+- Warning dialogs for restricted actions
+
+### 3.7 Adaptive Learning System
+
+#### Tracking
+- Store performance by topic (algebra, calculus, etc.)
+- Identify weak areas based on quiz results
+- Track time spent per problem type
+
+#### Custom Quizzes
+- Generate problems targeting weak topics
+- Adjustable difficulty (easy, medium, hard)
+- Spaced repetition algorithm
+- Progress visualization
+
+#### Flashcard System
+- *Decks:* Organize by subject
+- *SRS Algorithm:* SM-2 or Anki-style
+- *Multilingual:* Cards in any supported language
+- *Sync:* Optional cloud backup
+
+### 3.8 Productivity Tools
+
+#### Alarm
+- Multiple alarms with labels
+- Repeat rules (daily, weekly, custom)
+- Snooze functionality
+- Custom sounds/vibration patterns
+
+#### Timer
+- Countdown timer with presets
+- Stopwatch with lap tracking
+- Background operation (mobile)
+
+#### Pomodoro
+- 25/5 focus/break cycle (customizable)
+- Session tracking and statistics
+- Focus score calculation
+- Notification integration
+
+#### Weather
+- Current conditions and forecast
+- Location-based or manual city input
+- Unit preferences (C/F, km/mph)
+
+#### Daily Quote
+- Motivational/educational quotes
+- Rotation algorithm
+- Share functionality
+
+### 3.9 Voice Interface
+
+#### Voice Commands
+- "Solve x squared plus 3x minus 2"
+- "Graph sine of x"
+- "Convert 5 meters to feet"
+- "Set timer for 10 minutes"
+
+#### TTS (Text-to-Speech)
+- Read results aloud
+- Pronunciation of mathematical terms
+- Multilingual support
+
+#### Implementation
+- *Preferred:* On-device speech recognition (Web Speech API, Android Speech, iOS Speech)
+- *Fallback:* Cloud-based (Whisper API)
+
+### 3.10 Handwriting Recognition
+
+#### OCR → LaTeX
+- Draw equations on screen
+- Convert to LaTeX/symbolic form
+- Correction interface for errors
+- Insert into notebook or calculator
+
+#### Implementation
+- *Web:* Canvas + ML model (TensorFlow.js)
+- *Mobile:* Native canvas + on-device ML
+- *Models:* MyScript, Mathpix, or custom-trained
+
+### 3.11 Mini Educational Games
+
+#### Game Types
+1. *Memory Match:* Mathematical concepts
+2. *Math Race:* Timed problem solving
+3. *Logic Puzzles:* Pattern recognition
+4. *Geometry Builder:* Construct shapes with constraints
+
+#### Features
+- Difficulty levels
+- Leaderboards (local or global)
+- Achievement system
+- Educational value tracking
+
+### 3.12 Plugin API
+
+#### Architecture
+- Plugins as sandboxed WASM modules
+- Message-passing interface
+- Resource quotas enforced
+- Permission system (what plugin can access)
+
+#### Plugin Types
+- Custom functions for CAS
+- New visualization types
+- Import/export formats
+- Game modules
+
+#### Security
+- Code signing required
+- Permission prompts for sensitive operations
+- Isolated memory space
+- Rate limiting on API calls
+
+---
+
+## 4. Internationalization (i18n)
+
+### Supported Languages
+1. *TR* - Turkish
+2. *EN* - English
+3. *RU* - Russian
+4. *ZH* - Chinese (Simplified)
+5. *AZ* - Azerbaijani
+6. *DE* - German
+
+### Requirements
+- All UI strings externalized
+- ICU MessageFormat for plurals, gender, dates
+- RTL layout support (for future Arabic addition)
+- Number/date formatting per locale
+- Math notation preferences (e.g., decimal comma vs. period)
+
+### Localization Files
+
+locales/
+  en.json
+  tr.json
+  ru.json
+  zh.json
+  az.json
+  de.json
+
+- Minimum 150 UI keys per locale
+- Complete translations (no fallback English strings)
+- Context comments for translators
+
+### Dynamic Language Switching
+- Change language without app restart
+- Persist preference
+- AI Tutor responds in selected language
+
+---
+
+## 5. Data Model
+
+### Users
+typescript
+interface User {
+  id: string;
+  displayName: string;
+  settings: {
+    theme: 'light' | 'dark' | 'auto';
+    timezone: string;
+    locale: 'en' | 'tr' | 'ru' | 'zh' | 'az' | 'de';
+    defaultMode: 'exact' | 'approx' | 'steps';
+    privacy: {
+      cloudSync: boolean;
+      analytics: boolean;
+    };
+    enabledModules: string[]; // Which features are active
+  };
+}
+
+
+### Sessions (Productivity Tracking)
+typescript
+interface Session {
+  id: string;
+  userId: string;
+  startTime: Date;
+  endTime: Date;
+  mode: 'focus' | 'pomodoro' | 'exam';
+  focusScore: number; // 0-100
+  notes: string;
+}
+
+
+### Alarms
+typescript
+interface Alarm {
+  id: string;
+  userId: string;
+  label: string;
+  timeISO: string;
+  repeatRule: string; // cron-like or RRULE
+  enabled: boolean;
+  sound?: string;
+}
+
+
+### Timers
+typescript
+interface Timer {
+  id: string;
+  userId: string;
+  type: 'stopwatch' | 'countdown';
+  lapsJSON: string; // Array of lap times
+  presetName?: string;
+}
+
+
+### Notebook
+typescript
+interface Notebook {
+  id: string;
+  userId: string;
+  title: string;
+  cellsJSON: string; // Array of cells with type/content
+  createdAt: Date;
+  updatedAt: Date;
+  tags: string[];
+}
+
+
+### CAS History
+typescript
+interface CASHistory {
+  id: string;
+  userId: string;
+  expression: string;
+  mode: 'exact' | 'approx' | 'steps';
+  resultJSON: string;
+  methodName: string;
+  rngSeed?: string;
+  createdAt: Date;
+}
+
+
+### Flashcard System
+typescript
+interface Deck {
+  id: string;
+  userId: string;
+  name: string;
+  locale: string;
+  tags: string[];
+}
+
+interface Card {
+  id: string;
+  deckId: string;
+  front: string; // Question
+  back: string; // Answer
+  difficulty: number; // SRS difficulty
+  nextReview: Date;
+}
+
+interface Review {
+  id: string;
+  cardId: string;
+  timestamp: Date;
+  result: 'again' | 'hard' | 'good' | 'easy';
+  nextReview: Date;
+}
+
+
+### Games
+typescript
+interface GameSession {
+  id: string;
+  userId: string;
+  gameType: string;
+  score: number;
+  durationSeconds: number;
+  metaJSON: string; // Game-specific data
+  completedAt: Date;
+}
+
+
+### Settings
+typescript
+interface AppSettings {
+  id: string;
+  userId: string;
+  flagsJSON: string; // Feature flags, A/B tests, etc.
+}
+
+
+### Exports
+typescript
+interface Export {
+  id: string;
+  userId: string;
+  hashSHA256: string;
+  kind: 'notebook' | 'history' | 'audit-log';
+  createdAt: Date;
+  metaJSON: string;
+}
+
+
+---
+
+## 6. Seed Data (Must Ship With App)
+
+### i18n Catalogs
+- 6 complete locale files
+- ≥150 UI keys each
+- No missing translations
+
+### Demo CAS Expressions
+*20 Exact Mode Examples:*
+
+1. simplify((x+1)^2)         → x^2 + 2x + 1
+2. solve(x^2 - 5x + 6 = 0)   → x = 2, x = 3
+3. derivative(sin(x^2), x)   → 2x·cos(x^2)
+4. integrate(x^2, x)         → x^3/3 + C
+5. matrix([[1,2],[3,4]]) * matrix([[5],[6]]) → [[17],[39]]
+... (15 more)
+
+
+*10 Graph Examples:*
+- Linear, quadratic, cubic functions
+- Trigonometric (sin, cos, tan)
+- Exponential and logarithmic
+- Parametric curves (circle, spiral)
+- Piecewise functions
+
+### Notebook Pages
+- 10 demo notebooks with mixed content
+- Topics: calculus tutorial, matrix operations, unit conversions
+- Include text, LaTeX, graphs, code cells
+
+### Productivity Presets
+- 2 sample alarms (morning, study time)
+- 3 timer presets (5 min, 10 min, Pomodoro)
+
+### Flashcard Decks
+*Deck 1: Mathematics*
+- 12 cards covering algebra, geometry, calculus basics
+
+*Deck 2: Biology* (demonstrate versatility)
+- 12 cards with scientific terms
+
+### Mini Games
+- 3 game configurations with sample levels
+- 1 week of fake analytics for demo
+
+---
+
+## 7. Testing Requirements
+
+### Unit Tests (≥200)
+- *Parser:* Tokenization, AST construction, error cases
+- *Rational Arithmetic:* Addition, multiplication, simplification
+- *Matrix Operations:* All operations, edge cases (singular, etc.)
+- *Calculus Rules:* Power rule, chain rule, product rule
+- *Unit Conversions:* All supported units, dimension checking
+
+### Property Tests (QuickCheck/PropTest)
+- *Commutativity:* a + b = b + a
+- *Associativity:* (a + b) + c = a + (b + c)
+- *Distributivity:* a(b + c) = ab + ac
+- *Parser Round-Trip:* parse(print(expr)) = expr
+- *Rational Invariant:* (a/b) * b = a
+- *Trig Identity:* sin²(x) + cos²(x) ≈ 1 (in Approx mode)
+
+### Fuzz Tests
+- *Tokenizer:* Random strings → no crash, bounded time
+- *Parser:* Random token streams → no crash
+- *RPN Evaluator:* Random expressions → safe failure
+- *WASM Bridge:* Random message payloads → no crash
+
+### Differential Tests
+- Compare against SymPy (Python) or mpmath
+- Random polynomials: factorization, root finding
+- Random matrices: determinant, eigenvalues
+- Display tolerance when approximate
+
+### Golden Tests (≥200)
+- Exact string matching for known inputs
+- LaTeX output format
+- Matrix operation results
+- Factorization forms
+- Step-by-step explanations
+
+### Performance Budget
+- *Web:* First paint < 2s on desktop, < 3s on mobile 3G
+- *WASM Load:* < 500ms
+- *Simple Calculation:* < 250ms (e.g., 2+2, solve linear equation)
+- *Complex Calculation:* < 3s soft timeout (matrix 100×100)
+- *Graph Render:* < 1s for 1000 points
+
+### Integration Tests
+- Full user flows: calculator → notebook → export
+- Multi-step problems
+- Language switching
+- Exam mode restrictions
+
+---
+
+## 8. UX Requirements
+
+### Mode Badge
+- Always visible in UI
+- Shows current computation mode
+- Toggle per-line or globally
+- Clear visual distinction (colors, icons)
+
+### "Why?" Button
+- Next to every result
+- Opens step-by-step explainer modal
+- Localized explanations
+- Can expand/collapse steps
+
+### Graph View
+- Point labels on hover/tap
+- Export button (PNG, PDF, SVG)
+- "Add to Notebook" button
+- Zoom/pan controls (pinch on mobile)
+
+### Exam Mode UI
+- Red banner across top: "EXAM MODE ACTIVE"
+- List of restrictions below banner
+- Confirm dialog on mode entry
+- Local audit log export button
+
+### Error Messages
+- Actionable and helpful
+- Show cause of error
+- Suggest fix
+
+*Example:*
+
+Error: Dimension mismatch in matrix multiplication
+Cause: Tried to multiply 3×2 matrix by 3×1 vector
+Suggestion: Convert 3×1 vector to 2×1, or transpose first matrix
+
+
+### Responsive Design
+- Mobile-first approach
+- Tablet layout with sidebar
+- Desktop with multi-pane view
+- Keyboard shortcuts (desktop)
+- Gesture navigation (mobile)
+
+---
+
+## 9. Architecture Diagrams
+
+### High-Level Component Architecture
+
+┌─────────────────────────────────────────────────┐
+│               Frontend (React/Next.js)          │
+│  ┌─────────────┐  ┌──────────────┐            │
+│  │  UI Layer   │  │ State Mgmt   │            │
+│  └──────┬──────┘  └──────┬───────┘            │
+│         │                 │                     │
+│         └────────┬────────┘                     │
+│                  │                              │
+│         ┌────────▼────────┐                    │
+│         │  WASM Bridge    │                    │
+│         └────────┬────────┘                    │
+└──────────────────┼──────────────────────────────┘
+                   │
+          ┌────────▼────────┐
+          │  WASM Worker    │
+          │  (Sandboxed)    │
+          │                 │
+          │  ┌───────────┐  │
+          │  │ Rust CAS  │  │
+          │  │  Engine   │  │
+          │  └───────────┘  │
+          └─────────────────┘
+
+
+### Data Flow
+
+User Input → Parser (Rust) → AST → Evaluator (Rust) 
+  → Result → Formatter (Rust) → JSON → Bridge → UI
+
+
+### Storage Architecture
+
+┌─────────────────────┐
+│   Application       │
+│                     │
+│   ┌─────────────┐   │
+│   │ Local Store │   │  (Primary, always available)
+│   │ IndexedDB/  │   │
+│   │ SQLite      │   │
+│   └──────┬──────┘   │
+│          │          │
+│          │ Sync     │
+│          ▼          │
+│   ┌─────────────┐   │
+│   │ Cloud Sync  │   │  (Optional, E2E encrypted)
+│   │ (Optional)  │   │
+│   └─────────────┘   │
+└─────────────────────┘
+
+
+---
+
+## 10. Security Threat Model
+
+### Threats
+1. *Malicious Plugins:* Arbitrary code execution
+2. *Injection Attacks:* Crafted expressions to exploit parser
+3. *DoS:* Extremely complex expressions causing hangs
+4. *Data Exfiltration:* Stealing user notebooks/history
+5. *MITM:* Intercepting sync data
+
+### Mitigations
+1. *WASM Sandbox:* All plugins in isolated workers, resource limits
+2. *Schema Validation:* Strict input validation, no eval
+3. *Timeouts:* 3s soft, 30s hard, graceful cancellation
+4. *E2E Encryption:* AES-256-GCM for cloud sync, keys never leave device
+5. *Certificate Pinning:* Mobile apps pin sync endpoint certs
+
+### Security Checklist
+- [ ] No eval() anywhere in codebase
+- [ ] CSP header blocks inline scripts
+- [ ] WASM workers isolated with message-passing only
+- [ ] All exports signed with SHA256
+- [ ] Input validation with Serde/Zod
+- [ ] Dependencies pinned and scanned (SCA)
+- [ ] SBOM generated on every build
+- [ ] Secrets never in source code
+- [ ] Certificate pinning on mobile
+- [ ] Audit logging for sensitive operations
+
+---
+
+## 11. Build & Deployment
+
+### CI/CD Pipeline
+yaml
+stages:
+  - lint
+  - test
+  - security-scan
+  - build
+  - sign
+  - deploy
+
+lint:
+  - cargo clippy (Rust)
+  - eslint (TypeScript)
+  - rustfmt check
+
+test:
+  - cargo test (unit + property)
+  - cargo fuzz (5 min run)
+  - npm test (integration)
+  - golden test verification
+
+security-scan:
+  - cargo audit (Rust dependencies)
+  - npm audit (JS dependencies)
+  - SBOM generation
+  - Fail on HIGH/CRITICAL vulnerabilities
+
+build:
+  - wasm-pack build --target web
+  - next build (web)
+  - react-native bundle (mobile)
+  - Reproducible builds (pinned toolchain versions)
+
+sign:
+  - Sign WASM artifacts
+  - Sign mobile app bundles
+  - Generate SHA256 checksums
+
+deploy:
+  - Upload to CDN (web)
+  - Submit to App Store / Play Store (mobile)
+
+
+### Reproducible Builds
+- Pin Rust toolchain version (rustup)
+- Pin Node.js version
+- Pin all dependencies (Cargo.lock, package-lock.json)
+- Document build environment (OS, versions)
+- Verification script provided
+
+---
+
+## 12. Documentation Deliverables
+
+### User Documentation
+- Getting Started guide (all 6 languages)
+- Feature tutorials with screenshots
+- FAQ
+- Troubleshooting guide
+
+### Developer Documentation
+- Architecture overview
+- API reference (WASM bridge)
+- Plugin development guide
+- Build and deployment instructions
+- Contributing guidelines
+
+### Technical Specifications
+- This document (expanded)
+- Security whitepaper
+- Test coverage report
+- Performance benchmarks
+- Accessibility audit (WCAG 2.1 AA)
+
+---
+
+## 13. Quality Gates (Must Pass Before Release)
+
+### Functional
+- [ ] All 200+ tests passing
+- [ ] All 6 languages fully translated
+- [ ] Performance budget met
+- [ ] No HIGH/CRITICAL security vulnerabilities
+- [ ] Accessibility: WCAG 2.1 AA compliance
+
+### Security
+- [ ] Penetration testing completed
+- [ ] SBOM reviewed
+- [ ] Third-party security audit (optional but recommended)
+- [ ] All exports verified with signatures
+- [ ] CSP/COOP/COEP headers validated
+
+### UX
+- [ ] Mobile usability testing (iOS + Android)
+- [ ] Desktop usability testing
+- [ ] Internationalization verification (native speakers)
+- [ ] Offline mode tested
+- [ ] Exam mode restrictions verified
+
+### Performance
+- [ ] Load times within budget
+- [ ] Smooth 60fps animations
+- [ ] Memory usage < 200MB on mobile
+- [ ] Battery impact < 5% per hour of use
+
+---
+
+## 14. Out of Scope (Explicitly Excluded)
+
+### Not Included
+- Remote code execution or dynamic eval
+- Telemetry by default (opt-in only, aggregated + differential privacy)
+- Storing API keys/secrets in code
+- 3D graphing (only 2D + parametric)
+- Computer algebra beyond specified scope (e.g., advanced group theory)
+- Video lectures or full course content
+- Real-time collaborative editing (though offline sync is supported)
+
+---
+
+## 15. Development Phases (Suggested)
+
+### Phase 1: Core Engine (4-6 weeks)
+- Rust CAS engine: parser, evaluator, formatter
+- WASM compilation and bridge
+- Basic web UI with calculator interface
+- Unit tests + property tests
+
+### Phase 2: Advanced Math (3-4 weeks)
+- Matrix lab
+- Graphing engine
+- Polynomial studio
+- Unit-aware calculator
+- Differential tests
+
+### Phase 3: UI/UX (3-4 weeks)
+- Multilingual support (i18n)
+- Smart notebook
+- Responsive design (mobile + desktop)
+- Accessibility improvements
+
+### Phase 4: AI & Learning (2-3 weeks)
+- AI Tutor integration
+- Adaptive quizzes
+- Flashcard system with SRS
+- Performance tracking
+
+### Phase 5: Productivity & Utilities (2 weeks)
+- Alarms, timers, Pomodoro
+- Weather, daily quote
+- Voice interface + TTS
+- Handwriting OCR
+
+### Phase 6: Games & Plugins (2 weeks)
+- Mini educational games
+- Plugin API and sandbox
+- Example plugins
+
+### Phase 7: Security & Testing (2-3 weeks)
+- Security audit
+- Fuzz testing
+- Performance optimization
+- Golden test expansion
+
+### Phase 8: Cloud Sync & Deployment (2 weeks)
+- E2E encryption setup
+- Cloud sync backend
+- CI/CD pipeline
+- App store submission
+
+*Total Estimated Timeline:* 20-26 weeks (5-6 months)
+
+---
+
+## 16. Technology Recommendations
+
+### Rust Crates
+toml
+[dependencies]
+wasm-bindgen = "0.2"
+serde = { version = "1.0", features = ["derive"] }
+serde-wasm-bindgen = "0.6"
+nalgebra = "0.32"  # Linear algebra
+num-rational = "0.4"  # Rational numbers
+num-complex = "0.4"  # Complex numbers
+pest = "2.7"  # Parser generator
+thiserror = "1.0"  # Error handling
+
+
+### Web (Next.js)
+json
+{
+  "dependencies": {
+    "next": "^14.0.0",
+    "react": "^18.2.0",
+    "wasm-pack": "^0.12.0",
+    "@tanstack/react-query": "^5.0.0",
+    "zustand": "^4.4.0",
+    "recharts": "^2.10.0",
+    "katex": "^0.16.0",
+    "zod": "^3.22.0"
+  }
+}
+
+
+### Mobile (React Native)
+json
+{
+  "dependencies": {
+    "react-native": "^0.73.0",
+    "react-native-wasm": "^1.0.0",
+    "@react-navigation/native": "^6.1.0",
+    "react-native-sqlite-storage": "^6.0.0",
+    "expo-speech": "^11.7.0",
+    "expo-av": "^13.10.0"
+  }
+}
+
+
+---
+
+## 17. API Reference (WASM Bridge)
+
+### TypeScript → Rust
+typescript
+interface WASMBridge {
+  evaluate(expression: string, mode: 'exact' | 'approx' | 'steps'): Promise<Result>;
+  simplify(expression: string): Promise<string>;
+  solve(equation: string, variable: string): Promise<Solution[]>;
+  differentiate(expression: string, variable: string): Promise<string>;
+  integrate(expression: string, variable: string): Promise<string>;
+  matrixMultiply(a: number[][], b: number[][]): Promise<number[][]>;
+  // ... more functions
+}
+
+interface Result {
+  value: string;
+  mode: string;
+  method: string;
+  seed?: string;
+  steps?: Step[];
+  latex: string;
+}
+
+
+### Rust → TypeScript (Return Format)
+rust
+#[wasm_bindgen]
+pub struct EvaluationResult {
+    value: String,        // "x^2 + 2x + 1"
+    mode: String,         // "exact"
+    method: String,       // "algebraic-expansion"
+    seed: Option<String>, // "0x1A2B3C4D" if randomness used
+    latex: String,        // "x^2 + 2x + 1"
+    steps: Option<Vec<Step>>,
+}
+
+
+---
+
+## 18. Verification Checklist
+
+Use this checklist to verify implementation completeness:
+
+### Core Math Engine
+- [ ] Algebraic simplification working
+- [ ] Equation solver (linear, quadratic, cubic)
+- [ ] Derivatives (power rule, chain rule, product rule)
+- [ ] Integrals (basic polynomials, trig)
+- [ ] Matrix operations (all standard ops)
+- [ ] Polynomial operations (factorization, roots)
+- [ ] Unit conversions (SI, Imperial)
+- [ ] EXACT/APPROX/STEPS modes functional
+- [ ] Result badges displayed correctly
+
+### Graphing
+- [ ] 2D function plots
+- [ ] Parametric curves
+- [ ] Zoom and pan
+- [ ] Export PNG/PDF
+- [ ] Point labels on hover
+- [ ] Link to notebook
+
+### UI/UX
+- [ ] All 6 languages translated
+- [ ] RTL layout support (basic)
+- [ ] Mobile responsive
+- [ ] Keyboard shortcuts (desktop)
+- [ ] Dark mode
+- [ ] Accessibility: screen reader compatible
+
+### AI & Learning
+- [ ] AI Tutor responds in selected language
+- [ ] Step-by-step explanations
+- [ ] Adaptive quiz generation
+- [ ] Flashcard SRS working
+- [ ] Progress tracking
+
+### Productivity
+- [ ] Alarms with repeat rules
+- [ ] Timer and stopwatch
+- [ ] Pomodoro with session tracking
+- [ ] Weather display
+- [ ] Daily quote rotation
+
+### Advanced Features
+- [ ] Voice commands recognized
+- [ ] TTS reads results
+- [ ] Handwriting OCR functional
+- [ ] Notebook export (LaTeX, PDF, MD)
+- [ ] Exam mode restrictions enforced
+- [ ] Plugin system working
+
+### Security
+- [ ] WASM workers sandboxed
+- [ ] CSP/COOP/COEP headers set
+- [ ] No eval in codebase
+- [ ] Exports signed with SHA256
+- [ ] Input validation everywhere
+- [ ] Resource limits enforced
+- [ ] Certificate pinning (mobile)
+
+### Testing
+- [ ] ≥200 unit tests passing
+- [ ] Property tests passing
+- [ ] Fuzz tests run without crashes
+- [ ] Differential tests show tolerance
+- [ ] Golden tests match exactly
+- [ ] Performance budget met
+
+### Build & Deploy
+- [ ] SBOM generated
+- [ ] SCA scan shows no critical vulns
+- [ ] Reproducible builds documented
+- [ ] CI/CD pipeline functional
+- [ ] Signed artifacts
+
+---
+
+## 19. Resources & References
+
+### Rust/WASM
+- [wasm-bindgen book](https://rustwasm.github.io/wasm-bindgen/)
+- [wasm-pack documentation](https://rustwasm.github.io/wasm-pack/)
+- [Rust + WASM working group](https://rustwasm.github.io/)
+
+### Computer Algebra Systems
+- [SymPy documentation](https://docs.sympy.org/) (reference for features)
+- [Maxima manual](http://maxima.sourceforge.net/) (CAS design patterns)
+- [SageMath](https://www.sagemath.org/) (comprehensive math system)
+
+### Security
+- [OWASP WASM Security Guide](https://owasp.org/www-community/vulnerabilities/WebAssembly)
+- [CSP Reference](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
+- [SBOM Guide](https://www.cisa.gov/sbom)
+
+### Testing
+- [QuickCheck (Rust)](https://github.com/BurntSushi/quickcheck)
+- [cargo-fuzz](https://github.com/rust-fuzz/cargo-fuzz)
+- [Golden testing pattern](https://ro-che.info/articles/2017-12-04-golden-tests)
+
+### Mobile
+- [react-native-wasm](https://github.com/cawfree/react-native-wasm)
+- [flutter_rust_bridge](https://github.com/fzyzcjy/flutter_rust_bridge)
+
+---
+
+## 20. Contact & Support
+
+*Project Name:* NeuraMath+  
+*Version:* 5.1  
+*Architecture:* Rust/WASM + Next.js + React Native  
+*Status:* Specification complete, ready for external development
+
+*Next Steps:*
+1. Set up Rust/WASM development environment
+2. Initialize Next.js and React Native projects
+3. Implement core CAS engine in Rust (Phase 1)
+4. Build WASM bridge and basic UI
+5. Iterate through phases 2-8
+
+*Estimated Development Time:* 20-26 weeks with 2-3 experienced developers
+
+---
+
+## Appendix A: Sample Code Structures
+
+### Rust CAS Core (Simplified)
+rust
+// src/ast.rs
+#[derive(Debug, Clone)]
+pub enum Expr {
+    Number(Rational),
+    Variable(String),
+    Add(Box<Expr>, Box<Expr>),
+    Mul(Box<Expr>, Box<Expr>),
+    Pow(Box<Expr>, Box<Expr>),
+    Sin(Box<Expr>),
+    // ... more variants
+}
+
+// src/eval.rs
+pub fn evaluate(expr: &Expr, mode: Mode) -> Result<Expr, Error> {
+    match mode {
+        Mode::Exact => evaluate_exact(expr),
+        Mode::Approx => evaluate_approx(expr),
+        Mode::Steps => evaluate_with_steps(expr),
+    }
+}
+
+// src/lib.rs (WASM binding)
+#[wasm_bindgen]
+pub fn compute(input: &str, mode: &str) -> Result<JsValue, JsValue> {
+    let expr = parse(input)?;
+    let result = evaluate(&expr, Mode::from(mode))?;
+    Ok(serde_wasm_bindgen::to_value(&result)?)
+}
+
+
+### TypeScript WASM Bridge
+typescript
+// lib/wasm-bridge.ts
+import init, { compute } from '../wasm/neuramath_core';
+
+let wasmInitialized = false;
+
+export async function initWASM() {
+  if (!wasmInitialized) {
+    await init();
+    wasmInitialized = true;
+  }
+}
+
+export async function evaluateExpression(
+  expression: string,
+  mode: 'exact' | 'approx' | 'steps'
+): Promise<Result> {
+  await initWASM();
+  const result = await compute(expression, mode);
+  return JSON.parse(result);
+}
+
+
+---
+
+*END OF SPECIFICATION*
+
+This document contains all requirements, architecture decisions, and technical specifications needed to build NeuraMath+ with a Rust/WASM stack outside the current platform.
+
+Good luck with your external development! 🚀
+#====================================================================================================
+# START - Testing Protocol - DO NOT EDIT OR REMOVE THIS SECTION
+#====================================================================================================
+
+# THIS SECTION CONTAINS CRITICAL TESTING INSTRUCTIONS FOR BOTH AGENTS
+# BOTH MAIN_AGENT AND TESTING_AGENT MUST PRESERVE THIS ENTIRE BLOCK
+
+# Communication Protocol:
+# If the testing_agent is available, main agent should delegate all testing tasks to it.
+#
+# You have access to a file called test_result.md. This file contains the complete testing state
+# and history, and is the primary means of communication between main and the testing agent.
+#
+# Main and testing agents must follow this exact format to maintain testing data. 
+# The testing data must be entered in yaml format Below is the data structure:
+# 
+## user_problem_statement: {problem_statement}
+## backend:
+##   - task: "Task name"
+##     implemented: true
+##     working: true  # or false or "NA"
+##     file: "file_path.py"
+##     stuck_count: 0
+##     priority: "high"  # or "medium" or "low"
+##     needs_retesting: false
+##     status_history:
+##         -working: true  # or false or "NA"
+##         -agent: "main"  # or "testing" or "user"
+##         -comment: "Detailed comment about status"
+##
+## frontend:
+##   - task: "Task name"
+##     implemented: true
+##     working: true  # or false or "NA"
+##     file: "file_path.js"
+##     stuck_count: 0
+##     priority: "high"  # or "medium" or "low"
+##     needs_retesting: false
+##     status_history:
+##         -working: true  # or false or "NA"
+##         -agent: "main"  # or "testing" or "user"
+##         -comment: "Detailed comment about status"
+##
+## metadata:
+##   created_by: "main_agent"
+##   version: "1.0"
+##   test_sequence: 0
+##   run_ui: false
+##
+## test_plan:
+##   current_focus:
+##     - "Task name 1"
+##     - "Task name 2"
+##   stuck_tasks:
+##     - "Task name with persistent issues"
+##   test_all: false
+##   test_priority: "high_first"  # or "sequential" or "stuck_first"
+##
+## agent_communication:
+##     -agent: "main"  # or "testing" or "user"
+##     -message: "Communication message between agents"
+
+# Protocol Guidelines for Main agent
+#
+# 1. Update Test Result File Before Testing:
+#    - Main agent must always update the test_result.md file before calling the testing agent
+#    - Add implementation details to the status_history
+#    - Set needs_retesting to true for tasks that need testing
+#    - Update the test_plan section to guide testing priorities
+#    - Add a message to agent_communication explaining what you've done
+#
+# 2. Incorporate User Feedback:
+#    - When a user provides feedback that something is or isn't working, add this information to the relevant task's status_history
+#    - Update the working status based on user feedback
+#    - If a user reports an issue with a task that was marked as working, increment the stuck_count
+#    - Whenever user reports issue in the app, if we have testing agent and task_result.md file so find the appropriate task for that and append in status_history of that task to contain the user concern and problem as well 
+#
+# 3. Track Stuck Tasks:
+#    - Monitor which tasks have high stuck_count values or where you are fixing same issue again and again, analyze that when you read task_result.md
+#    - For persistent issues, use websearch tool to find solutions
+#    - Pay special attention to tasks in the stuck_tasks list
+#    - When you fix an issue with a stuck task, don't reset the stuck_count until the testing agent confirms it's working
+#
+# 4. Provide Context to Testing Agent:
+#    - When calling the testing agent, provide clear instructions about:
+#      - Which tasks need testing (reference the test_plan)
+#      - Any authentication details or configuration needed
+#      - Specific test scenarios to focus on
+#      - Any known issues or edge cases to verify
+#
+# 5. Call the testing agent with specific instructions referring to test_result.md
+#
+# IMPORTANT: Main agent must ALWAYS update test_result.md BEFORE calling the testing agent, as it relies on this file to understand what to test next.
+
+#====================================================================================================
+# END - Testing Protocol - DO NOT EDIT OR REMOVE THIS SECTION
+#====================================================================================================
+
+
+
+#====================================================================================================
+# Testing Data - Main Agent and testing sub agent both should log testing data below this section
+#====================================================================================================#====================================================================================================
+# START - Testing Protocol - DO NOT EDIT OR REMOVE THIS SECTION
+#====================================================================================================
+
+# THIS SECTION CONTAINS CRITICAL TESTING INSTRUCTIONS FOR BOTH AGENTS
+# BOTH MAIN_AGENT AND TESTING_AGENT MUST PRESERVE THIS ENTIRE BLOCK
+
+# Communication Protocol:
+# If the testing_agent is available, main agent should delegate all testing tasks to it.
+#
+# You have access to a file called test_result.md. This file contains the complete testing state
+# and history, and is the primary means of communication between main and the testing agent.
+#
+# Main and testing agents must follow this exact format to maintain testing data. 
+# The testing data must be entered in yaml format Below is the data structure:
+# 
+## user_problem_statement: {problem_statement}
+## backend:
+##   - task: "Task name"
+##     implemented: true
+##     working: true  # or false or "NA"
+##     file: "file_path.py"
+##     stuck_count: 0
+##     priority: "high"  # or "medium" or "low"
+##     needs_retesting: false
+##     status_history:
+##         -working: true  # or false or "NA"
+##         -agent: "main"  # or "testing" or "user"
+##         -comment: "Detailed comment about status"
+##
+## frontend:
+##   - task: "Task name"
+##     implemented: true
+##     working: true  # or false or "NA"
+##     file: "file_path.js"
+##     stuck_count: 0
+##     priority: "high"  # or "medium" or "low"
+##     needs_retesting: false
+##     status_history:
+##         -working: true  # or false or "NA"
+##         -agent: "main"  # or "testing" or "user"
+##         -comment: "Detailed comment about status"
+##
+## metadata:
+##   created_by: "main_agent"
+##   version: "1.0"
+##   test_sequence: 0
+##   run_ui: false
+##
+## test_plan:
+##   current_focus:
+##     - "Task name 1"
+##     - "Task name 2"
+##   stuck_tasks:
+##     - "Task name with persistent issues"
+##   test_all: false
+##   test_priority: "high_first"  # or "sequential" or "stuck_first"
+##
+## agent_communication:
+##     -agent: "main"  # or "testing" or "user"
+##     -message: "Communication message between agents"
+
+# Protocol Guidelines for Main agent
+#
+# 1. Update Test Result File Before Testing:
+#    - Main agent must always update the test_result.md file before calling the testing agent
+#    - Add implementation details to the status_history
+#    - Set needs_retesting to true for tasks that need testing
+#    - Update the test_plan section to guide testing priorities
+#    - Add a message to agent_communication explaining what you've done
+#
+# 2. Incorporate User Feedback:
+#    - When a user provides feedback that something is or isn't working, add this information to the relevant task's status_history
+#    - Update the working status based on user feedback
+#    - If a user reports an issue with a task that was marked as working, increment the stuck_count
+#    - Whenever user reports issue in the app, if we have testing agent and task_result.md file so find the appropriate task for that and append in status_history of that task to contain the user concern and problem as well 
+#
+# 3. Track Stuck Tasks:
+#    - Monitor which tasks have high stuck_count values or where you are fixing same issue again and again, analyze that when you read task_result.md
+#    - For persistent issues, use websearch tool to find solutions
+#    - Pay special attention to tasks in the stuck_tasks list
+#    - When you fix an issue with a stuck task, don't reset the stuck_count until the testing agent confirms it's working
+#
+# 4. Provide Context to Testing Agent:
+#    - When calling the testing agent, provide clear instructions about:
+#      - Which tasks need testing (reference the test_plan)
+#      - Any authentication details or configuration needed
+#      - Specific test scenarios to focus on
+#      - Any known issues or edge cases to verify
+#
+# 5. Call the testing agent with specific instructions referring to test_result.md
+#
+# IMPORTANT: Main agent must ALWAYS update test_result.md BEFORE calling the testing agent, as it relies on this file to understand what to test next.
+
+#====================================================================================================
+# END - Testing Protocol - DO NOT EDIT OR REMOVE THIS SECTION
+#====================================================================================================
+
+
+
+#====================================================================================================
+# Testing Data - Main Agent and testing sub agent both should log testing data below this section
+#====================================================================================================
+#====================================================================================================
+# START - Testing Protocol - DO NOT EDIT OR REMOVE THIS SECTION
+#====================================================================================================
+
+# THIS SECTION CONTAINS CRITICAL TESTING INSTRUCTIONS FOR BOTH AGENTS
+# BOTH MAIN_AGENT AND TESTING_AGENT MUST PRESERVE THIS ENTIRE BLOCK
+
+# Communication Protocol:
+# If the `testing_agent` is available, main agent should delegate all testing tasks to it.
+#
+# You have access to a file called `test_result.md`. This file contains the complete testing state
+# and history, and is the primary means of communication between main and the testing agent.
+#
+# Main and testing agents must follow this exact format to maintain testing data. 
+# The testing data must be entered in yaml format Below is the data structure:
+# 
+## user_problem_statement: {problem_statement}
+## backend:
+##   - task: "Task name"
+##     implemented: true
+##     working: true  # or false or "NA"
+##     file: "file_path.py"
+##     stuck_count: 0
+##     priority: "high"  # or "medium" or "low"
+##     needs_retesting: false
+##     status_history:
+##         -working: true  # or false or "NA"
+##         -agent: "main"  # or "testing" or "user"
+##         -comment: "Detailed comment about status"
+##
+## frontend:
+##   - task: "Task name"
+##     implemented: true
+##     working: true  # or false or "NA"
+##     file: "file_path.js"
+##     stuck_count: 0
+##     priority: "high"  # or "medium" or "low"
+##     needs_retesting: false
+##     status_history:
+##         -working: true  # or false or "NA"
+##         -agent: "main"  # or "testing" or "user"
+##         -comment: "Detailed comment about status"
+##
+## metadata:
+##   created_by: "main_agent"
+##   version: "1.0"
+##   test_sequence: 0
+##   run_ui: false
+##
+## test_plan:
+##   current_focus:
+##     - "Task name 1"
+##     - "Task name 2"
+##   stuck_tasks:
+##     - "Task name with persistent issues"
+##   test_all: false
+##   test_priority: "high_first"  # or "sequential" or "stuck_first"
+##
+## agent_communication:
+##     -agent: "main"  # or "testing" or "user"
+##     -message: "Communication message between agents"
+
+# Protocol Guidelines for Main agent
+#
+# 1. Update Test Result File Before Testing:
+#    - Main agent must always update the `test_result.md` file before calling the testing agent
+#    - Add implementation details to the status_history
+#    - Set `needs_retesting` to true for tasks that need testing
+#    - Update the `test_plan` section to guide testing priorities
+#    - Add a message to `agent_communication` explaining what you've done
+#
+# 2. Incorporate User Feedback:
+#    - When a user provides feedback that something is or isn't working, add this information to the relevant task's status_history
+#    - Update the working status based on user feedback
+#    - If a user reports an issue with a task that was marked as working, increment the stuck_count
+#    - Whenever user reports issue in the app, if we have testing agent and task_result.md file so find the appropriate task for that and append in status_history of that task to contain the user concern and problem as well 
+#
+# 3. Track Stuck Tasks:
+#    - Monitor which tasks have high stuck_count values or where you are fixing same issue again and again, analyze that when you read task_result.md
+#    - For persistent issues, use websearch tool to find solutions
+#    - Pay special attention to tasks in the stuck_tasks list
+#    - When you fix an issue with a stuck task, don't reset the stuck_count until the testing agent confirms it's working
+#
+# 4. Provide Context to Testing Agent:
+#    - When calling the testing agent, provide clear instructions about:
+#      - Which tasks need testing (reference the test_plan)
+#      - Any authentication details or configuration needed
+#      - Specific test scenarios to focus on
+#      - Any known issues or edge cases to verify
+#
+# 5. Call the testing agent with specific instructions referring to test_result.md
+#
+# IMPORTANT: Main agent must ALWAYS update test_result.md BEFORE calling the testing agent, as it relies on this file to understand what to test next.
+
+#====================================================================================================
+# END - Testing Protocol - DO NOT EDIT OR REMOVE THIS SECTION
+#====================================================================================================
+
+
+
+#====================================================================================================
+# Testing Data - Main Agent and testing sub agent both should log testing data below this section
+#====================================================================================================

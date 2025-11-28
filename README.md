@@ -1,72 +1,38 @@
-# 🧠 NeuranaWorld - Oyunlar ve Uygulamalar Platformu
+# NeuranaWorld
 
-Modern, responsive ve kullanıcı dostu oyun/uygulama platformu. 100+ animasyon ve özellik ile tamamen ücretsiz!
+Eğlenceli oyunlar ve kullanışlı uygulamalar sunan bir platform.
 
-[![Live Demo](https://img.shields.io/badge/demo-live-success)](https://neuranaworld.github.io/NeuranaWorld/)
-[![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-blue)](https://pages.github.com/)
-[![License](https://img.shields.io/badge/license-Personal-orange)](LICENSE)
-
-## 🌟 Canlı Demo
-
-**🚀 [NeuranaWorld'ü Ziyaret Edin!](https://neuranaworld.github.io/NeuranaWorld/)**
-
-## ✨ Öne Çıkan Özellikler
-
-### 🎨 Modern UI/UX
-- **Hero Section**: Çarpıcı karşılama ekranı, floating shapes animasyonları
-- **Category Showcase**: İnteraktif kategori kartları
-- **Smooth Animations**: 100+ CSS ve JavaScript animasyonu
-- **Glassmorphism**: Modern blur efektleri
-
-### 🎮 İçerik
-- **28 Oyun**: Aksiyon, Bulmaca, Strateji, Macera kategorilerinde
-- **9 Uygulama**: Eğitim, Araçlar, Müzik, Çizim ve daha fazlası
-- **Dinamik Yükleme**: Hızlı ve optimize edilmiş içerik gösterimi
-
-### 🔍 Özellikler
-- **Akıllı Arama**: Gerçek zamanlı arama ve filtreleme
-- **Kategori Filtreleme**: Tek tıkla kategori bazlı filtreleme
-- **Responsive Design**: Mobile-first yaklaşım
-- **Dark Gradient**: Modern renk paleti
-- **SEO Optimized**: Arama motorları için optimize
-
-### 📱 Mobile-First
-- **Hamburger Menu**: Yan açılır mobil menü
-- **Touch Optimized**: Dokunmatik ekranlar için optimize
-- **Responsive Grid**: Tüm cihazlarda mükemmel görünüm
-- **Fast Loading**: Hızlı yükleme süreleri
-
-## 📁 Proje Yapısı
+## Proje Yapısı
 
 ```
 NeuranaWorld/
-├── index.html              # Ana sayfa (Hero + Showcase)
-├── app.js                  # JavaScript (444 satır)
-├── style.css               # Modern CSS (1217 satır)
-├── README.md               # Bu dosya
-│
-├── Oyunlar/
-│   ├── Aksiyon/           # 7 oyun (Snake, Flappy Bird, Pong...)
-│   ├── Bulmaca/           # 12 oyun (2048, Tetris, Sudoku...)
-│   ├── Strateji/          # 7 oyun (Okey, Batak, Poker...)
-│   ├── Kelime/            # 3 oyun (Adam Asmaca...)
-│   ├── Macera/            # 1 oyun (Labirent)
-│   └── Spor/              # 1 oyun (Mini Golf)
-│
-├── Uygulamalar/
-│   ├── Araçlar/           # Hesap Makinesi, Birim Dönüştürücü
-│   ├── Eğitim/            # Dört İşlem
-│   ├── Müzik/             # Müzik Klavyesi
-│   ├── Zaman/             # Çalar Saat, Kronometre, Ses Kayıt
-│   ├── Çizim/             # 2D Grafik Çizimi
-│   └── Sosyal/            # Neuranaverse
-│
-├── backend/               # Python Backend
-└── frontend/              # React Frontend (opsiyonel)
+├── src/               # React uygulaması (Vite)
+│   ├── App.jsx       # Ana uygulama ve route tanımları
+│   ├── main.jsx      # Giriş noktası
+│   ├── index.css     # Global stiller
+│   └── pages/        # Sayfa bileşenleri
+├── Oyunlar/          # Oyun bileşenleri (JSX)
+│   ├── Aksiyon/     # Aksiyon oyunları
+│   ├── Bulmaca/     # Bulmaca oyunları
+│   ├── Strateji/    # Strateji oyunları
+│   ├── Kelime/      # Kelime oyunları
+│   ├── Macera/      # Macera oyunları
+│   └── Spor/        # Spor oyunları
+├── Uygulamalar/      # Uygulama meta dosyaları
+│   ├── Araçlar/     # Araç uygulamaları
+│   ├── Eğitim/      # Eğitim uygulamaları
+│   ├── Ses Müzik/   # Ses ve müzik uygulamaları
+│   ├── Zaman/       # Zaman yönetimi uygulamaları
+│   └── Çizim Tasarım/ # Çizim ve tasarım uygulamaları
+├── backend/          # Python backend servisleri
+├── docs/             # Dokümantasyon dosyaları
+├── scripts/          # Yardımcı scriptler
+└── archive/          # Eski/kullanılmayan dosyalar
 ```
 
-## 🚀 Hızlı Başlangıç
+## Kurulum ve Çalıştırma
 
+<<<<<<< HEAD
 ### Vite ile Modern Geliştirme (Önerilen)
 
 ```bash
@@ -96,20 +62,16 @@ npm run lint:fix
 ```
 
 ### Klasik Geliştirme
+=======
+### Geliştirme Ortamı
+>>>>>>> 8e685d7d21f7da3347bd444e7cb4003aba738366
 
 ```bash
-# Repository'yi klonlayın
-git clone https://github.com/neuranaworld/NeuranaWorld.git
-
-# Klasöre girin
-cd NeuranaWorld
-
-# index.html'i tarayıcıda açın
-# veya
-python -m http.server 8000
-# Tarayıcıda: http://localhost:8000
+npm install
+npm run dev
 ```
 
+<<<<<<< HEAD
 ### Live Server ile (VS Code)
 
 1. VS Code'da projeyi açın
@@ -183,97 +145,40 @@ Kullanılabilir alias'lar:
    ```
 
 ### Seçenek 2: Main Branch'e Merge Ederek
+=======
+### Production Build
+>>>>>>> 8e685d7d21f7da3347bd444e7cb4003aba738366
 
 ```bash
-# Main branch'e geçin
-git checkout main
-
-# Mevcut branch'i merge edin
-git merge claude/github-integration-setup-01BLMxTmwKLkHhyxtiDGxGty
-
-# GitHub'a push edin
-git push origin main
+npm run build
+npm run preview
 ```
 
-Sonra Settings → Pages → Branch: `main` seçin.
+### Backend (Opsiyonel)
 
-### Custom Domain (Opsiyonel)
-
-1. Repository Settings → Pages → Custom domain
-2. Domain adınızı girin: `www.neuranaworld.com`
-3. DNS ayarlarınızı yapın:
-   ```
-   CNAME www neuranaworld.github.io
-   ```
-
-## 🎨 Özellikler Detaylı
-
-### 🎯 Hero Section
-```
-🧠 Hoş Geldiniz!
-   NeuranaWorld
-```
-- Floating shapes animasyonları (20s loop)
-- Pulse emoji animasyonu
-- Shimmer gradient text efekti
-- 2 CTA butonu (Call-to-Action)
-- Canlı istatistikler
-- Bounce scroll indicator
-
-### 🎴 Card Sistemi
-- Gradient overlay hover efekti
-- 20px rounded corners
-- Box shadow transitions
-- "Yakında" badge animasyonları
-- Z-index layer management
-
-### 🔍 Arama & Filtreleme
-- Debounced search input
-- Real-time filtering
-- Category-based filters
-- Clear search button
-- Empty state messages
-
-### 📊 İstatistikler
-- Animated counters
-- Progress bars
-- Hover elevation effects
-- Icon wrappers with gradients
-
-### 📱 Responsive Breakpoints
-```css
-Desktop:  > 768px  (3-4 columns)
-Tablet:   768px    (2 columns)
-Mobile:   < 480px  (1 column)
+```bash
+cd backend
+pip install -r requirements.txt
+python server.py
 ```
 
-## 🎨 Renk Paleti
+## Dokümantasyon
 
-### CSS Variables
-```css
---primary-color: #667eea      /* Mor */
---secondary-color: #764ba2    /* Koyu Mor */
---accent-color: #f093fb       /* Pembe */
---success-color: #4ade80      /* Yeşil */
---danger-color: #f87171       /* Kırmızı */
+Detaylı dokümantasyon için `docs/` klasörüne bakınız:
+- [README](docs/README.md)
+- [React Build Guide](docs/REACT_BUILD_GUIDE.md)
+- [CMD Komutları](docs/CMD_KOMUTLARI.txt)
 
-/* Gray Scale */
---gray-100: #f5f7fa
---gray-200: #e8ecf3
---gray-300: #c3cfe2
---gray-400: #999
---gray-600: #666
---gray-900: #333
-```
+## Özellikler
 
-### Gradients
-```css
-/* Primary Gradient */
-background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+- 🎮 Çeşitli oyunlar (Macera, Bulmaca, Kelime, Aksiyon, Spor, Strateji)
+- 🛠️ Kullanışlı uygulamalar (Araçlar, Eğitim, Ses & Müzik, Çizim & Tasarım, Zaman)
+- ⚛️ React tabanlı modern arayüz
+- 🐍 Python backend desteği
 
-/* Card Gradient */
-background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+## Lisans
 
+<<<<<<< HEAD
 /* Footer Gradient */
 background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
 ```
@@ -497,3 +402,6 @@ NeuranaWorld'ü kullandığınız için teşekkürler!
 Made with ❤️ by NeuranaWorld Team
 
 </div>
+=======
+Bu proje [MIT lisansı](LICENSE) altında lisanslanmıştır.
+>>>>>>> 8e685d7d21f7da3347bd444e7cb4003aba738366

@@ -1,0 +1,2 @@
+isim: kakuro
+durum: aktif

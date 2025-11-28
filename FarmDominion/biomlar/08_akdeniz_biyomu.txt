@@ -1,0 +1,52 @@
+# AKDENİZ BİYOMU / MAKİ (Mediterranean Shrubland)
+# Sıcaklık: 10-25°C | Yağış: 300-900mm/yıl | Kuru yazlar, ılık kışlar
+
+## AĞAÇLAR
+Zeytin ağacı|80-150|gümüş yeşil|%60|%40|Yıl boyunca
+Portakal ağacı|50-80|koyu yeşil|%70|%50|Yıl boyunca
+Mandalina ağacı|40-70|yeşil|%70|%50|Yıl boyunca
+Limon ağacı|50-70|açık yeşil|%70|%50|Yıl boyunca
+Nar ağacı|50-80|yeşil|%65|%45|Mevsimsel
+İncir ağacı|70-100|koyu yeşil|%70|%50|Mevsimsel
+Keçiboynuzu|80-120|koyu yeşil|%60|%40|Yıl boyunca
+Defne ağacı|60-100|koyu yeşil|%65|%50|Yıl boyunca
+Fıstık çamı|150-200|koyu yeşil|%55|%35|Yıl boyunca
+Servi|200-300|koyu yeşil|%60|%40|Yıl boyunca
+
+## MEYVELER
+Zeytin|siyah-yeşil|0.005kg|%60|%40|Eylül-Kasım
+Portakal|turuncu|0.2kg|%70|%50|Aralık-Şubat
+Mandalina|turuncu|0.1kg|%70|%50|Kasım-Ocak
+Limon|sarı|0.1kg|%70|%50|Yıl boyunca
+Greyfurt|sarı-pembe|0.4kg|%70|%50|Kasım-Mart
+Nar|kırmızı|0.3kg|%65|%45|Eylül-Kasım
+İncir|mor-yeşil|0.05kg|%70|%50|Temmuz-Eylül
+Kayısı|turuncu|0.05kg|%75|%55|Haziran-Temmuz
+Badem|kahverengi|0.02kg|%60|%40|Ağustos-Eylül
+Antep fıstığı|yeşil|0.015kg|%55|%35|Ağustos-Eylül
+
+## SEBZELER
+Domates|kırmızı|0.15kg|%70|%50|
+Biber|yeşil-kırmızı|0.1kg|%70|%50|
+Patlıcan|mor|0.2kg|%70|%50|
+Kabak|yeşil|0.5kg|%70|%55|
+Salatalık|yeşil|0.15kg|%75|%55|
+Bamya|yeşil|0.02kg|%70|%55|
+Roka|yeşil|0.1kg|%75|%60|
+Maydanoz|yeşil|0.05kg|%75|%60|
+Dereotu|yeşil|0.03kg|%75|%60|
+Nane|yeşil|0.02kg|%80|%65|
+
+## EKOLOJİK ÖZELLİKLER
+- Toprak: Terra rossa (kırmızı), kireçli
+- Kuraklık direnci: Yüksek
+- Yangın adaptasyonu: Evet
+- Su stresi: Yaz aylarında yüksek
+- Kök sistemi: Derin, su arar
+- Yaprak tipi: Sert, mumsu (sclerophyll)
+
+## GÖRSELLİK
+Renk Paleti: #6b8e23, #808000, #8b7355, #d2b48c (zeytin yeşili, toprak tonları)
+Yoğunluk: Seyrek-orta
+Gölge: Az, %30-50
+Arazi: Tepeli, kayalık

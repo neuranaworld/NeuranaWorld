@@ -1,0 +1,14 @@
+# Buildings Configuration
+# Format: type, x, z, rotation
+# Types: house, barn, windmill, well, silo, greenhouse, shed
+
+house, 0, -200, 0
+barn, 100, -180, 45
+windmill, -150, -200, 0
+well, 50, -150, 0
+silo, 180, -160, 0
+greenhouse, -100, -100, 90
+shed, 150, -100, 0
+house, 200, -220, 180
+house, -200, -180, 0
+barn, -250, -150, 0

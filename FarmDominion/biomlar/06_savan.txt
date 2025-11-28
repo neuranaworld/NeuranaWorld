@@ -1,0 +1,37 @@
+# SAVAN - AĞAÇLI TROPİKAL ÇAYIR (Savanna)
+# Sıcaklık: 20-30°C | Yağış: 500-1500mm/yıl | Kuru-yaş mevsim
+
+## AĞAÇLAR
+Akasya ağacı|50-100|açık yeşil|%50|%30|Kuraklığa dayanıklı
+Baobab ağacı|100-200|açık yeşil|%45|%25|Kuraklığa dayanıklı
+Palmiye|80-120|yeşil|%60|%35|Su yakını
+Muz ağacı|30-50|yeşil|%70|%50|Su yakını
+Mango ağacı|100-150|koyu yeşil|%65|%40|Yağışlı mevsim
+
+## MEYVELER
+Mango|turuncu|1kg|%65|%40|Yağışlı mevsim
+Muz|sarı|3kg|%70|%50|Yıl boyunca
+Baobab meyvesi|yeşil|0.5kg|%45|%25|Kuru mevsim
+Hurma|kahverengi|0.02kg|%60|%35|Yaz-sonbahar
+
+## SEBZELER
+Mısır|sarı|0.2kg|%60|%40|
+Fasulye|yeşil-kahve|0.05kg|%65|%45|
+Kabak|turuncu|1kg|%60|%40|
+Manyok|beyaz|2kg|%70|%50|
+Yerfıstığı|kahverengi|0.03kg|%55|%35|
+
+## EKOLOJİK ÖZELLİKLER
+- Toprak: Lateritik, kırmızı-kahve
+- Mevsim: Kuru (6 ay) - Yaş (6 ay)
+- Yangın: Doğal, düzenli
+- Ağaç dağılımı: Seyrek, dağınık
+- Çayır: Yüksek otlar (2-3m)
+- Kuraklık adaptasyonu: Çok yüksek
+
+## GÖRSELLİK
+Yağışlı mevsim: #9acd32, #7cbb00 (parlak yeşil)
+Kuru mevsim: #d4a574, #c19a6b (altın sarısı-kahve)
+Yoğunluk: Çok seyrek
+Gölge: Çok az, %10-30
+Açık alan: %70-90

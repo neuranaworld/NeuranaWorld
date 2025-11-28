@@ -1,7 +1,6 @@
 # Dependencies
 node_modules/
 package-lock.json
-<<<<<<< HEAD
 yarn.lock
 pnpm-lock.yaml
 
@@ -10,6 +9,7 @@ dist/
 build/
 .vite/
 *.local
+.cache/
 
 # Environment files
 .env
@@ -32,7 +32,13 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+*.swp
+*.swo
+*~
+
+# OS
 .DS_Store
+Thumbs.db
 
 # Testing
 coverage/
@@ -41,22 +47,6 @@ coverage/
 # Temporary files
 *.tmp
 *.temp
-=======
 
 # Archive
 archive/
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
-# OS
-Thumbs.db
-
-# Build outputs
-build/
->>>>>>> 8e685d7d21f7da3347bd444e7cb4003aba738366
-.cache/

@@ -1,2 +1,0 @@
-isim: oruntu_bulma
-durum: aktif

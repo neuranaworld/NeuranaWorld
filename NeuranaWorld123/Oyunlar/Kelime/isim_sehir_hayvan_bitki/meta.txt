@@ -1,2 +1,0 @@
-isim: isim_sehir_hayvan_bitki
-durum: aktif

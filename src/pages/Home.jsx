@@ -33,7 +33,14 @@ const oyunlar = [
   { id: 'tictactoe', name: 'XOX', icon: '❌', category: 'Strateji', route: '/oyunlar/tictactoe', shortDesc: 'XOX' },
 
   // Macera
-  { id: 'maze', name: 'Labirent', icon: '🌀', category: 'Macera', route: '/oyunlar/maze', shortDesc: 'Labirent' }
+  { id: 'maze', name: 'Labirent', icon: '🌀', category: 'Macera', route: '/oyunlar/maze', shortDesc: 'Labirent' },
+  { id: 'survival', name: 'Survival Game', icon: '⛺', category: 'Macera', route: '/oyunlar/survival', shortDesc: 'Hayatta kalma' },
+
+  // Simülasyon
+  { id: 'farmdominion', name: 'Farm Dominion', icon: '🚜', category: 'Simülasyon', route: '/oyunlar/farmdominion', shortDesc: '3D Çiftlik simülasyonu (6.8M m²)' },
+
+  // 3D & Multiplayer
+  { id: 'galaxy', name: 'NeuranaWorld Galaxy', icon: '🌌', category: '3D Oyunlar', route: '/oyunlar/galaxy', shortDesc: '3D Multiplayer evren' }
 ]
 
 const uygulamalar = [
@@ -90,7 +97,7 @@ export default function Home() {
               <span className="hero-subtitle">NeuranaWorld</span>
             </h1>
             <p className="hero-description">
-              🎮 28 Oyun ve 💻 9 Uygulama ile dolu eğlence dünyası!
+              🎮 31 Oyun ve 💻 9 Uygulama ile dolu eğlence dünyası!
             </p>
             <div className="hero-buttons">
               <a href="#oyunlar" className="btn btn-primary">🎮 Oyunlara Başla</a>
@@ -120,6 +127,8 @@ export default function Home() {
             <button className={filter === 'bulmaca' ? 'filter-btn active' : 'filter-btn'} onClick={() => setFilter('bulmaca')}>🧩 Bulmaca</button>
             <button className={filter === 'strateji' ? 'filter-btn active' : 'filter-btn'} onClick={() => setFilter('strateji')}>♟️ Strateji</button>
             <button className={filter === 'macera' ? 'filter-btn active' : 'filter-btn'} onClick={() => setFilter('macera')}>🌀 Macera</button>
+            <button className={filter === 'simülasyon' ? 'filter-btn active' : 'filter-btn'} onClick={() => setFilter('simülasyon')}>🚜 Simülasyon</button>
+            <button className={filter === '3d oyunlar' ? 'filter-btn active' : 'filter-btn'} onClick={() => setFilter('3d oyunlar')}>🌌 3D</button>
           </div>
         </div>
       </div>

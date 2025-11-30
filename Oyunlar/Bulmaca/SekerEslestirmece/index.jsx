@@ -3,7 +3,7 @@ import { Sparkles, RotateCcw, ArrowLeft, Volume2, VolumeX, Lock, Check, Zap, Bom
 import { WORLDS, GRID_SIZE, CANDY_DATA } from './core/LevelConfig';
 import { audioEngine } from './utils/AudioEngine';
 import { findAllMatches } from './core/MatchFinder';
-import { createBoard, removeAndFill } from './core/BoardLogic';
+import { createBoard, removeAndFill, findPossibleMoves, shuffleBoard } from './core/BoardLogic';
 import { activateSpecial } from './core/SpecialCandies';
 import { Candy } from './components/CandyComponents';
 import { AdvancedParticle, EnhancedScorePopup, ShockWave, ComboText, StarBurst, PowerUpIndicator } from './components/ParticleSystem';
@@ -15,6 +15,50 @@ import {
 
 const GameStyles = () => (
   <style>{`
+    /* Responsive Grid - Mobil/Tablet/Desktop */
+    @media (max-width: 640px) {
+      .game-board {
+        max-width: 100vw !important;
+        padding: 0.5rem !important;
+      }
+      .candy-cell {
+        width: calc((100vw - 2rem) / 8) !important;
+        height: calc((100vw - 2rem) / 8) !important;
+        font-size: clamp(1.5rem, 4vw, 2.5rem) !important;
+      }
+      .game-header {
+        flex-direction: column !important;
+        gap: 0.5rem !important;
+      }
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+    }
+    @media (min-width: 641px) and (max-width: 1024px) {
+      .game-board {
+        max-width: 90vw !important;
+      }
+      .candy-cell {
+        width: calc(min(90vw, 600px) / 8) !important;
+        height: calc(min(90vw, 600px) / 8) !important;
+        font-size: 2rem !important;
+      }
+    }
+    @media (min-width: 1025px) {
+      .candy-cell {
+        width: 70px !important;
+        height: 70px !important;
+        font-size: 2.5rem !important;
+      }
+    }
+
+    /* Touch support */
+    .candy-cell {
+      touch-action: none;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
     @keyframes heartbeat {
       0%, 100% { transform: scale(1); }
       5% { transform: scale(1.05); }
@@ -244,6 +288,24 @@ const MatchGame = () => {
         setIsAnimating(false);
       }
     }
+
+    // Hamle kontrolü ve otomatik shuffle
+    const possibleMoves = findPossibleMoves(workingBoard);
+    if (possibleMoves.length === 0 && moves > 0) {
+      // Hamle yok! Tahtayı karıştır
+      audioEngine.playSwap(); // Shuffle sesi
+      setAchievements(prev => [...prev, {
+        id: Date.now(),
+        text: '🔄 Hamle kalmadı! Tahta karıştırılıyor...',
+        type: 'shuffle'
+      }]);
+
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      workingBoard = shuffleBoard(workingBoard, candyTypes);
+      setBoard(workingBoard);
+      await new Promise(resolve => setTimeout(resolve, 500));
+    }
+
     setTimeout(() => setCombo(0), 2000);
     return { finalBoard: workingBoard, scoreGained: totalScoreGained };
   };

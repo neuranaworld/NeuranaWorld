@@ -3,7 +3,6 @@
 Eğlenceli oyunlar ve kullanışlı uygulamalar sunan bir platform.
 
 ## Proje Yapısı
-
 ```
 NeuranaWorld/
 ├── src/               # React uygulaması (Vite)
@@ -32,9 +31,7 @@ NeuranaWorld/
 
 ## Kurulum ve Çalıştırma
 
-<<<<<<< HEAD
 ### Vite ile Modern Geliştirme (Önerilen)
-
 ```bash
 # Repository'yi klonlayın
 git clone https://github.com/neuranaworld/NeuranaWorld.git
@@ -61,22 +58,12 @@ npm run lint
 npm run lint:fix
 ```
 
-### Klasik Geliştirme
-=======
-### Geliştirme Ortamı
->>>>>>> 8e685d7d21f7da3347bd444e7cb4003aba738366
-
+### Backend (Opsiyonel)
 ```bash
-npm install
-npm run dev
+cd backend
+pip install -r requirements.txt
+python server.py
 ```
-
-<<<<<<< HEAD
-### Live Server ile (VS Code)
-
-1. VS Code'da projeyi açın
-2. Live Server extension'ı yükleyin
-3. `index.html`'e sağ tıklayın → "Open with Live Server"
 
 ## 🛠️ Geliştirme Ortamı Kurulumu
 
@@ -129,9 +116,9 @@ Kullanılabilir alias'lar:
 ### Seçenek 1: Mevcut Branch'ten Yayınlama
 
 1. **GitHub Repository'ye gidin**:
-   ```
+```
    https://github.com/neuranaworld/NeuranaWorld
-   ```
+```
 
 2. **Settings → Pages**:
    - Source: `Deploy from a branch`
@@ -140,27 +127,13 @@ Kullanılabilir alias'lar:
    - **Save**
 
 3. **5-10 dakika bekleyin**, siteniz hazır:
-   ```
+```
    https://neuranaworld.github.io/NeuranaWorld/
-   ```
+```
 
 ### Seçenek 2: Main Branch'e Merge Ederek
-=======
-### Production Build
->>>>>>> 8e685d7d21f7da3347bd444e7cb4003aba738366
 
-```bash
-npm run build
-npm run preview
-```
-
-### Backend (Opsiyonel)
-
-```bash
-cd backend
-pip install -r requirements.txt
-python server.py
-```
+Production build oluşturun ve main branch'e merge edin.
 
 ## Dokümantasyon
 
@@ -168,20 +141,6 @@ Detaylı dokümantasyon için `docs/` klasörüne bakınız:
 - [README](docs/README.md)
 - [React Build Guide](docs/REACT_BUILD_GUIDE.md)
 - [CMD Komutları](docs/CMD_KOMUTLARI.txt)
-
-## Özellikler
-
-- 🎮 Çeşitli oyunlar (Macera, Bulmaca, Kelime, Aksiyon, Spor, Strateji)
-- 🛠️ Kullanışlı uygulamalar (Araçlar, Eğitim, Ses & Müzik, Çizim & Tasarım, Zaman)
-- ⚛️ React tabanlı modern arayüz
-- 🐍 Python backend desteği
-
-## Lisans
-
-<<<<<<< HEAD
-/* Footer Gradient */
-background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-```
 
 ## 🛠️ Teknolojiler
 
@@ -257,18 +216,25 @@ background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
 ### 🌐 Sosyal
 - Neuranaverse (Metaverse platformu)
 
+## Özellikler
+
+- 🎮 Çeşitli oyunlar (Macera, Bulmaca, Kelime, Aksiyon, Spor, Strateji)
+- 🛠️ Kullanışlı uygulamalar (Araçlar, Eğitim, Ses & Müzik, Çizim & Tasarım, Zaman)
+- ⚛️ React tabanlı modern arayüz
+- 🐍 Python backend desteği
+
 ## 🔧 Özelleştirme
 
 ### Yeni Oyun Ekleme
 
 1. **Oyun dosyasını oluşturun**:
-   ```
+```
    Oyunlar/Kategori/YeniOyun.js
    Oyunlar/Kategori/index_YeniOyun.html
-   ```
+```
 
 2. **app.js'e ekleyin**:
-   ```javascript
+```javascript
    {
        id: 'yenioyun',
        name: 'Yeni Oyun',
@@ -277,12 +243,11 @@ background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
        path: 'Oyunlar/Kategori/index_YeniOyun.html',
        shortDesc: 'Oyun açıklaması'
    }
-   ```
+```
 
 ### Renk Teması Değiştirme
 
 `style.css` dosyasında `:root` değişkenlerini değiştirin:
-
 ```css
 :root {
     --primary-color: #your-color;
@@ -290,118 +255,6 @@ background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
 }
 ```
 
-### Animasyon Hızını Ayarlama
+## Lisans
 
-```css
-/* Daha hızlı animasyon */
-.hero-shape {
-    animation: float 10s infinite ease-in-out;
-}
-
-/* Daha yavaş animasyon */
-.hero-shape {
-    animation: float 30s infinite ease-in-out;
-}
-```
-
-## 📱 Tarayıcı Desteği
-
-| Tarayıcı | Desteklenen Versiyon |
-|----------|---------------------|
-| Chrome   | ✅ 90+             |
-| Firefox  | ✅ 88+             |
-| Safari   | ✅ 14+             |
-| Edge     | ✅ 90+             |
-| Opera    | ✅ 76+             |
-
-## 🚀 Performans
-
-### Lighthouse Scores (Hedef)
-- Performance: 95+
-- Accessibility: 100
-- Best Practices: 100
-- SEO: 100
-
-### Optimizasyonlar
-- ✅ Minified CSS/JS (production için)
-- ✅ Lazy loading images
-- ✅ Hardware-accelerated animations
-- ✅ Debounced search
-- ✅ Efficient event listeners
-
-## 📈 Roadmap
-
-### Yakında Gelecek Özellikler
-- [ ] 🌙 Dark Mode toggle
-- [ ] ⭐ Oyun rating sistemi
-- [ ] 💾 LocalStorage (favoriler, geçmiş)
-- [ ] 🔔 Bildirim sistemi
-- [ ] 🎵 Ses efektleri
-- [ ] 📱 PWA (Progressive Web App)
-- [ ] 🔐 Kullanıcı sistemi
-- [ ] 🏆 Liderlik tablosu
-
-### Planlanıyor
-- [ ] Blog bölümü
-- [ ] Forum/Community
-- [ ] Multi-language support
-- [ ] Advanced analytics
-- [ ] Social sharing
-- [ ] Game recommendations
-
-## 🤝 Katkıda Bulunma
-
-Katkılarınızı memnuniyetle karşılıyoruz!
-
-1. Fork edin
-2. Feature branch oluşturun (`git checkout -b feature/AmazingFeature`)
-3. Commit edin (`git commit -m 'Add some AmazingFeature'`)
-4. Push edin (`git push origin feature/AmazingFeature`)
-5. Pull Request açın
-
-## 📞 İletişim & Destek
-
-### Sorular
-- 📧 Email: [email protected]
-- 💬 GitHub Issues: [Issues](https://github.com/neuranaworld/NeuranaWorld/issues)
-- 📖 Docs: Bu README
-
-### Bug Bildirme
-1. GitHub Issues'a gidin
-2. "New Issue" tıklayın
-3. Bug detaylarını yazın
-4. Screenshot ekleyin (varsa)
-
-## 📄 Lisans
-
-Bu proje kişisel kullanım içindir. Ticari kullanım için izin alınması gerekmektedir.
-
-## 🎉 Teşekkürler
-
-NeuranaWorld'ü kullandığınız için teşekkürler!
-
-### Katkıda Bulunanlar
-- 🧠 Ana Geliştirici: [NeuranaWorld Team]
-- 🎨 Tasarım: Modern UI/UX prensipleri
-- 💻 Kod: Vanilla JavaScript & CSS3
-
----
-
-<div align="center">
-
-**🧠 NeuranaWorld** - Oyunlar ve Uygulamalar Dünyası
-
-[![GitHub](https://img.shields.io/github/stars/neuranaworld/NeuranaWorld?style=social)](https://github.com/neuranaworld/NeuranaWorld)
-[![Website](https://img.shields.io/website?url=https%3A%2F%2Fneuranaworld.github.io%2FNeuranaWorld%2F)](https://neuranaworld.github.io/NeuranaWorld/)
-
-**[Live Demo](https://neuranaworld.github.io/NeuranaWorld/)** •
-**[Documentation](#)** •
-**[Report Bug](https://github.com/neuranaworld/NeuranaWorld/issues)** •
-**[Request Feature](https://github.com/neuranaworld/NeuranaWorld/issues)**
-
-Made with ❤️ by NeuranaWorld Team
-
-</div>
-=======
 Bu proje [MIT lisansı](LICENSE) altında lisanslanmıştır.
->>>>>>> 8e685d7d21f7da3347bd444e7cb4003aba738366

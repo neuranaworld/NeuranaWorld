@@ -1,0 +1,28 @@
+/* Component Styles */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.btn {
+  padding: 12px 24px;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-normal);
+}
+
+.card {
+  background: white;
+  border-radius: var(--border-radius);
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: var(--transition-normal);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}

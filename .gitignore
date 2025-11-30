@@ -1,19 +1,27 @@
+# Dependencies
 node_modules/
+
+# Build output
 dist/
+build/
+.cache/
+
+# Environment files
 .env
+
+# Logs
 *.log
+
+# OS
 .DS_Store
-# package-lock.json   ← Bu satırı böyle yapın (veya tamamen silin)
-# Archive
-archive/
+Thumbs.db
+
 # IDE
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
-# OS
-Thumbs.db
-# Build outputs
-build/
-.cache/
+
+# Archive
+archive/

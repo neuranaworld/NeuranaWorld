@@ -3,21 +3,17 @@ dist/
 .env
 *.log
 .DS_Store
-package-lock.json
-
+# package-lock.json   ← Bu satırı böyle yapın (veya tamamen silin)
 # Archive
 archive/
-
 # IDE
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
-
 # OS
 Thumbs.db
-
 # Build outputs
 build/
 .cache/

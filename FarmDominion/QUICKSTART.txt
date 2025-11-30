@@ -1,0 +1,84 @@
+🌾 FARM DOMINION v2 - QUICK START GUIDE
+========================================
+
+🚀 HIZLI BAŞLANGIÇ
+------------------
+
+1. BİR WEB SUNUCUSU BAŞLATIN:
+
+   Python 3:
+   $ cd farm-dominion-v2
+   $ python -m http.server 8000
+
+   Python 2:
+   $ python -m SimpleHTTPServer 8000
+
+   Node.js:
+   $ npx http-server -p 8000
+
+   VS Code Live Server:
+   - Sağ tık -> Open with Live Server
+
+2. TARAYICIDA AÇIN:
+   http://localhost:8000
+
+3. "OYUNA BAŞLA" BUTONUNA TIKLAYIN
+
+4. EKRANA TIKLAYIN (Pointer Lock için)
+
+5. WASD ile gezinin!
+
+⚠️ ÖNEMLİ NOTLAR
+-----------------
+
+❌ YAPMAYIN:
+- index.html'i doğrudan çift tıkla (file:// protokolü)
+  → CORS hatası alırsınız!
+
+✅ YAPIN:
+- Mutlaka bir web sunucusu kullanın
+- Modern tarayıcı kullanın (Chrome/Firefox/Edge)
+- WebGL desteğini kontrol edin
+
+🎮 TEMEL KONTROLLER
+-------------------
+
+WASD       → Hareket
+Shift      → Koş  
+Fare       → Etrafına bak
+G          → Gölge aç/kapat
+M          → Ses aç/kapat
+Esc        → Menü / İmleç serbest
+
+🔧 PERFORMANS SORUNLARI
+------------------------
+
+Düşük FPS alıyorsanız:
+
+1. G tuşuna basın (gölgeleri kapatın)
+2. Konsolu açın (F12) ve yazın:
+   setGraphicsQuality('low')
+
+📱 TARAYICI DESTEĞİ
+-------------------
+
+✅ Chrome 90+
+✅ Firefox 88+
+✅ Edge 90+
+✅ Safari 14+
+
+🐛 SORUN GİDERME
+-----------------
+
+Oyun yüklenmiyor?
+→ F12 → Console → Hataları kontrol edin
+
+Ses çalışmıyor?
+→ M tuşuna basın
+→ Tarayıcı ses izinlerini kontrol edin
+
+Texture görünmüyor?
+→ Dosya yollarını kontrol edin
+→ Web sunucusu kullandığınızdan emin olun
+
+🎯 İYİ OYUNLAR!

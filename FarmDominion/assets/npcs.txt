@@ -1,0 +1,14 @@
+# NPCs Configuration
+# Format: type, name, x, y, z, color
+# Types: cow, sheep, chicken, horse
+
+cow, Bessie, 100, 0, 50, 0xffffff
+cow, Daisy, -80, 0, 70, 0xf0e68c
+sheep, Fluffy, 120, 0, -30, 0xffffff
+sheep, Cotton, 90, 0, -50, 0xeeeeee
+chicken, Clucky, -40, 0, 30, 0xff6347
+chicken, Pecky, -45, 0, 35, 0xffa500
+horse, Thunder, -120, 0, 100, 0x8b4513
+horse, Storm, -110, 0, 95, 0x654321
+cow, Milky, 50, 0, 80, 0xfaebd7
+sheep, Woolly, 110, 0, -40, 0xf5f5f5

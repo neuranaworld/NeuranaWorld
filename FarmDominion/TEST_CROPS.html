@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Farm Dominion - Crop System Test</title>
+    <style>
+        body {
+            margin: 0;
+            background: #1a1a1a;
+            color: #fff;
+            font-family: 'Courier New', monospace;
+        }
+        #info {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background: rgba(0,0,0,0.8);
+            padding: 15px;
+            border-radius: 8px;
+            max-width: 400px;
+            z-index: 1000;
+        }
+        h2 {
+            margin: 0 0 10px 0;
+            color: #4CAF50;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        .result {
+            background: rgba(76, 175, 80, 0.2);
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 3px solid #4CAF50;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="info">
+        <h2>🌾 Crop System Test Console</h2>
+        <p>Bu sayfa açıldıktan sonra oyunu başlat (BASLAT.bat)</p>
+        <p>Oyun yüklendikten sonra aşağıdaki testleri çalıştır:</p>
+        
+        <button onclick="testDatabases()">📊 Test Databases</button>
+        <button onclick="testCurrentBiome()">🗺️ Current Biome Crops</button>
+        <button onclick="testCreateField()">🌾 Create Test Field</button>
+        <button onclick="testModels()">🌱 Test Models</button>
+        <button onclick="showAllBiomes()">🌍 Show All Biomes</button>
+        <button onclick="clearResults()">🗑️ Clear</button>
+        
+        <div id="results" class="result"></div>
+    </div>
+
+    <script>
+        function log(msg) {
+            const results = document.getElementById('results');
+            results.innerHTML += msg + '<br>';
+            results.scrollTop = results.scrollHeight;
+        }
+
+        function clearResults() {
+            document.getElementById('results').innerHTML = '';
+        }
+
+        function testDatabases() {
+            clearResults();
+            log('🔍 Testing databases...');
+            
+            try {
+                if (typeof CompleteTreeDatabase !== 'undefined') {
+                    log(`✅ Trees: ${Object.keys(CompleteTreeDatabase).length}`);
+                } else {
+                    log('❌ CompleteTreeDatabase not found');
+                }
+                
+                if (typeof CompleteFruitDatabase !== 'undefined') {
+                    log(`✅ Fruits: ${Object.keys(CompleteFruitDatabase).length}`);
+                } else {
+                    log('❌ CompleteFruitDatabase not found');
+                }
+                
+                if (typeof CompleteVegetableDatabase !== 'undefined') {
+                    log(`✅ Vegetables: ${Object.keys(CompleteVegetableDatabase).length}`);
+                } else {
+                    log('❌ CompleteVegetableDatabase not found');
+                }
+                
+                if (typeof CompleteBiomeDatabase !== 'undefined') {
+                    log(`✅ Biome DB: ${Object.keys(CompleteBiomeDatabase).length}`);
+                } else {
+                    log('❌ CompleteBiomeDatabase not found');
+                }
+                
+            } catch (error) {
+                log(`❌ Error: ${error.message}`);
+            }
+        }
+
+        function testCurrentBiome() {
+            clearResults();
+            log('🗺️ Testing current biome...');
+            
+            try {
+                if (typeof showAvailableCrops === 'function' && typeof camera !== 'undefined') {
+                    const pos = camera.position;
+                    log(`📍 Position: (${pos.x.toFixed(0)}, ${pos.z.toFixed(0)})`);
+                    showAvailableCrops(pos.x, pos.z);
+                    log('✅ Check browser console (F12) for details');
+                } else {
+                    log('❌ showAvailableCrops or camera not available');
+                }
+            } catch (error) {
+                log(`❌ Error: ${error.message}`);
+            }
+        }
+
+        function testCreateField() {
+            clearResults();
+            log('🌾 Creating test field...');
+            
+            try {
+                if (typeof createCropFieldAt === 'function' && typeof camera !== 'undefined') {
+                    const pos = camera.position;
+                    const x = pos.x + 50;
+                    const z = pos.z + 50;
+                    
+                    // Try tomato first
+                    log(`Creating tomato field at (${x.toFixed(0)}, ${z.toFixed(0)})...`);
+                    const field = createCropFieldAt('tomato', x, z, 15, 20);
+                    
+                    if (field) {
+                        log(`✅ Field created with ${field.plantCount} plants!`);
+                    } else {
+                        log('❌ Could not create field (check biome compatibility)');
+                    }
+                } else {
+                    log('❌ createCropFieldAt or camera not available');
+                }
+            } catch (error) {
+                log(`❌ Error: ${error.message}`);
+            }
+        }
+
+        function testModels() {
+            clearResults();
+            log('🌱 Testing crop models...');
+            
+            try {
+                if (typeof testCropModel === 'function' && typeof camera !== 'undefined') {
+                    const pos = camera.position;
+                    const models = ['strawberry', 'grape', 'watermelon', 'carrot', 'potato'];
+                    
+                    models.forEach((model, i) => {
+                        const x = pos.x + (i * 10);
+                        const z = pos.z + 20;
+                        const y = 50; // Approximate height
+                        
+                        log(`Creating ${model}...`);
+                        const plant = testCropModel(model, x, y, z);
+                        if (plant) {
+                            log(`✅ ${model} created`);
+                        } else {
+                            log(`❌ ${model} failed`);
+                        }
+                    });
+                    
+                    log('✅ Check the game - models should be visible!');
+                } else {
+                    log('❌ testCropModel or camera not available');
+                }
+            } catch (error) {
+                log(`❌ Error: ${error.message}`);
+            }
+        }
+
+        function showAllBiomes() {
+            clearResults();
+            log('🌍 Showing all biome crops...');
+            
+            try {
+                if (typeof showBiomeMap === 'function') {
+                    showBiomeMap();
+                    log('✅ Check browser console (F12) for full biome map');
+                } else {
+                    log('❌ showBiomeMap not available');
+                }
+            } catch (error) {
+                log(`❌ Error: ${error.message}`);
+            }
+        }
+
+        // Auto-test on load (after 3 seconds)
+        setTimeout(() => {
+            log('🚀 Auto-testing databases...');
+            testDatabases();
+        }, 3000);
+    </script>
+</body>
+</html>

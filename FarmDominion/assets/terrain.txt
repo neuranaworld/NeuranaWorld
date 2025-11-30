@@ -1,0 +1,4 @@
+# height, texture, type
+0.0, grass.jpg, plain
+1.2, rock.jpg, hill
+-0.5, water.jpg, pond

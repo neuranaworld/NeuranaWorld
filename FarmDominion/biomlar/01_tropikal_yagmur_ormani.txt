@@ -1,0 +1,43 @@
+# TROPIKAL YAĞMUR ORMANI (Tropical Rainforest)
+# Sıcaklık: 25-30°C | Yağış: 2000-4000mm/yıl | Nem: %80-95
+
+## AĞAÇLAR
+Mahun ağacı|200-300|koyu yeşil|%100|%90|
+Kauçuk ağacı|150-200|açık yeşil|%95|%85|
+Kakao ağacı|80-120|koyu yeşil|%90|%90|
+Palmiye|100-150|yeşil|%100|%85|
+Bambu|80-120|açık yeşil|%100|%95|
+Muz ağacı|30-50|yeşil|%100|%95|
+Avokado ağacı|100-150|koyu yeşil|%85|%90|
+Mango ağacı|150-200|koyu yeşil|%90|%90|
+Papaya ağacı|50-80|açık yeşil|%95|%95|
+Hindistan cevizi|200-300|yeşil|%100|%85|
+
+## MEYVELER
+Muz|sarı|3-5kg|%100|%95|Yıl boyunca
+Mango|turuncu-sarı|1-2kg|%90|%90|Haziran-Ağustos
+Papaya|turuncu|2-4kg|%95|%95|Yıl boyunca
+Avokado|yeşil-mor|0.5-1kg|%85|%90|Mart-Eylül
+Hindistan cevizi|kahverengi|3-5kg|%100|%85|Yıl boyunca
+Ananas|sarı|2-3kg|%95|%90|Yıl boyunca
+Kakao meyvesi|kahverengi|0.5kg|%90|%90|Yıl boyunca
+Passionfruit|mor-sarı|0.1kg|%90|%95|Ocak-Aralık
+
+## SEBZELER
+Taro|beyaz-mor|1-2kg|%100|%95|
+Manyok|beyaz|2-5kg|%100|%90|
+Tatlı patates|turuncu|0.5-1kg|%90|%85|
+Bambu sürgünü|beyaz-yeşil|0.2kg|%100|%95|
+Yam|beyaz|2-4kg|%95|%90|
+
+## EKOLOJİK ÖZELLİKLER
+- Toprak: Laterit (kırmızı), humuslu
+- Yağış: Günlük sağanak
+- Işık: Az (alt katman), çok (üst katman)
+- Katmanlar: 5 farklı kat (emergent, canopy, understory, shrub, forest floor)
+- Biyoçeşitlilik: Çok yüksek
+
+## GÖRSELLİK
+Renk Paleti: #1a4d1a, #2d5a2d, #3d6b3d, #4d7c4d
+Yoğunluk: Çok yoğun
+Gölge: Koyu, %90 gölgelik

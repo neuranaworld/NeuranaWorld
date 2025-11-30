@@ -1,0 +1,121 @@
+═══════════════════════════════════════════════════════════
+    🌾 FARM DOMINION v2.1 - HIZLI BAŞLANGIÇ 🌾
+═══════════════════════════════════════════════════════════
+
+📦 1. ZIP DOSYASINI ÇIKART
+═══════════════════════════════════════════════════════════
+- farm-dominion-v2.1-ULTIMATE.zip dosyasını sağ tıkla
+- "Tümünü Ayıkla" veya "Extract All" seç
+- Masaüstüne çıkart
+
+═══════════════════════════════════════════════════════════
+🚀 2. OTOMATİK BAŞLATMA (EN KOLAY!)
+═══════════════════════════════════════════════════════════
+
+Çıkarttığın klasörde "BASLAT.bat" dosyasını çift tıkla!
+
+Bu dosya:
+✅ Otomatik kontrol yapar
+✅ Python'u bulur
+✅ Sunucuyu başlatır  
+✅ Tarayıcıyı açar
+✅ Oyunu başlatır
+
+Hepsi otomatik! 🎉
+
+═══════════════════════════════════════════════════════════
+⚙️ 3. MANUEL BAŞLATMA (Alternatif)
+═══════════════════════════════════════════════════════════
+
+Eğer BASLAT.bat çalışmazsa:
+
+1. Windows Tuşu + R
+2. "cmd" yaz, Enter
+3. Sırayla şu komutları yaz:
+
+   cd Desktop\FarmDominion
+   python -m http.server 8000
+
+4. Chrome'u aç
+5. Adres çubuğuna yaz: localhost:8000
+6. Enter!
+
+═══════════════════════════════════════════════════════════
+🎮 4. OYUNU BAŞLAT
+═══════════════════════════════════════════════════════════
+
+Tarayıcıda:
+1. Yükleme ekranını izle (10-30 saniye)
+2. "Oyuna Başla" butonuna tıkla
+3. Ekranın ortasına tıkla (fare kilidi)
+4. W A S D ile hareket et!
+
+═══════════════════════════════════════════════════════════
+⌨️ 5. KONTROLLER
+═══════════════════════════════════════════════════════════
+
+W A S D     → Hareket
+Shift       → Koş
+Space       → Zıpla
+Fare        → Kamera
+ESC         → 🔧 Ayarlar Menüsü
+G           → Gölge
+M           → Ses
+P           → Performans
+Tab         → Harita
+1-5         → Hava
+
+═══════════════════════════════════════════════════════════
+❌ SORUN GİDERME
+═══════════════════════════════════════════════════════════
+
+Problem: "Python bulunamadı"
+Çözüm: 
+1. python.org/downloads adresinden Python indir
+2. Kurarken "Add Python to PATH" işaretle
+3. Bilgisayarı yeniden başlat
+
+Problem: "Port kullanımda"
+Çözüm:
+- BASLAT.bat otomatik 8080 portu dener
+- Manuel: python -m http.server 8080
+
+Problem: "Çok yavaş"
+Çözüm:
+- ESC → Grafik → Düşük
+- Gölgeleri kapat (G tuşu)
+
+═══════════════════════════════════════════════════════════
+📞 DETAYLI YARDIM
+═══════════════════════════════════════════════════════════
+
+Tüm detaylar için bak:
+📄 KURULUM_REHBERI.md (Türkçe, çok detaylı!)
+
+═══════════════════════════════════════════════════════════
+✅ KONTROL LİSTESİ
+═══════════════════════════════════════════════════════════
+
+Başlamadan önce:
+☐ ZIP çıkarttım
+☐ Python kurulu (python --version)
+☐ BASLAT.bat'a çift tıkladım
+  VEYA
+☐ CMD'de sunucu başlattım
+☐ Chrome'da localhost:8000 açık
+☐ Yükleme tamamlandı
+☐ Ekrana tıkladım
+
+Hepsi tamam? → OYNA! 🎮
+
+═══════════════════════════════════════════════════════════
+🎉 İYİ OYUNLAR!
+═══════════════════════════════════════════════════════════
+
+Version: 2.1 Ultimate
+Dünya: 4,000,000 km²
+Biomlar: 12 gerçekçi
+Meyveler: 9 detaylı
+Ses: 50+ katman
+
+Dünyayı keşfet! 🌍

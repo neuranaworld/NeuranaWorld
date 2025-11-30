@@ -1,0 +1,287 @@
+# TROPİKAL MEYVELER - Gerçekçi Veri Tabanı
+
+## MUZ (Musa spp.)
+Bilimsel Ad: Musa acuminata / Musa balbisiana
+Biom: Tropikal Yağmur Ormanı
+Ağaç Tipi: Otsu bitki (teknik olarak ağaç değil)
+
+### BÜYÜME GEREKSİNİMLERİ
+Sıcaklık: 20-30°C (optimum 27°C)
+Minimum Sıcaklık: 15°C (zarar başlar)
+Maximum Sıcaklık: 38°C (büyüme durur)
+Yağış: 1000-2500 mm/yıl
+Nem: %60-90
+pH: 5.5-7.0
+Toprak: Zengin, drenajlı, humuslu
+Güneş: Tam güneş ama rüzgardan korunmalı
+Yükseklik: 0-1000m
+
+### BÜYÜME ÇEVRİMİ
+Dikim - İlk Hasat: 9-12 ay
+Üretim Ömrü: 25 yıl (sürgünler)
+Çiçeklenme: 6. ay
+Meyve Oluşumu: 3-4 ay sonra
+Toplam Süre: 9-12 ay (dikim-hasat)
+Hasat Sıklığı: Yıl boyunca (sürgünler)
+
+### MEYVE ÖZELLİKLERİ
+Renk (Olgun): Sarı (#ffeb3b)
+Renk (Ham): Yeşil (#7cb342)
+Renk (Aşırı Olgun): Kahverengi lekeli (#8b6f47)
+Boyut: 15-30 cm uzunluk
+Ağırlık: 100-200g (tek meyve)
+Salkım Ağırlığı: 20-50 kg (100-400 meyve)
+Şekil: Hilal / Silindirik
+Doku: Yumuşak, kremamsı
+Tat: Tatlı, hafif asidik
+
+### BESIN DEĞERİ
+Kalori: 89 kcal/100g
+Karbonhidrat: 23g
+Şeker: 12g
+Lif: 2.6g
+Potasyum: 358mg (zengin!)
+Vitamin C: 8.7mg
+Vitamin B6: Yüksek
+
+### HASAT
+Olgunluk Göstergesi: Yeşilken hasat (olgunlaşacak)
+Hasat Zamanı: Meyveler dolgunken, sararmadan
+Olgunlaşma: 5-7 gün (oda sıcaklığı)
+Raf Ömrü: 5-7 gün (olgun)
+Soğuk Depolama: Uygun değil (15°C altı zarar)
+
+### EKOLOJİK ROL
+Polinatör: Yarasalar, kuşlar, böcekler
+Tohum Dağılımı: İnsan, maymunlar, kuşlar
+Habitat: Diğer bitkiler için gölge
+Su Tüketimi: Yüksek (10-15L/gün)
+
+### ÖZEL NOTLAR
+- Her bitki sadece 1 kez meyve verir
+- Sonra sürgünler çıkar (ratoon)
+- Rüzgara hassas (yapraklar yırtılır)
+- Suya çok ihtiyaç var
+- Monokültür riski yüksek (hastalık)
+
+---
+
+## MANGO (Mangifera indica)
+Bilimsel Ad: Mangifera indica
+Biom: Tropikal Yağmur Ormanı, Tropikal Kuru Orman
+Ağaç Tipi: Her zaman yeşil ağaç
+
+### BÜYÜME GEREKSİNİMLERİ
+Sıcaklık: 24-30°C (optimum 27°C)
+Minimum Sıcaklık: 10°C (çiçek/meyve zarar)
+Maximum Sıcaklık: 42°C (stres)
+Yağış: 750-2500 mm/yıl
+Kuru Mevsim: Gerekli (çiçeklenme için 2-3 ay)
+Nem: %50-80
+pH: 5.5-7.5
+Toprak: Derin, iyi drenajlı
+Güneş: Tam güneş
+Yükseklik: 0-1200m
+
+### BÜYÜME ÇEVRİMİ
+Dikim - İlk Hasat: 4-6 yıl (aşılı)
+Dikim - İlk Hasat: 8-10 yıl (tohumdan)
+Üretim Ömrü: 40-100 yıl
+Tam Verim: 10-15 yıl
+Çiçeklenme: Aralık-Şubat (kuru mevsim)
+Meyve Oluşumu: 3-5 ay
+Hasat: Haziran-Ağustos
+
+### MEYVE ÖZELLİKLERİ
+Renk (Olgun): Sarı-turuncu-kırmızı (#ffa726, #ff6f00)
+Renk (Ham): Yeşil (#7cb342)
+Boyut: 10-25 cm uzunluk
+Ağırlık: 200g-2kg (çeşide göre)
+Şekil: Oval, böbrek şekli
+Doku: Lifli ama yumuşak
+Tat: Çok tatlı, reçineli aroma
+
+### VERİM
+Genç Ağaç (5-10 yıl): 50-100 meyve
+Orta Yaş (10-20 yıl): 200-500 meyve
+Olgun Ağaç (20+ yıl): 500-3000 meyve
+Toplam Ağırlık: 100-2000 kg/ağaç/yıl
+
+### BESIN DEĞERİ
+Kalori: 60 kcal/100g
+Karbonhidrat: 15g
+Şeker: 13.7g
+Lif: 1.6g
+Vitamin C: 36mg (zengin!)
+Vitamin A: 1082 IU
+Potasyum: 168mg
+
+### HASAT
+Olgunluk Göstergesi: 
+- Renk değişimi
+- Hafif yumuşama
+- Tatlı koku
+Hasat Yöntemi: Sapla birlikte kopar
+Olgunlaşma: 3-7 gün (oda sıcaklığı)
+Raf Ömrü: 1-2 hafta (olgun)
+Soğuk Depolama: 10-13°C (2-3 hafta)
+
+### EKOLOJİK ROL
+Polinatör: Sinekler, arılar
+Tohum Dağılımı: Büyük memeliler, insanlar
+Kök: Çok derin (6m+)
+Gölge: Yoğun (diğer bitkiler zor büyür)
+
+### ÖZEL NOTLAR
+- Kuru mevsim şart (çiçeklenme)
+- Yaş mevsimde meyve olgunlaşır
+- Alternans var (bir yıl bol, bir yıl az)
+- Yaprak reçinesi (cilt tahrişi)
+- Çok uzun ömürlü ağaç
+
+---
+
+## AVOKADO (Persea americana)
+Bilimsel Ad: Persea americana
+Biom: Tropikal Dağlık Orman (800-2500m)
+Ağaç Tipi: Her zaman yeşil ağaç
+
+### BÜYÜME GEREKSİNİMLERİ
+Sıcaklık: 15-30°C (optimum 20-25°C)
+Minimum Sıcaklık: -1°C (olgun ağaç)
+Maximum Sıcaklık: 38°C
+Yağış: 1000-2000 mm/yıl
+Nem: %60-80
+pH: 5.0-7.0 (asidik tercih)
+Toprak: Derin, çok iyi drenajlı (su birikintisi öldürür!)
+Güneş: Tam güneş / hafif gölge
+Yükseklik: 800-2500m (tropikte)
+
+### BÜYÜME ÇEVRİMİ
+Dikim - İlk Hasat: 3-4 yıl (aşılı)
+Dikim - İlk Hasat: 5-13 yıl (tohumdan)
+Üretim Ömrü: 50-100+ yıl
+Tam Verim: 7-10 yıl
+Çiçeklenme: Ocak-Mart
+Meyve Oluşumu: 6-8 ay
+Hasat: Ağustos-Mart (çeşide göre)
+
+### MEYVE ÖZELLİKLERİ
+Renk (Olgun): Koyu yeşil-mor (#2e7d32, #4a148c)
+Boyut: 7-20 cm uzunluk
+Ağırlık: 100g-1.5kg
+Şekil: Armut, oval, yuvarlak
+Doku: Kremamsı, yağlı
+Tat: Hafif fındık aroması, tatsız
+
+### VERİM
+Genç Ağaç (3-7 yıl): 10-50 meyve
+Orta Yaş (7-15 yıl): 50-200 meyve
+Olgun Ağaç (15+ yıl): 200-800 meyve
+Toplam Ağırlık: 50-400 kg/ağaç/yıl
+
+### BESIN DEĞERİ
+Kalori: 160 kcal/100g (YÜ KSEK!)
+Yağ: 15g (sağlıklı yağlar)
+Karbonhidrat: 9g
+Lif: 7g
+Potasyum: 485mg (çok zengin!)
+Folat: Yüksek
+
+### HASAT
+Olgunluk: Ağaçta olgunlaşmaz!
+Hasat: Sert iken topla
+Olgunlaşma: 3-14 gün (oda sıcaklığı)
+Test: Hafif yumuşama
+Raf Ömrü: 3-5 gün (olgun)
+Soğuk Depolama: 4-7°C (2-4 hafta, ham)
+
+### EKOLOJİK ROL
+Polinatör: Arılar (özel polinasyon sistemi!)
+Çiçek Tipi: A ve B tipleri var (karşılıklı)
+Tohum Dağılımı: Büyük memeliler (tarihte dev tembeller!)
+Kök: Sığ ama geniş
+
+### ÖZEL NOTLAR
+- Su basmaya çok hassas
+- Kök çürümesi en büyük problem
+- Polinasyon karmaşık (2 ağaç türü gerekebilir)
+- Ağaçta olgunlaşmaz (etilen gazı ile)
+- Alternans olabilir
+
+---
+
+## HİNDİSTAN CEVİZİ (Cocos nucifera)
+Bilimsel Ad: Cocos nucifera
+Biom: Tropik al Kıyı (deniz seviyesi 0-100m)
+Ağaç Tipi: Palmiye
+
+### BÜYÜME GEREKSİNİMLERİ
+Sıcaklık: 27-30°C (optimum)
+Minimum Sıcaklık: 20°C
+Maximum Sıcaklık: 38°C
+Yağış: 1500-2500 mm/yıl
+Nem: %70-90
+pH: 5.0-8.0 (toleranslı)
+Toprak: Kumlu, tuzlu (deniz kıyısı)
+Tuz Toleransı: Çok yüksek
+Güneş: Tam güneş
+Yükseklik: 0-600m (kıyı tercih)
+
+### BÜYÜME ÇEVRİMİ
+Dikim - İlk Hasat: 6-10 yıl
+Üretim Ömrü: 60-100 yıl
+Tam Verim: 12-15 yıl
+Çiçeklenme: Yıl boyunca
+Meyve Oluşumu: 12 ay
+Hasat: Yıl boyunca (sürekli)
+
+### MEYVE ÖZELLİKLERİ
+Renk (Dış): Yeşil/Kahverengi (#7cb342, #6d4c41)
+Renk (İç kabuk): Kahverengi, lifli
+Renk (Et): Beyaz (#ffffff)
+Renk (Su): Saydam
+Boyut: 25-35 cm uzunluk
+Ağırlık: 1.5-3 kg
+Şekil: Oval
+
+### VERİM
+Genç Ağaç (6-10 yıl): 30-50 meyve/yıl
+Orta Yaş (10-40 yıl): 50-200 meyve/yıl
+Olgun Ağaç (40+ yıl): 50-100 meyve/yıl
+Toplam Ağırlık: 75-500 kg/ağaç/yıl
+
+### BESIN DEĞERİ (ET)
+Kalori: 354 kcal/100g (çok yüksek!)
+Yağ: 33g (doymuş yağ)
+Karbonhidrat: 15g
+Lif: 9g
+Mangan: Çok yüksek
+Demir: Yüksek
+
+### BESIN DEĞERİ (SU)
+Kalori: 19 kcal/100ml
+Elektrolit: Zengin
+Potasyum: 250mg
+Sodyum: 105mg
+
+### HASAT
+Olgunluk: 
+- Taze (6-7 ay): Su için
+- Olgun (12 ay): Yağ için
+Hasat Yöntemi: Tırmanma veya uzun sırık
+Raf Ömrü: 2-3 ay (kabukta)
+Depolama: Serin, gölge
+
+### EKOLOJİK ROL
+Polinatör: Rüzgar, böcekler
+Tohum Dağılımı: Su (okyanus akıntıları!)
+Tuz Toleransı: Deniz suyunda büyüyebilir
+Kıyı Erozyonu: Önler
+
+### ÖZEL NOTLAR
+- Deniz kıyısına adapte
+- Tohum suda aylar yüzebilir
+- Tüm kısımları kullanılır
+- Çok çok dayanıklı
+- "Yaşam ağacı" olarak bilinir

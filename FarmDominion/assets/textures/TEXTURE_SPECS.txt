@@ -1,0 +1,442 @@
+# TEXTURE SPECIFICATIONS - Ultra Realistic
+# Her texture için gerçek fotoğraf referansları ve teknik detaylar
+
+## ÇİMEN TEXTURES (Grass)
+
+### TROPICAL_GRASS (Tropikal Çayır)
+Dosya: grass_tropical.jpg
+Çözünürlük: 2048x2048 (4K ready)
+Tiling: Seamless
+Normal Map: Evet
+
+Özellikler:
+- Renk: Parlak yeşil (#4ade80, #66bb6a)
+- Yaprak Genişliği: 3-5mm
+- Yükseklik Variation: 20-40cm
+- Nem: Parlak, ıslak görünüm
+- Roughness: 0.6
+- Metallic: 0.0
+- Normal Strength: 0.8
+
+Detail:
+- İnce, uzun yapraklar
+- Yoğun kaplama (%95 coverage)
+- Parlak yüzey (yüksek nem)
+- Hafif sarı uçlar (güneş yanığı)
+
+---
+
+### TEMPERATE_GRASS (Ilıman Bölge Çim)
+Dosya: grass_temperate.jpg
+Çözünürlük: 2048x2048
+Tiling: Seamless
+Normal Map: Evet
+
+Özellikler:
+- Renk: Orta yeşil (#7cb342, #8bc34a)
+- Yaprak Genişliği: 2-4mm
+- Yükseklik: 10-20cm
+- Nem: Orta, mat görünüm
+- Roughness: 0.7
+- Metallic: 0.0
+- Normal Strength: 0.6
+
+Mevsimsel Varyasyon:
+İlkbahar: Açık yeşil (#9ccc65)
+Yaz: Koyu yeşil (#689f38)
+Sonbahar: Sarımsı (#aed581, #dce775)
+Kış: Kahverengi (#8d6e63)
+
+---
+
+### SAVANNA_GRASS (Savan Çayırı)
+Dosya: grass_savanna_wet.jpg, grass_savanna_dry.jpg
+Çözünürlük: 2048x2048
+Tiling: Seamless
+
+YAŞ MEVSIM:
+- Renk: Parlak yeşil (#7cb342)
+- Yükseklik: 100-300cm
+- Yoğunluk: %80
+- Roughness: 0.5
+
+KURU MEVSIM:
+- Renk: Altın sarısı (#f9a825, #fbc02d)
+- Yükseklik: 80-200cm (kurumuş)
+- Yoğunluk: %60
+- Roughness: 0.8
+
+---
+
+### DESERT_GRASS (Çöl Çimi - Seyrek)
+Dosya: grass_desert.jpg
+Çözünürlük: 2048x2048
+Tiling: Seamless
+
+Özellikler:
+- Renk: Soluk yeşil-sarı (#c5e1a5, #dce775)
+- Kaplama: %10-20 (çok seyrek)
+- Yükseklik: 5-15cm
+- Kuru, sert yapraklar
+- Roughness: 0.9
+
+---
+
+## TOPRAK TEXTURES (Soil/Ground)
+
+### LATERITE_SOIL (Laterit - Tropikal)
+Dosya: soil_laterite.jpg
+Çözünürlük: 2048x2048
+Normal Map: Evet
+
+Özellikler:
+- Renk: Kırmızı-turuncu (#c62828, #d84315)
+- Demir oksit zengin
+- Kil içeriği: Yüksek
+- Roughness: 0.8
+- Displacement: 0.3
+- Normal Strength: 0.9
+
+Detay:
+- Kırmızı-turuncu ton
+- Çatlamış yüzey (kuru)
+- Parçalı yapı
+- Az organik madde
+
+---
+
+### BROWN_FOREST_SOIL (Kahverengi Orman Toprağı)
+Dosya: soil_forest_brown.jpg
+Çözünürlük: 2048x2048
+Normal Map: Evet
+
+Özellikler:
+- Renk: Koyu kahve (#5d4037, #6d4c41)
+- Humus zengin
+- Organik madde: Yüksek
+- Roughness: 0.7
+- Nem: Orta
+
+Detay:
+- Yaprak döküntüleri
+- Küçük dallar
+- Yosun lekeleri
+- Gevşek yapı
+
+---
+
+### CHERNOZEM (Karaağaç - Çayır)
+Dosya: soil_chernozem.jpg
+Çözünürlük: 2048x2048
+
+Özellikler:
+- Renk: Siyahımsı kahve (#3e2723, #4e342e)
+- Çok verimli
+- Organik madde: Çok yüksek (%10)
+- Roughness: 0.6
+
+Detay:
+- Zengin, koyu renk
+- Granüler yapı
+- Kök izleri
+
+---
+
+### SAND (Kum - Çöl)
+Dosya: sand_desert.jpg
+Çözünürlük: 2048x2048
+Normal Map: Evet
+
+Özellikler:
+- Renk: Bej-altın (#f4e4c4, #e8d4b4)
+- Tane boyutu: 0.5-2mm
+- Roughness: 0.4 (pürüzsüz)
+- Specular: 0.2 (hafif parlak)
+
+Detay:
+- Rüzgar dalgaları
+- Küçük tepecikler
+- Tane dokusu
+- Gölge ve ışık oyunu
+
+---
+
+## KAYA TEXTURES (Rock/Stone)
+
+### GRANITE (Granit)
+Dosya: rock_granite.jpg
+Çözünürlük: 4096x4096
+Normal Map: Evet
+Displacement: Evet
+
+Özellikler:
+- Renk: Gri-pembe (#757575, #9e9e9e)
+- Kristal yapı: Görünür
+- Roughness: 0.9
+- Sertlik: Çok yüksek
+
+Detay:
+- Kuvars kristalleri
+- Feldispat taneleri
+- Biyotit noktaları
+- Düzensiz yüzey
+
+---
+
+### LIMESTONE (Kireçtaşı)
+Dosya: rock_limestone.jpg
+Çözünürlük: 4096x4096
+
+Özellikler:
+- Renk: Beyazımsı-bej (#f5f5f5, #e0e0e0)
+- Fosil izleri: Olabilir
+- Roughness: 0.7
+- Çözünebilir: Evet (asit)
+
+Detay:
+- Katmanlı yapı
+- Fosil izleri
+- Erime delikleri
+- Mat yüzey
+
+---
+
+### BASALT (Bazalt - Volkanik)
+Dosya: rock_basalt.jpg
+Çözünürlük: 4096x4096
+
+Özellikler:
+- Renk: Koyu gri-siyah (#424242, #212121)
+- Volkanik köken
+- Roughness: 0.85
+- Sertlik: Yüksek
+
+Detay:
+- İnce taneli
+- Gaz boşlukları
+- Koyu, homojen
+- Sütunsu kırılma
+
+---
+
+### SANDSTONE (Kumtaşı)
+Dosya: rock_sandstone.jpg
+Çözünürlük: 4096x4096
+
+Özellikler:
+- Renk: Kırmızı-turuncu-sarı (#d84315, #f9a825)
+- Kum taneleri: Görünür
+- Roughness: 0.75
+- Yumuşak: Kazınabilir
+
+Detay:
+- Belirgin katmanlar
+- Kum tane dokusu
+- Rüzgar erozyonu
+- Çapraz katmanlanma
+
+---
+
+## SU TEXTURES (Water)
+
+### TROPICAL_WATER (Tropikal Temiz Su)
+Dosya: water_tropical.jpg
+Animated: Evet
+Normal Map: Animated
+
+Özellikler:
+- Renk: Turkuaz-mavi (#00bcd4, #4dd0e1)
+- Şeffaflık: %90 (çok berrak)
+- Roughness: 0.1
+- Metallic: 0.0
+- Reflection: 0.8
+- Refraction: 1.333
+
+Animasyon:
+- Dalgalar: Küçük (5-10cm)
+- Frekans: Yavaş
+- Köpük: Minimal
+- Ripples: Hafif
+
+---
+
+### TEMPERATE_WATER (Ilıman Bölge Suyu)
+Dosya: water_temperate.jpg
+Animated: Evet
+
+Özellikler:
+- Renk: Koyu mavi-yeşil (#1976d2, #0288d1)
+- Şeffaflık: %60-70
+- Roughness: 0.2
+- Reflection: 0.6
+
+Animasyon:
+- Dalgalar: Orta (10-30cm)
+- Frekans: Orta
+- Köpük: Orta
+- Yansıma: Gökyüzü, ağaçlar
+
+---
+
+### RIVER_WATER (Nehir Suyu)
+Dosya: water_river.jpg
+Animated: Evet (akış yönlü)
+
+Özellikler:
+- Renk: Kahverengi-yeşil (#6d4c41, #795548)
+- Şeffaflık: %20-40 (bulanık)
+- Akış hızı: Değişken
+- Roughness: 0.3
+
+Animasyon:
+- Akış yönü: Eğim bazlı
+- Hız: 0.5-2 m/s
+- Girdaplar: Kayaların arkası
+- Köpük: Hızlı bölgelerde
+
+---
+
+## AHŞAP TEXTURES (Wood)
+
+### OAK_BARK (Meşe Kabuğu)
+Dosya: bark_oak.jpg
+Çözünürlük: 4096x4096
+Normal Map: Evet
+
+Özellikler:
+- Renk: Koyu kahve-gri (#5d4037, #6d4c41)
+- Doku: Derin çatlaklar
+- Roughness: 0.9
+- Displacement: Yüksek
+
+Detay:
+- Dikey çatlaklar
+- Kaba yüzey
+- Yosun lekeleri
+- Böcek delikleri
+
+---
+
+### PINE_BARK (Çam Kabuğu)
+Dosya: bark_pine.jpg
+Çözünürlük: 4096x4096
+
+Özellikler:
+- Renk: Kırmızı-kahve (#8d6e63, #a1887f)
+- Doku: Pullu, kabuklar
+- Roughness: 0.85
+- Reçine izleri: Evet
+
+Detay:
+- Büyük pullar
+- Reçine akıntıları
+- Parlak alanlar
+- Dökülme izleri
+
+---
+
+### PALM_TRUNK (Palmiye Gövdesi)
+Dosya: bark_palm.jpg
+Çözünürlük: 2048x2048
+
+Özellikler:
+- Renk: Kahve-bej (#8d6e63, #a1887f)
+- Doku: Halka izleri
+- Roughness: 0.7
+- Pattern: Horizontal
+
+Detay:
+- Yaprak izleri (halka)
+- Düzenli pattern
+- Lifli yapı
+- Pürüzsüz bölgeler
+
+---
+
+### BAMBOO (Bambu)
+Dosya: bark_bamboo.jpg
+Çözünürlük: 2048x2048
+
+Özellikler:
+- Renk: Açık yeşil-sarı (#9ccc65, #c5e1a5)
+- Doku: Düz, parlak
+- Roughness: 0.3
+- Segmentler: Belirgin
+
+Detay:
+- Horizontal boğumlar
+- Pürüzsüz yüzey
+- Mumsu kaplama
+- Dikey çizgiler
+
+---
+
+## ÖZEL TEXTURE ÖZELLİKLERİ
+
+### PBR (Physically Based Rendering) Bilgileri
+Her texture için:
+- Albedo/Diffuse Map (Base Color)
+- Normal Map (Yüzey detayları)
+- Roughness Map (Pürüzlülük)
+- Metallic Map (Metal özellikleri)
+- Ambient Occlusion (Gölge detayları)
+- Displacement/Height Map (Derinlik)
+
+### Tiling ve Seamless
+- Tüm textureler seamless
+- Edge blending algoritmalar
+- Procedural variation
+- No visible repetition
+
+### LOD (Level of Detail)
+Texture Mipmap seviyeleri:
+- 4096x4096 (Ultra - yakın)
+- 2048x2048 (Yüksek - orta)
+- 1024x1024 (Orta - uzak)
+- 512x512 (Düşük - çok uzak)
+
+### Mevsimsel Varyasyonlar
+Değişken textureler:
+- Çim: 4 mevsim
+- Yaprak: 4 mevsim (deciduous)
+- Toprak: 2 durum (ıslak/kuru)
+- Su: 2 durum (sakin/dalgalı)
+
+### Animasyon
+Animated textureler:
+- Su: Dalga hareketi (UV scroll + normal)
+- Çim: Rüzgar (vertex displacement)
+- Yapraklar: Sallanma (vertex animation)
+- Bulutlar: Hareket (UV scroll)
+
+---
+
+## UYGULAMA NOTLARI
+
+### Shader Kullanımı
+```glsl
+// Örnek çim shader'ı
+uniform sampler2D grassTexture;
+uniform sampler2D grassNormal;
+uniform float windStrength;
+uniform float time;
+
+// Rüzgar animasyonu
+vec3 windEffect = vec3(
+    sin(time * windStrength + position.x * 0.1),
+    0.0,
+    cos(time * windStrength + position.z * 0.1)
+);
+```
+
+### Blending
+- Biom geçişlerinde blend
+- Yükseklik bazlı blend (kaya/toprak)
+- Eğim bazlı blend (ot/taş)
+- Nem bazlı blend (ıslak/kuru)
+
+### Performance
+- Texture atlasing (combine textures)
+- Compression (DXT/BC7)
+- Streaming (load on demand)
+- Mipmap usage (far = low res)

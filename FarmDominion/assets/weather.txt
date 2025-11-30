@@ -1,0 +1,9 @@
+# Weather Configuration
+# Format: type, duration, probability
+# Types: clear, rain, storm, fog, snow
+
+clear, 600, 0.5
+rain, 180, 0.3
+fog, 120, 0.15
+storm, 90, 0.05
+snow, 150, 0.1

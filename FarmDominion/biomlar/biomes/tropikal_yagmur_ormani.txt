@@ -1,0 +1,129 @@
+# TROPİKAL YAĞMUR ORMANI (Tropical Rainforest)
+# Gerçek Dünya Lokasyonları: Amazon, Kongo Havzası, Güneydoğu Asya
+
+## İKLİM VERİLERİ
+Sıcaklık Ortalaması: 25-27°C
+Sıcaklık Aralığı: 20-35°C (yıllık)
+Günlük Sıcaklık Farkı: 2-5°C (çok az)
+Yağış Miktarı: 2000-10000 mm/yıl
+Nem Oranı: %77-88 (ortalama %80+)
+Güneş Işığı: Zemin seviyesi %1-2, kanopi %100
+Mevsim: Yok veya çok hafif (sürekli sıcak ve nemli)
+
+## TOPRAK ÖZELLİKLERİ
+Tip: Laterit (Oxisol)
+Renk: Kırmızı-turuncu (demir oksit)
+pH: 4.5-5.5 (asidik)
+Organik Madde: %2-4 (üst 2cm'de yoğun)
+Derinlik: Çok derin (>3m)
+Besin: Fakir (sürekli yıkanma)
+Drenaj: Mükemmel
+Mikrobiyoloji: Çok aktif (hızlı döngü)
+
+## KATMAN YAPISI
+1. EMERGENT (45-55m)
+   - Dev ağaçlar
+   - Güneşe tam erişim
+   - Kuş ve maymun habitatı
+   
+2. CANOPY (30-45m)
+   - Ana ağaç tacı katmanı
+   - %95 biyoçeşitlilik burada
+   - Işığın %95'ini yakalar
+   
+3. UNDERSTORY (10-30m)
+   - Genç ağaçlar, palmiyeler
+   - %5-15 ışık
+   - Yüksek nem
+   
+4. SHRUB LAYER (2-10m)
+   - Çalılıklar, küçük ağaçlar
+   - %1-5 ışık
+   - Çok nemli
+   
+5. FOREST FLOOR (0-2m)
+   - Çok az bitki
+   - %1'den az ışık
+   - Humus tabakası çok ince
+   - Hızlı ayrışma
+
+## AĞAÇ LİSTESİ
+# Format: Ad|Min_Yükseklik|Max_Yükseklik|Gövde_Çapı_cm|Büyüme_Yılı|Meyve_Var
+
+Mahun_Agaci|30|45|150|150|0
+Kaucuk_Agaci|20|35|80|40|0
+Dipterokarp|40|60|200|200|0
+Brezilya_Cevizi|40|50|180|300|1
+Kapok_Agaci|50|70|300|100|0
+Ebony_Agaci|20|30|80|200|0
+
+## MEYVELİ AĞAÇLAR
+Kakao_Agaci|5|10|20|5|1
+Muz_Agaci|3|7|30|1|1
+Papaya_Agaci|5|10|30|2|1
+Mango_Agaci|15|30|100|7|1
+Avokado_Agaci|10|20|60|5|1
+Hindistan_Cevizi|20|30|40|7|1
+Ananas_Bitkisi|0.5|1|15|1.5|1
+Marakuya_Asma|3|10|5|1|1
+Guava_Agaci|3|10|30|3|1
+Breadfruit_Agaci|15|25|100|5|1
+
+## BİTKİLER
+Bambu|10|30|15|3|0
+Dev_Yaprak_Bitki|1|3|5|1|0
+Liyan_Asma|20|100|10|10|0
+Epifitler|0.5|2|2|2|0
+Orkide|0.3|1|1|3|0
+
+## EKOLOJİK DÖNGÜ
+Yaprak Dökümü: Sürekli (ama ağaç hep yeşil)
+Yeni Yaprak: Sürekli
+Çiçeklenme: Yıl boyunca (tür bazlı)
+Meyve: Yıl boyunca (farklı türler farklı zamanlarda)
+Ayrışma Hızı: 6 hafta (organik madde)
+Besin Döngüsü: Çok hızlı (24-48 saat)
+
+## BÜYÜME KOŞULLARI
+Işık İhtiyacı Kategorileri:
+- Emergent: %90-100 (güneş seven)
+- Canopy: %70-100
+- Understory: %10-30 (gölge toleranslı)
+- Shrub: %5-15 (gölge seven)
+- Floor: %1-5 (çok gölge)
+
+Su İhtiyacı:
+- Minimum: 2000mm/yıl
+- Optimum: 3000-4000mm/yıl
+- Kuraklık toleransı: Yok (15 gün kuru = stres)
+
+Sıcaklık Toleransı:
+- Optimum: 25-27°C
+- Minimum: 18°C (zarar başlar)
+- Maximum: 35°C (stres başlar)
+
+## GÖRSELLİK
+Kanopi Renk: #0d3d0d, #1a4d1a, #2d5a2d
+Understory Renk: #1a3d1a, #2d4d2d
+Zemin Renk: #2d2415, #3d3425 (karanlık kahverengi)
+Işık Geçirgenlik: %1 (zemin seviyesi)
+Görüş Mesafesi: 5-20m (yoğun bitki)
+Nem Görünümü: Sis, buhar, yosun
+
+## SES PEYZAJI
+Gündüz: Kuş cıvıltıları, maymun sesleri, böcekler
+Gece: Kurbağalar, böcekler, gece hayvanları
+Yağmur: Günlük sağanak (30-120 dakika)
+Sessizlik: Nadiren (çok canlı)
+
+## ÖZEL UYARLAMALAR
+Ağaçlar:
+- Buttress kökleri (destek)
+- Drop tips (suyun akması için)
+- Smooth bark (epifitlere karşı)
+- Cauliflory (gövdede çiçek)
+
+Bitkiler:
+- Drip tips
+- Wax coatings
+- Myrmecophytes (karınca evleri)

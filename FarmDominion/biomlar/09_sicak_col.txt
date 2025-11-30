@@ -1,0 +1,30 @@
+# SICAK ÇÖL (Hot Desert) - Sahra tipi
+# Sıcaklık: 20-50°C | Yağış: <250mm/yıl | Aşırı kurak
+
+## AĞAÇLAR (Çok Az)
+Hurma ağacı|150-250|yeşil|%30|%10|Vaha
+Akasya (çöl)|30-80|açık yeşil|%25|%15|Seyrek
+
+## MEYVELER (Çok Sınırlı)
+Hurma|kahverengi|0.02kg|%30|%10|Vaha - Yaz-Sonbahar
+
+## SEBZELER (Yok - İnsan eliyle sulama gerekli)
+
+## BİTKİLER
+Kaktüs|dikenli|yeşil|%20|%5|Su depolar
+Çöl çalılığı|kahve-yeşil|%15|%10|Derin kökler
+Devetabanı|dikenli yeşil|%20|%8|Sukkulent
+
+## EKOLOJİK ÖZELLİKLER
+- Toprak: Kumlu, taşlı, besin fakiri
+- Su: Çok nadir, vaha veya yeraltı
+- Sıcaklık farkı: Gündüz 50°C, gece 5°C
+- Adaptasyon: Su depolama, derin kökler, dikenler
+- Biyoçeşitlilik: Çok düşük
+- Tarım: Sadece vaha veya yapay sulama ile
+
+## GÖRSELLİK
+Renk Paleti: #e8d4b4, #d4b896, #c4a87a, #f4e4c4 (kum sarısı-bej)
+Yoğunluk: Çok seyrek, neredeyse yok
+Gölge: Yok, %0-5
+Zemin: Kum tepeleri, kaya

@@ -1,0 +1,52 @@
+# Meyveler Listesi
+
+1. Elma
+2. Armut
+3. Portakal
+4. Mandalina
+5. Limon
+6. Greyfurt
+7. Muz
+8. Çilek
+9. Kiraz
+10. Vişne
+11. Üzüm
+12. Karpuz
+13. Kavun
+14. Şeftali
+15. Nektarin
+16. Kayısı
+17. Erik
+18. Nar
+19. İncir
+20. Hurma
+21. Avokado
+22. Kivi
+23. Mango
+24. Ananas
+25. Papaya
+26. Ahududu
+27. Böğürtlen
+28. Yaban mersini
+29. Dut
+30. Ayva
+31. Trabzon hurması
+32. Kızılcık
+33. Muşmula
+34. Kokteyl domates
+35. Marakuya
+36. Liçi
+37. Guava
+38. Pomelo
+39. Karahıdır
+40. Turunç
+41. Hint hurması
+42. Kuşburnu
+43. Mersin meyvesi
+44. Feijoa
+45. Pikan cevizi
+46. Ceviz
+47. Badem
+48. Fındık
+49. Antep fıstığı
+50. Hindistan cevizi

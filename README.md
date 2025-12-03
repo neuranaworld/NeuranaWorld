@@ -54,31 +54,80 @@
 - 🌐 **Açık Kaynak**: MIT lisansı ile ücretsiz
 
 ## 📁 Proje Yapısı
+
 ```
 NeuranaWorld/
-├── src/               # React uygulaması (Vite)
-│   ├── App.jsx       # Ana uygulama ve route tanımları
-│   ├── main.jsx      # Giriş noktası
-│   ├── index.css     # Global stiller
-│   └── pages/        # Sayfa bileşenleri
-├── Oyunlar/          # Oyun bileşenleri (JSX)
-│   ├── Aksiyon/     # Aksiyon oyunları
-│   ├── Bulmaca/     # Bulmaca oyunları
-│   ├── Strateji/    # Strateji oyunları
-│   ├── Kelime/      # Kelime oyunları
-│   ├── Macera/      # Macera oyunları
-│   └── Spor/        # Spor oyunları
-├── Uygulamalar/      # Uygulama meta dosyaları
-│   ├── Araçlar/     # Araç uygulamaları
-│   ├── Eğitim/      # Eğitim uygulamaları
-│   ├── Ses Müzik/   # Ses ve müzik uygulamaları
-│   ├── Zaman/       # Zaman yönetimi uygulamaları
-│   └── Çizim Tasarım/ # Çizim ve tasarım uygulamaları
-├── backend/          # Python backend servisleri
-├── docs/             # Dokümantasyon dosyaları
-├── scripts/          # Yardımcı scriptler
-└── archive/          # Eski/kullanılmayan dosyalar
+├── 📱 src/                      # Ana React uygulaması (Vite)
+│   ├── App.jsx                 # Ana uygulama ve route tanımları
+│   ├── main.jsx                # Giriş noktası
+│   ├── index.css               # Global stiller
+│   ├── components/             # React bileşenleri
+│   │   └── games/             # Oyun bileşenleri (JSX formatında)
+│   ├── pages/                  # Sayfa bileşenleri
+│   ├── hooks/                  # Custom React hooks
+│   └── utils/                  # Yardımcı fonksiyonlar
+│
+├── 🎮 Oyunlar/                  # Oyun kaynak dosyaları
+│   ├── Aksiyon/               # Aksiyon oyunları
+│   ├── Bulmaca/               # Bulmaca oyunları
+│   ├── Strateji/              # Strateji oyunları
+│   ├── Kelime/                # Kelime oyunları
+│   ├── Macera/                # Macera oyunları
+│   └── Spor/                  # Spor oyunları
+│
+├── 🌐 public/                   # Statik dosyalar
+│   └── Oyunlar-legacy/        # HTML5 standalone oyunlar
+│       ├── Aksiyon/           # Snake, Flappy Bird, Pong, etc.
+│       ├── Bulmaca/           # 2048, Tetris, Sudoku, etc.
+│       ├── Strateji/          # Okey, Batak, Poker, etc.
+│       ├── Kelime/            # Adam Asmaca, etc.
+│       ├── Macera/            # Labirent, etc.
+│       ├── Spor/              # Mini Golf, etc.
+│       └── Simulasyon/        # Farm Dominion, etc.
+│
+├── 💻 Uygulamalar/              # Uygulama metadata dosyaları
+│   ├── Araçlar/               # Hesap Makinesi, Birim Dönüştürücü
+│   ├── Eğitim/                # Dört İşlem, Öğrenme araçları
+│   ├── Ses Müzik/             # Müzik Klavyesi
+│   ├── Zaman/                 # Çalar Saat, Kronometre, Pomodoro
+│   └── Çizim Tasarım/         # 2D Grafik, Çizim araçları
+│
+├── 🚀 NeuranaWorldGalaxy/       # Alt Proje: Metaverse/Galaxy uygulaması
+│   ├── frontend/              # React + Babylon.js frontend
+│   └── backend/               # Backend servisleri
+│
+├── 🎯 survivalgame/             # Alt Proje: Survival oyunu
+│   ├── frontend/              # React frontend
+│   └── backend/               # Backend servisleri
+│
+├── 🐍 backend/                  # Ana Python backend servisleri
+├── 📖 docs/                     # Dokümantasyon dosyaları
+├── 🔧 scripts/                  # Yardımcı scriptler
+│
+└── 📄 Yapılandırma dosyaları
+    ├── package.json           # npm bağımlılıkları
+    ├── vite.config.js         # Vite yapılandırması
+    ├── .eslintrc.json         # ESLint kuralları
+    ├── .gitignore             # Git ignore kuralları
+    ├── CODE_OF_CONDUCT.md     # Davranış kuralları
+    ├── SECURITY.md            # Güvenlik politikası
+    ├── CONTRIBUTING.md        # Katkı rehberi
+    └── CHANGELOG.md           # Değişiklik günlüğü
 ```
+
+### 📌 Proje Organizasyonu Notları
+
+#### Ana Uygulama (src/)
+Modern **React + Vite** uygulaması. Tüm yeni oyunlar ve uygulamalar buraya JSX/React bileşenleri olarak eklenir.
+
+#### Legacy Oyunlar (public/Oyunlar-legacy/)
+HTML5/Canvas tabanlı **standalone oyunlar**. Bu oyunlar kendi başlarına çalışabilir ve iframe içinde yüklenir. Yeni oyunlar için React kullanılması önerilir.
+
+#### Alt Projeler
+- **NeuranaWorldGalaxy**: Babylon.js ile geliştirilmiş 3D metaverse/galaxy uygulaması
+- **survivalgame**: Ayrı bir survival oyunu projesi
+
+Her alt proje kendi package.json'ına sahiptir ve bağımsız olarak geliştirilebilir.
 
 ## Kurulum ve Çalıştırma
 

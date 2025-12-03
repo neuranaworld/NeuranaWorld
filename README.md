@@ -1,8 +1,59 @@
-# NeuranaWorld
+<div align="center">
 
-Eğlenceli oyunlar ve kullanışlı uygulamalar sunan bir platform.
+# 🧠 NeuranaWorld
 
-## Proje Yapısı
+### Eğlenceli Oyunlar ve Kullanışlı Uygulamalar Platformu
+
+[![GitHub Stars](https://img.shields.io/github/stars/neuranaworld/NeuranaWorld?style=for-the-badge&logo=github)](https://github.com/neuranaworld/NeuranaWorld/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/neuranaworld/NeuranaWorld?style=for-the-badge&logo=github)](https://github.com/neuranaworld/NeuranaWorld/network)
+[![GitHub Issues](https://img.shields.io/github/issues/neuranaworld/NeuranaWorld?style=for-the-badge&logo=github)](https://github.com/neuranaworld/NeuranaWorld/issues)
+[![GitHub License](https://img.shields.io/github/license/neuranaworld/NeuranaWorld?style=for-the-badge)](LICENSE)
+
+[![React](https://img.shields.io/badge/React-18.2.0-61DAFB?style=for-the-badge&logo=react&logoColor=white)](https://reactjs.org/)
+[![Vite](https://img.shields.io/badge/Vite-5.0.8-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![ESLint](https://img.shields.io/badge/ESLint-8.55.0-4B32C3?style=for-the-badge&logo=eslint&logoColor=white)](https://eslint.org/)
+
+[🎮 Canlı Demo](https://neuranaworld.github.io/NeuranaWorld/) • [📖 Dokümantasyon](docs/) • [🐛 Hata Bildir](https://github.com/neuranaworld/NeuranaWorld/issues) • [💡 Özellik İste](https://github.com/neuranaworld/NeuranaWorld/issues)
+
+</div>
+
+---
+
+## 📋 İçindekiler
+
+- [✨ Özellikler](#-özellikler)
+- [📁 Proje Yapısı](#-proje-yapısı)
+- [🚀 Kurulum ve Çalıştırma](#-kurulum-ve-çalıştırma)
+- [🎮 Oyunlar](#-oyun-listesi)
+- [💻 Uygulamalar](#-uygulamalar)
+- [🛠️ Teknolojiler](#️-teknolojiler)
+- [🔧 Özelleştirme](#-özelleştirme)
+- [🤝 Katkıda Bulunma](#-katkıda-bulunma)
+- [📄 Lisans](#-lisans)
+
+## ✨ Özellikler
+
+<div align="center">
+
+| 🎮 **Oyunlar** | 💻 **Uygulamalar** | 🛠️ **Araçlar** |
+|:-------------:|:-----------------:|:--------------:|
+| 27+ Oyun | 9+ Uygulama | Modern Stack |
+| 6 Kategori | Eğitim & Araçlar | Hot Reload |
+| Responsive | Müzik & Çizim | ESLint |
+
+</div>
+
+### 🌟 Neden NeuranaWorld?
+
+- ⚡ **Hızlı ve Modern**: Vite ile lightning-fast build ve HMR
+- 🎨 **Responsive Tasarım**: Tüm cihazlarda mükemmel deneyim
+- 🔧 **Kolay Geliştirme**: Path aliases, error boundaries, custom hooks
+- 📦 **Modüler Yapı**: Temiz ve organize kod yapısı
+- 🎯 **SEO Optimized**: Arama motorları için optimize
+- 🔒 **Güvenli**: Modern güvenlik standartları
+- 🌐 **Açık Kaynak**: MIT lisansı ile ücretsiz
+
+## 📁 Proje Yapısı
 ```
 NeuranaWorld/
 ├── src/               # React uygulaması (Vite)
@@ -255,6 +306,76 @@ Detaylı dokümantasyon için `docs/` klasörüne bakınız:
 }
 ```
 
-## Lisans
+## 🤝 Katkıda Bulunma
+
+Katkılarınızı bekliyoruz! 🎉
+
+### Nasıl Katkıda Bulunabilirsiniz?
+
+1. 🍴 **Fork** edin
+2. 🔨 **Feature branch** oluşturun (`git checkout -b feature/amazing-feature`)
+3. 💾 **Commit** edin (`git commit -m '✨ feat: Add amazing feature'`)
+4. 📤 **Push** edin (`git push origin feature/amazing-feature`)
+5. 🔄 **Pull Request** açın
+
+Detaylı bilgi için [CONTRIBUTING.md](CONTRIBUTING.md) dosyasını okuyun.
+
+### 📜 Davranış Kuralları
+
+Lütfen [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) dosyasını okuyun. Saygılı ve kapsayıcı bir topluluk oluşturmak için çalışıyoruz.
+
+### 🔐 Güvenlik
+
+Güvenlik açığı bildirmek için [SECURITY.md](SECURITY.md) dosyasını okuyun.
+
+## 📞 İletişim
+
+- 📧 **Email**: [email protected]
+- 💬 **GitHub Issues**: [Issues](https://github.com/neuranaworld/NeuranaWorld/issues)
+- 📖 **Docs**: [Dokümantasyon](docs/)
+
+## 📄 Lisans
 
 Bu proje [MIT lisansı](LICENSE) altında lisanslanmıştır.
+
+```
+MIT License - Özgürce kullanın, değiştirin ve paylaşın!
+```
+
+## 🙏 Teşekkürler
+
+### Katkıda Bulunanlar
+
+Bu projeye katkıda bulunan herkese teşekkür ederiz!
+
+<!-- ALL-CONTRIBUTORS-LIST:START -->
+<!-- Katkıda bulunanlar burada listelenecek -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+### Kullanılan Teknolojiler ve Kütüphaneler
+
+- [React](https://reactjs.org/) - UI library
+- [Vite](https://vitejs.dev/) - Build tool
+- [React Router](https://reactrouter.com/) - Routing
+- [Lucide React](https://lucide.dev/) - Icons
+- [Axios](https://axios-http.com/) - HTTP client
+- Ve daha fazlası...
+
+---
+
+<div align="center">
+
+### 🌟 NeuranaWorld'ü Beğendiyseniz Yıldız Vermeyi Unutmayın! 🌟
+
+[![GitHub Stars](https://img.shields.io/github/stars/neuranaworld/NeuranaWorld?style=social)](https://github.com/neuranaworld/NeuranaWorld/stargazers)
+
+**Made with ❤️ by [NeuranaWorld Team](https://github.com/neuranaworld)**
+
+[🏠 Ana Sayfa](https://neuranaworld.github.io/NeuranaWorld/) •
+[📚 Dokümantasyon](docs/) •
+[🐛 Issue Tracker](https://github.com/neuranaworld/NeuranaWorld/issues) •
+[💡 Feature Requests](https://github.com/neuranaworld/NeuranaWorld/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement)
+
+**© 2024 NeuranaWorld. Tüm hakları saklıdır.**
+
+</div>

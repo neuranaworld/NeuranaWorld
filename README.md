@@ -92,13 +92,16 @@ NeuranaWorld/
 │   ├── Zaman/                 # Çalar Saat, Kronometre, Pomodoro
 │   └── Çizim Tasarım/         # 2D Grafik, Çizim araçları
 │
-├── 🚀 NeuranaWorldGalaxy/       # Alt Proje: Metaverse/Galaxy uygulaması
-│   ├── frontend/              # React + Babylon.js frontend
-│   └── backend/               # Backend servisleri
-│
-├── 🎯 survivalgame/             # Alt Proje: Survival oyunu
-│   ├── frontend/              # React frontend
-│   └── backend/               # Backend servisleri
+├── 🚀 apps/                     # Alt Projeler
+│   ├── galaxy/                # NeuranaWorld Galaxy (Metaverse/3D Platform)
+│   │   ├── frontend/          # React + Babylon.js
+│   │   ├── backend/           # Backend servisleri
+│   │   └── README.md          # Galaxy dokümantasyonu
+│   │
+│   └── survival/              # Survival Game (Multiplayer Platform)
+│       ├── frontend/          # React frontend
+│       ├── backend/           # Python backend (Okey, LLM, Turkish games)
+│       └── README.md          # Survival dokümantasyonu
 │
 ├── 🐍 backend/                  # Ana Python backend servisleri
 ├── 📖 docs/                     # Dokümantasyon dosyaları
@@ -123,11 +126,22 @@ Modern **React + Vite** uygulaması. Tüm yeni oyunlar ve uygulamalar buraya JSX
 #### Legacy Oyunlar (public/Oyunlar-legacy/)
 HTML5/Canvas tabanlı **standalone oyunlar**. Bu oyunlar kendi başlarına çalışabilir ve iframe içinde yüklenir. Yeni oyunlar için React kullanılması önerilir.
 
-#### Alt Projeler
-- **NeuranaWorldGalaxy**: Babylon.js ile geliştirilmiş 3D metaverse/galaxy uygulaması
-- **survivalgame**: Ayrı bir survival oyunu projesi
+#### Alt Projeler (apps/)
+Alt projeler `apps/` klasöründe organize edilmiştir. Her biri bağımsız bir uygulama olup kendi bağımlılıklarına sahiptir:
 
-Her alt proje kendi package.json'ına sahiptir ve bağımsız olarak geliştirilebilir.
+- **galaxy** ([README](apps/galaxy/README.md)): 3D Metaverse platformu
+  - Babylon.js 3D engine
+  - React 19 + Radix UI
+  - Multiplayer desteği (Colyseus)
+  - Matematik, oyunlar, AI araçları
+
+- **survival** ([README](apps/survival/README.md)): Multiplayer oyun platformu
+  - Python backend (FastAPI/Flask)
+  - Okey oyunu, Türkçe eğitim oyunları
+  - LLM router ve AI entegrasyonu
+  - React frontend
+
+Her alt proje kendi dokümantasyonuna sahiptir ve bağımsız olarak çalıştırılabilir.
 
 ## Kurulum ve Çalıştırma
 

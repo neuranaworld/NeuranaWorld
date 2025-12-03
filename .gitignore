@@ -49,3 +49,34 @@ coverage/
 
 # Archive
 archive/
+
+# Git temporary files
+FETCH_HEAD
+ORIG_HEAD
+COMMIT_EDITMSG
+*.orig
+*.rej
+
+# Backup files
+*.bak
+*.backup
+*_backup
+*_OLD
+*_old
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Database
+*.sqlite
+*.sqlite3
+*.db

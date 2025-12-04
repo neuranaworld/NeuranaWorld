@@ -32,7 +32,9 @@ function ignoreLegacyHtmlPlugin() {
 
 export default defineConfig({
   plugins: [
-    react(),
+    react({
+      include: /\.(jsx|js)$/,
+    }),
     ignoreLegacyHtmlPlugin(),
   ],
   base: '/NeuranaWorld/',

@@ -38,6 +38,10 @@ export default defineConfig({
     ignoreLegacyHtmlPlugin(),
   ],
   base: '/NeuranaWorld/',
+  esbuild: {
+    loader: 'jsx',
+    include: /src\/.*\.js$/,
+  },
   optimizeDeps: {
     esbuildOptions: {
       loader: {

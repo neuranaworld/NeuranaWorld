@@ -38,6 +38,13 @@ export default defineConfig({
     ignoreLegacyHtmlPlugin(),
   ],
   base: '/NeuranaWorld/',
+  optimizeDeps: {
+    esbuildOptions: {
+      loader: {
+        '.js': 'jsx',
+      },
+    },
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

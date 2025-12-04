@@ -4,7 +4,7 @@ import './MinecraftUI.css';
 import { getBlockMaterial, blockCategories, blockNames } from './blockMaterials';
 import { createPlayer, createSkyblockIsland, setupPlayerControls } from './playerSystem';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8001';
 
 const NeuraGameMinecraft = () => {
   const canvasRef = useRef(null);

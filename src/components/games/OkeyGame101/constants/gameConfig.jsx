@@ -34,7 +34,7 @@ export const NUMBER_COLORS = {
 };
 
 // API Configuration
-export const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+export const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 export const API_ENDPOINTS = {
   BASE: `${BACKEND_URL}/api`,
   GAMES: {

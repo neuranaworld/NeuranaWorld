@@ -40,7 +40,7 @@ export default defineConfig({
   base: '/NeuranaWorld/',
   esbuild: {
     loader: 'jsx',
-    include: /src\/.*\.js$/,
+    include: /src\/.*\.(jsx?|tsx?)$/,
   },
   optimizeDeps: {
     esbuildOptions: {

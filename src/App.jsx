@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Home from './pages/Home'
 
 // Galaxy Pages
 import HomePage from './pages/HomePage.jsx'
@@ -94,7 +93,7 @@ export default function App() {
   return (
     <BrowserRouter basename="/NeuranaWorld">
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<HomePage />} />
 
         {/* Galaxy Ana Sayfalar */}
         <Route path="/galaxy" element={<HomePage />} />
@@ -184,7 +183,7 @@ export default function App() {
         <Route path="/tools/weather" element={<Weather />} />
 
         {/* Fallback */}
-        <Route path="*" element={<Home />} />
+        <Route path="*" element={<HomePage />} />
       </Routes>
     </BrowserRouter>
   )

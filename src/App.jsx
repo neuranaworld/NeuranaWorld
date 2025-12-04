@@ -18,24 +18,24 @@ import NeuraVerseSimple from './pages/NeuraVerse/NeuraVerseSimple.jsx'
 import NeuraGameMinecraft from './pages/NeuraVerse/NeuraGameMinecraft.jsx'
 
 // Aksiyon Oyunları
-import BreakoutGame from './components/games/BreakoutGame.jsx'
-import CityRunner from './components/games/CityRunner.jsx'
-import DartGame from './components/games/DartGame.jsx'
-import FlappyBird from './components/games/FlappyBird.jsx'
-import PongGame from './components/games/PongGame.jsx'
-import SkyJumper from './components/games/SkyJumper.jsx'
-import SnakeGame from './components/games/SnakeGame.jsx'
+import BreakoutGame from './components/games/BreakoutGame'
+import CityRunner from './components/games/CityRunner'
+import DartGame from './components/games/DartGame'
+import FlappyBird from './components/games/FlappyBird'
+import PongGame from './components/games/PongGame'
+import SkyJumper from './components/games/SkyJumper'
+import SnakeGame from './components/games/SnakeGame'
 
 // Bulmaca Oyunları
-import CizimGame from './components/games/CizimGame.jsx'
-import JigsawPuzzle from './components/games/JigsawPuzzle.jsx'
-import MemoryGame from './components/games/MemoryGame.jsx'
-import SekerEslestirmece from './components/games/SekerEslestirmece.jsx'
+import CizimGame from './components/games/CizimGame'
+import JigsawPuzzle from './components/games/JigsawPuzzle'
+import MemoryGame from './components/games/MemoryGame'
+import SekerEslestirmece from './components/games/SekerEslestirmece'
 
 // Strateji Oyunları
-import ConnectFourGame from './components/games/ConnectFourGame.jsx'
-import OkeyGame101 from './components/games/OkeyGame101.jsx'
-import OkeyPro from './components/games/OkeyPro.jsx'
+import ConnectFourGame from './components/games/ConnectFourGame'
+import OkeyGame101 from './components/games/OkeyGame101'
+import OkeyPro from './components/games/OkeyPro'
 
 // Galaxy Oyunları
 import OkeyGame from './pages/games/OkeyGame.jsx'

@@ -32,10 +32,23 @@ function ignoreLegacyHtmlPlugin() {
 
 export default defineConfig({
   plugins: [
-    react(),
+    react({
+      include: /\.(jsx|js)$/,
+    }),
     ignoreLegacyHtmlPlugin(),
   ],
   base: '/NeuranaWorld/',
+  esbuild: {
+    loader: 'jsx',
+    include: /src\/.*\.(jsx?|tsx?)$/,
+  },
+  optimizeDeps: {
+    esbuildOptions: {
+      loader: {
+        '.js': 'jsx',
+      },
+    },
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

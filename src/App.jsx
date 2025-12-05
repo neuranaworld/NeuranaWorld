@@ -41,6 +41,11 @@ import OkeyPro from './components/games/OkeyPro'
 import OkeyGame from './pages/games/OkeyGame.jsx'
 import OkeyGamePage from './pages/games/OkeyGamePage.jsx'
 
+// Unique Oyunlar
+import FarmDominion from './pages/games/FarmDominion.jsx'
+import GalaxyGame from './pages/games/GalaxyGame.jsx'
+import SurvivalGame from './pages/games/SurvivalGame.jsx'
+
 // Matematik Oyunları
 import DeepThinkPage from './pages/math/DeepThinkPage.jsx'
 import QuickPracticePage from './pages/math/QuickPracticePage.jsx'
@@ -133,6 +138,11 @@ export default function App() {
         <Route path="/oyunlar/okeypro" element={<OkeyPro />} />
         <Route path="/oyunlar/okey" element={<OkeyGame />} />
         <Route path="/games/okey" element={<OkeyGamePage />} />
+
+        {/* Unique/Special Oyunlar */}
+        <Route path="/games/farmdominion" element={<FarmDominion />} />
+        <Route path="/games/galaxy" element={<GalaxyGame />} />
+        <Route path="/games/survival" element={<SurvivalGame />} />
 
         {/* Matematik Sayfaları ve Oyunları */}
         <Route path="/math/deep-think" element={<DeepThinkPage />} />

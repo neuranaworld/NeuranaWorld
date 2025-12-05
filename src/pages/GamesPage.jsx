@@ -69,6 +69,30 @@ export default function GamesPage() {
       path: '/games/sky-jumper',
       color: '#06b6d4'
     },
+    {
+      id: 14,
+      name: 'Farm Dominion',
+      icon: '🚜',
+      description: '3D Çiftlik simülasyonu - 6.8M m² arazi',
+      path: '/games/farmdominion',
+      color: '#16a34a'
+    },
+    {
+      id: 15,
+      name: 'NeuranaWorld Galaxy',
+      icon: '🌌',
+      description: '3D Multiplayer evren oyunu',
+      path: '/games/galaxy',
+      color: '#8b5cf6'
+    },
+    {
+      id: 16,
+      name: 'Survival Game',
+      icon: '⛺',
+      description: 'Hayatta kalma macerası',
+      path: '/games/survival',
+      color: '#f59e0b'
+    },
     // Engellenen oyunlar - en altta
     {
       id: 4,
